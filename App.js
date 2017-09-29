@@ -1,54 +1,28 @@
-import React from 'react';
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Expo from "expo";
+import React from "react";
+import App from "./js/App";
 
-import { StackNavigator } from 'react-navigation';
+export default class sharingiscaring extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isReady: false
+    };
+  }
 
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
+    });
 
-class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
+    this.setState({ isReady: true });
+  }
   render() {
-    return <Text>Hello, Navigation!</Text>;
+    if (!this.state.isReady) {
+      return <Expo.AppLoading />;
+    }
+    return <App />;
   }
 }
-
-
-class Screen2 extends Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
-  render() {
-    return <Text>Hello, Navigation!</Text>;
-  }
-}
-
-//ADD Button to switch screen
-
-export default class App extends React.Component {
-  render() {
-    const MainNavigator = StackNavigator({
-      Home:{screen: HomeScreen},
-      screen_1:{screen:Screen2},
-    })
-
-  
-    return (
-      <Provider store={this.store}>
-        <View style={styles.container}>
-          <MainNavigator />
-        </View>
-      </Provider>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
