@@ -29,59 +29,65 @@ const drawerImage = require("../../../img/logo-kitchen-sink.png");
 
 //CONSTANTE OF MENU DETAILS
 //Name = Display name
-//Icon = Displayed icon
+//Icon = Displayed icon -> Taken from Ionicons
 //bg = Background of the types
 //types = Number of types
 const datas = [
 	{
-		name: "Anatomy",
-		route: "Anatomy",
-		icon: "phone-portrait",
-		bg: "#C5F442",
-	},
-	{
-		name: "Actionsheet",
+		name: "Home",
 		route: "Home",
-		icon: "easel",
+		icon: "home",
 		bg: "#C5F442",
 	},
 	{
-		name: "Header",
-		route: "Header",
-		icon: "phone-portrait",
+		name: "Books",
+		route: "Books",
+		icon: "ios-book",
+		bg: "#C5F442",
+	},
+	{
+		name: "Housing",
+		route: "Housing",
+		icon: "home",
+		bg: "#C5F442",
+	},
+	{
+		name: "Uniseminars/Glemser",
+		route: "Uniglem",
+		icon: "fa-university",
 		bg: "#477EEA",
 		types: "8",
 	},
 	{
-		name: "Footer",
-		route: "Footer",
-		icon: "phone-portrait",
+		name: "Advice/Tutoring",
+		route: "Advtut",
+		icon: "university",
 		bg: "#DA4437",
 		types: "4",
 	},
 	{
-		name: "Badge",
-		route: "NHBadge",
+		name: "Associations",
+		route: "Associations",
 		icon: "notifications",
 		bg: "#4DCAE0",
 	},
 	{
-		name: "Button",
-		route: "NHButton",
+		name: "Events",
+		route: "Events",
 		icon: "radio-button-off",
 		bg: "#1EBC7C",
 		types: "9",
 	},
 	{
-		name: "Card",
-		route: "NHCard",
+		name: "Furniture",
+		route: "Furniture",
 		icon: "keypad",
 		bg: "#B89EF5",
 		types: "5",
 	},
 	{
-		name: "Check Box",
-		route: "NHCheckbox",
+		name: "Other",
+		route: "Other",
 		icon: "checkmark-circle",
 		bg: "#EB6B23",
 	},
