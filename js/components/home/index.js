@@ -7,8 +7,10 @@ import { Container, Button, H3, Text, Header, Title, Body, Left, Right } from "n
 
 import styles from "./styles";
 
-const launchscreenBg = require("../../../img/launchscreen-bg.png");
-const launchscreenLogo = require("../../../img/logo-kitchen-sink.png");
+//Background Launchscreen
+const launchscreenBg = require("../../../assets/images/doodles.png");
+//Logo launchscreen
+const launchscreenLogo = require("../../../assets/images/logo-sharing-is-caring.png");
 
 class Home extends Component {
 	// eslint-disable-line

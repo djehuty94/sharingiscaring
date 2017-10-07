@@ -1,4 +1,6 @@
 // SIDEBAR IS THE DRAWER 
+//Left menu
+//Here menu paths and items are defined
 
 import React, { Component } from "react";
 import { Image } from "react-native";
@@ -22,9 +24,14 @@ import {
 
 import styles from "./style";
 
-const drawerCover = require("../../../img/drawer-cover.png");
+const drawerCover = require("../../../assets/images/retro-furnish-background.png");
 
-const drawerImage = require("../../../img/logo-kitchen-sink.png");
+const drawerImage = require("../../../assets/images/logo-sharing-is-caring.png");
+
+/*
+import getTheme from '../sic-theme/components';
+import material from '../sic-theme/variables/material';
+*/
 
 
 //CONSTANTE OF MENU DETAILS
@@ -34,168 +41,70 @@ const drawerImage = require("../../../img/logo-kitchen-sink.png");
 //types = Number of types
 const datas = [
 	{
-		name: "Home",
+		name: "My home",
 		route: "Home",
-		icon: "home",
+		icon: "apps",
 		bg: "#C5F442",
 	},
 	{
 		name: "Books",
-		route: "Books",
-		icon: "ios-book",
+		route: "Page1",
+		icon: "book",
 		bg: "#C5F442",
 	},
 	{
 		name: "Housing",
-		route: "Housing",
+		route: "Header2",
 		icon: "home",
 		bg: "#C5F442",
 	},
 	{
 		name: "Uniseminars/Glemser",
 		route: "Uniglem",
-		icon: "fa-university",
+		icon: "thunderstorm",
 		bg: "#477EEA",
 		types: "8",
 	},
 	{
 		name: "Advice/Tutoring",
 		route: "Advtut",
-		icon: "university",
+		icon: "help-buoy",
 		bg: "#DA4437",
 		types: "4",
 	},
 	{
 		name: "Associations",
 		route: "Associations",
-		icon: "notifications",
+		icon: "people",
 		bg: "#4DCAE0",
 	},
 	{
 		name: "Events",
 		route: "Events",
-		icon: "radio-button-off",
+		icon: "beer",
 		bg: "#1EBC7C",
 		types: "9",
 	},
 	{
 		name: "Furniture",
 		route: "Furniture",
-		icon: "keypad",
+		icon: "easel",
 		bg: "#B89EF5",
 		types: "5",
 	},
 	{
 		name: "Other",
 		route: "Other",
-		icon: "checkmark-circle",
+		icon: "infinite",
 		bg: "#EB6B23",
 	},
 	{
-		name: "Deck Swiper",
-		route: "NHDeckSwiper",
-		icon: "swap",
+		name: "My account",
+		route: "account",
+		icon: "person",
 		bg: "#3591FA",
 		types: "2",
-	},
-	{
-		name: "Fab",
-		route: "NHFab",
-		icon: "help-buoy",
-		bg: "#EF6092",
-		types: "2",
-	},
-	{
-		name: "Form & Inputs",
-		route: "NHForm",
-		icon: "call",
-		bg: "#EFB406",
-		types: "12",
-	},
-	{
-		name: "Icon",
-		route: "NHIcon",
-		icon: "information-circle",
-		bg: "#EF6092",
-	},
-	{
-		name: "Layout",
-		route: "NHLayout",
-		icon: "grid",
-		bg: "#9F897C",
-		types: "5",
-	},
-	{
-		name: "List",
-		route: "NHList",
-		icon: "lock",
-		bg: "#5DCEE2",
-		types: "7",
-	},
-	{
-		name: "ListSwipe",
-		route: "ListSwipe",
-		icon: "swap",
-		bg: "#C5F442",
-		types: "2",
-	},
-	{
-		name: "Picker",
-		route: "NHPicker",
-		icon: "arrow-dropdown",
-		bg: "#F50C75",
-	},
-	{
-		name: "Radio",
-		route: "NHRadio",
-		icon: "radio-button-on",
-		bg: "#6FEA90",
-	},
-	{
-		name: "SearchBar",
-		route: "NHSearchbar",
-		icon: "search",
-		bg: "#29783B",
-	},
-	{
-		name: "Segment",
-		route: "Segment",
-		icon: "menu",
-		bg: "#0A2C6B",
-		types: "2",
-	},
-	{
-		name: "Spinner",
-		route: "NHSpinner",
-		icon: "navigate",
-		bg: "#BE6F50",
-	},
-	{
-		name: "Tabs",
-		route: "NHTab",
-		icon: "home",
-		bg: "#AB6AED",
-		types: "3",
-	},
-	{
-		name: "Thumbnail",
-		route: "NHThumbnail",
-		icon: "image",
-		bg: "#cc0000",
-		types: "2",
-	},
-	{
-		name: "Toast",
-		route: "Toast",
-		icon: "albums",
-		bg: "#C5F442",
-	},
-	{
-		name: "Typography",
-		route: "NHTypography",
-		icon: "paper",
-		bg: "#48525D",
-	},
+	}
 ];
 
 class SideBar extends Component {
@@ -212,14 +121,15 @@ class SideBar extends Component {
 			<Container>
 				<Content bounces={false} style={{ flex: 1, backgroundColor: "#fff", top: -1 }}>
 					<Image source={drawerCover} style={styles.drawerCover}>
-						<Image square style={styles.drawerImage} source={drawerImage} />
+						<Image square style={styles.drawerImage} source={drawerImage}
+						/>
 					</Image>
 					<List
 						dataArray={datas}
 						renderRow={data =>
 							<ListItem button noBorder onPress={() => this.props.navigation.navigate(data.route)}>
 								<Left>
-									<Icon active name={data.icon} style={{ color: "#777", fontSize: 26, width: 30 }} />
+									<Icon active name={data.icon} style={{ color: "#777", fontSize: 26, width: 30}} />
 									<Text style={styles.text}>
 										{data.name}
 									</Text>
@@ -234,7 +144,7 @@ class SideBar extends Component {
 												backgroundColor: data.bg,
 											}}
 										>
-											<Text style={styles.badgeText}>{`${data.types} Types`}</Text>
+											<Text style={styles.badgeText}>{`${data.types} Hot`}</Text>
 										</Badge>
 									</Right>}
 							</ListItem>}

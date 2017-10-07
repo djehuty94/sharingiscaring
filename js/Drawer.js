@@ -4,7 +4,8 @@ import React from "react";
 import { DrawerNavigator } from "react-navigation";
 
 import Home from "./components/home/";
-import Header from "./components/Header/";
+//import Header from "./components/Header/";
+import Page from "./components/pages/";
 
 import SideBar from "./components/sidebar";
 
@@ -13,7 +14,7 @@ const Drawer = DrawerNavigator(
     {
         //Declare elemtents part of the Drawer navigation
         Home: { screen: Home },
-        Header: { screen: Header },
+        Page: { screen : Page },
     },
     {
       //Declare initial routename
