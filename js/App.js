@@ -14,7 +14,7 @@ import Header from "./components/Header/";
 //import Header1 from "./components/Header/1";
 //import Header2 from "./components/Header/2";
 
-import Page1 from "./components/pages/pageTemplate"
+import Page1 from "./components/pages"
 import Home from "./components/home";
 
 //Build the stack navigator
