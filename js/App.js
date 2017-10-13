@@ -7,14 +7,24 @@ import { StackNavigator } from "react-navigation";
 
 //Import content for the drawer and header (NAVIGATION)
 import Drawer from "./Drawer";
-import Header from "./components/Header/";
+//import Header from "./components/Header/";
 
 
 //Import page header1 and header2 
 //import Header1 from "./components/Header/1";
 //import Header2 from "./components/Header/2";
 
-import Page1 from "./components/pages"
+import advtut from "./components/pages/advtut"
+import associations from "./components/pages/associations"
+import books from "./components/pages/books"
+import events from "./components/pages/events"
+import furniture from "./components/pages/furniture"
+import housing from "./components/pages/housing"
+import other from "./components/pages/other"
+import unigle from "./components/pages/unigle"
+
+import userpage from "./components/user/userpage"
+
 import Home from "./components/home";
 
 //Build the stack navigator
@@ -28,9 +38,18 @@ const AppNavigator = StackNavigator(
       Drawer: {screen: Drawer},
 
       //Declare pages
-      Page1: {screen:Page1},
-      //Header1: {screen:Header1},
-      //Header2: {screen:Header2},
+      Advtut: {screen: advtut},
+      Associations: {screen: associations},
+      Books: {screen: books},
+      Events: {screen: events},
+      Furniture: {screen: furniture},
+      Housing: {screen: housing},
+      Other: {screen: other},
+      Unigle: {screen: unigle},
+
+      //Declare user page
+      Userpage: {screen: userpage},
+      
     },
     {
       //Declare the initial page, Drawer 

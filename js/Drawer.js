@@ -5,16 +5,40 @@ import { DrawerNavigator } from "react-navigation";
 
 import Home from "./components/home/";
 //import Header from "./components/Header/";
-import Page from "./components/pages/";
 
 import SideBar from "./components/sidebar";
+
+import advtut from "./components/pages/advtut"
+import associations from "./components/pages/associations"
+import books from "./components/pages/books"
+import events from "./components/pages/events"
+import furniture from "./components/pages/furniture"
+import housing from "./components/pages/housing"
+import other from "./components/pages/other"
+import unigle from "./components/pages/unigle"
+
+import userpage from "./components/user/userpage"
+
 
 //Declare DrawerNavigator
 const Drawer = DrawerNavigator(
     {
         //Declare elemtents part of the Drawer navigation
-        Home: { screen: Home },
-        Page: { screen : Page },
+             //Home contains Home design, however Drawer will be the home 
+        Home: {screen:Home},
+  
+        //Declare pages
+        Advtut: {screen: advtut},
+        Associations: {screen: associations},
+        Books: {screen: books},
+        Events: {screen: events},
+        Furniture: {screen: furniture},
+        Housing: {screen: housing},
+        Other: {screen: other},
+        Unigle: {screen: unigle},
+  
+        //Declare user page
+        Userpage: {screen:userpage},
     },
     {
       //Declare initial routename

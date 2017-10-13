@@ -48,19 +48,19 @@ const datas = [
 	},
 	{
 		name: "Books",
-		route: "Page1",
+		route: "Books",
 		icon: "book",
 		bg: "#C5F442",
 	},
 	{
 		name: "Housing",
-		route: "Header2",
+		route: "Housing",
 		icon: "home",
 		bg: "#C5F442",
 	},
 	{
 		name: "Uniseminars/Glemser",
-		route: "Uniglem",
+		route: "Unigle",
 		icon: "thunderstorm",
 		bg: "#477EEA",
 		types: "8",
@@ -100,7 +100,7 @@ const datas = [
 	},
 	{
 		name: "My account",
-		route: "account",
+		route: "Userpage",
 		icon: "person",
 		bg: "#3591FA",
 		types: "2",
