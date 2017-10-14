@@ -28,7 +28,7 @@ import validator from "validator"; // Use to validate the forms
   //  firebase.initializeApp(firebaseConfig);
  //   console.log("Firebase initialised")
 
- import styles from "./styleRegister";
+ import styles from "./stylesRegister";
 
 
 export default class RegisterAccount extends Component {

@@ -27,7 +27,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'; // Navigation c
 // NEED TO USE REACT NAVIGTION 
 import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 
-import styles from "./styleLogin";
+import styles from "./stylesLogin";
   
 
 export default class LoginScreen extends Component {  
@@ -98,7 +98,7 @@ export default class LoginScreen extends Component {
 
         <Image
           style={styles.image}
-          source={require('../assets/logo.png')}
+          source={require('../../../assets/images/logo-sharing-is-caring.png')}
         />
         <RkTextInput // Login field
           rkType='rounded'

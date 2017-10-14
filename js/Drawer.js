@@ -18,6 +18,7 @@ import other from "./components/pages/other"
 import unigle from "./components/pages/unigle"
 
 import userpage from "./components/user/userpage"
+import login from "./components/user/login"
 
 
 //Declare DrawerNavigator
