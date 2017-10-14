@@ -39,6 +39,9 @@ const Drawer = DrawerNavigator(
   
         //Declare user page
         Userpage: {screen:userpage},
+
+        //TEMP
+        Login: {screen: login},
     },
     {
       //Declare initial routename

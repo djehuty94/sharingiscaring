@@ -100,7 +100,7 @@ const datas = [
 	},
 	{
 		name: "My account",
-		route: "Userpage",
+		route: "Login",
 		icon: "person",
 		bg: "#3591FA",
 		types: "2",

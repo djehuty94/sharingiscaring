@@ -1,9 +1,9 @@
 import React from "react";
 
 //Import components for APP
-import { Platform } from "react-native";
+import { Platform, Stylesheet, View } from "react-native";
 import { Root } from "native-base";
-import { StackNavigator } from "react-navigation";
+import { StackNavigator, TabNavigator } from "react-navigation";
 
 //Import content for the drawer and header (NAVIGATION)
 import Drawer from "./Drawer";
@@ -25,7 +25,23 @@ import unigle from "./components/pages/unigle"
 
 import userpage from "./components/user/userpage"
 
+import login from "./components/user/login"
+import register from "./components/user/register"
+import registerInfo from "./components/user/registerInfo"
+import resetPassword from "./components/user/resetPassword"
+
 import Home from "./components/home";
+
+//Firebase components
+import firebase from 'firebase'; // Import Firebase login
+import { firebaseConfig } from './config'; // Import of Firebase config
+
+
+// Initialise and display Firebase info in console, be sure that we have the right config. 
+console.log(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+console.log("Firebase initialised")
+
 
 //Build the stack navigator
 const AppNavigator = StackNavigator(
@@ -49,7 +65,12 @@ const AppNavigator = StackNavigator(
 
       //Declare user page
       Userpage: {screen: userpage},
-      
+
+      //TEMP
+      Login: {screen: login},
+      Register: {screen: register},
+      RegisterInfo: {screen: registerInfo},
+      resetPassword: {screen: resetPassword},
     },
     {
       //Declare the initial page, Drawer 
