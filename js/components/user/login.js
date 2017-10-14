@@ -27,10 +27,55 @@ import { TabNavigator, StackNavigator } from 'react-navigation'; // Navigation c
 // NEED TO USE REACT NAVIGTION 
 import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 
-import styles from "./stylesLogin";
-  
+//import styles from "./stylesLogin";
 
-export default class LoginScreen extends Component {  
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    marginTop: 40,
+    marginBottom: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  reloadButton: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    backgroundColor: 'blue',
+    color: 'white',
+    padding: 10,
+  },
+  loginField: {
+    margin: 10,
+  },
+  save: {
+    marginVertical: 15
+  },
+  image: {
+    width: 200,
+    height: 200
+  },
+  registerContainer: {
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: "flex-end",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    paddingVertical: 16,
+    width: Dimensions.get("window").width,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  registerText: {
+    color: "black",
+    fontSize: 16
+  }
+});
+
+export default class Login extends Component {  
 
 // Remove the navifation header on the login screen
   static navigationOptions = {
@@ -69,8 +114,10 @@ export default class LoginScreen extends Component {
 
         if (user) {
           this.dropdown.alertWithType('success', 'Success', "Logged-in");
+          //IF LOGIN WORK; REDIRECT TO LOGGEDIN STACK
+
+          this.props.navigation.navigate("Drawer")
         }
-        
       }
       catch (error) {
         console.log(error);
@@ -80,22 +127,14 @@ export default class LoginScreen extends Component {
         if (err_message) {
           this.dropdown.alertWithType('error', 'Error', err_message);
         }
-
-      
       }
   }
 
 
   // Visual container and text 
   render() {
-
-
-    
     return (
-      
       <View style={styles.container}>
-
-
         <Image
           style={styles.image}
           source={require('../../../assets/images/logo-sharing-is-caring.png')}
@@ -127,13 +166,13 @@ export default class LoginScreen extends Component {
               LOGIN
         </RkButton> 
         <Text // Reset password
-              onPress={() => this.onNavPress('reset_scr')}
+              onPress={() => this.onNavPress('ResetPassword')}
               rkType='large'
               style={styles.save}>
               Reset password
         </Text>
         <TouchableOpacity // Register button
-          onPress={() => this.onNavPress('registerinfo_scr')}
+          onPress={() => this.onNavPress('RegisterInfo')}
           style={styles.registerContainer}
           >
           <Text style={styles.registerText}>
@@ -142,10 +181,7 @@ export default class LoginScreen extends Component {
         </TouchableOpacity>
         <DropdownAlert ref={ref => this.dropdown = ref}/>
       </View>
-      
-      
-      
     );
   }
 }
-AppRegistry.registerComponent('LoginScreen', () => LoginScreen);
+AppRegistry.registerComponent('Login', () => Login);

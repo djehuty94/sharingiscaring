@@ -17,7 +17,6 @@ import housing from "./components/pages/housing"
 import other from "./components/pages/other"
 import unigle from "./components/pages/unigle"
 
-import userpage from "./components/user/userpage"
 import login from "./components/user/login"
 
 
@@ -37,9 +36,6 @@ const Drawer = DrawerNavigator(
         Housing: {screen: housing},
         Other: {screen: other},
         Unigle: {screen: unigle},
-  
-        //Declare user page
-        Userpage: {screen:userpage},
 
         //TEMP
         Login: {screen: login},
@@ -50,6 +46,7 @@ const Drawer = DrawerNavigator(
       contentOptions:{
         activeTintColor:"#e91e63"
       },
+      headerMode:"none",
 
       //Declare DrawerNavigation parameters for navigation
       contentComponent: props => <SideBar {...props} />

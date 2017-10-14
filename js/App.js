@@ -7,6 +7,7 @@ import { StackNavigator, TabNavigator } from "react-navigation";
 
 //Import content for the drawer and header (NAVIGATION)
 import Drawer from "./Drawer";
+import SignedOut from "./SignedOut";
 //import Header from "./components/Header/";
 
 
@@ -22,8 +23,6 @@ import furniture from "./components/pages/furniture"
 import housing from "./components/pages/housing"
 import other from "./components/pages/other"
 import unigle from "./components/pages/unigle"
-
-import userpage from "./components/user/userpage"
 
 import login from "./components/user/login"
 import register from "./components/user/register"
@@ -42,8 +41,19 @@ console.log(firebaseConfig);
 firebase.initializeApp(firebaseConfig);
 console.log("Firebase initialised")
 
+const AppNavigator = StackNavigator(
+    {
+      Drawer: {screen: Drawer},
+      SignedOut: {screen: SignedOut}
+    },
+    {
+      initialRouteName: "SignedOut",
+      headerMode:"None",
+    }
+  );
 
 //Build the stack navigator
+/*
 const AppNavigator = StackNavigator(
     {
 
@@ -65,19 +75,13 @@ const AppNavigator = StackNavigator(
 
       //Declare user page
       Userpage: {screen: userpage},
-
-      //TEMP
-      Login: {screen: login},
-      Register: {screen: register},
-      RegisterInfo: {screen: registerInfo},
-      resetPassword: {screen: resetPassword},
     },
     {
       //Declare the initial page, Drawer 
       initialRouteName: "Drawer",
       headerMode:"none",
     }
-  );
+  );*/
 
   //Export Stacknavigator to app for display
   export default () =>
