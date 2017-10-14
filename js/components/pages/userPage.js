@@ -25,7 +25,7 @@ const deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../img/logo.png");
 const cardImage = require("../../../img/drawer-cover.png");
 
-class Books extends Component {
+class UserPage extends Component {
   render() {
     return (
       <Container style={styles.container}>
@@ -96,4 +96,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default UserPage;

@@ -27,53 +27,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'; // Navigation c
 // NEED TO USE REACT NAVIGTION 
 import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 
-//import styles from "./stylesLogin";
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    marginTop: 40,
-    marginBottom: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  reloadButton: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    backgroundColor: 'blue',
-    color: 'white',
-    padding: 10,
-  },
-  loginField: {
-    margin: 10,
-  },
-  save: {
-    marginVertical: 15
-  },
-  image: {
-    width: 200,
-    height: 200
-  },
-  registerContainer: {
-    position: 'absolute',
-    bottom: 0,
-    alignSelf: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
-    paddingVertical: 16,
-    width: Dimensions.get("window").width,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  registerText: {
-    color: "black",
-    fontSize: 16
-  }
-});
+import styles from "./styles";
 
 export default class Login extends Component {  
 
@@ -106,12 +60,13 @@ export default class Login extends Component {
         //const password = "testtest"
         console.log(this.state.email)
         console.log(this.state.password)
+  
         let user = await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
         // loginUserSuccess(dispatch, user);
         console.log('User sucessfully logged')
         this.state.isLoggedIn = true
         console.log(user)
-
+        console.log("Custom log")
         if (user) {
           this.dropdown.alertWithType('success', 'Success', "Logged-in");
           //IF LOGIN WORK; REDIRECT TO LOGGEDIN STACK
@@ -162,13 +117,13 @@ export default class Login extends Component {
         <RkButton // Login button 
               rkType='rounded'
               onPress={() => { this.onButtonPress(); }}
-              style={styles.save}>
+              style={styles.saveLogin}>
               LOGIN
         </RkButton> 
         <Text // Reset password
               onPress={() => this.onNavPress('ResetPassword')}
               rkType='large'
-              style={styles.save}>
+              style={styles.saveLogin}>
               Reset password
         </Text>
         <TouchableOpacity // Register button

@@ -3,7 +3,7 @@ const React = require("react-native");
 const { StyleSheet } = React;
 
 // Style sheet
-const styles = StyleSheet.create({
+export default{
     container: {
       flex: 1,
       //justifyContent: 'center',
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
       width: 200,
       height: 200
     },
-  });
+  };

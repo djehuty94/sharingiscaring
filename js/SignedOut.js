@@ -1,4 +1,7 @@
-/* @flow */
+// LOGIN AND REGISTRATION PAGE
+
+// TO DISPLAY IF LOGGED OUT
+
 
 import React from "react";
 import { DrawerNavigator, StackNavigator } from "react-navigation";

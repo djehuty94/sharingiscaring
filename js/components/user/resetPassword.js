@@ -29,7 +29,7 @@ import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 
 
 
- import styles from "./stylesResetPasswords";
+ import styles from "./styles";
 
 export default class ResetPassword extends Component {
 

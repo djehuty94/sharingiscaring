@@ -22,7 +22,7 @@ import { connect } from 'react-redux'; // Probably not useful
 import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 import validator from "validator"; // Use to validate the forms
 
-import styles from "./stylesRegisterInfo";
+import styles from "./styles";
 
 
 export default class RegisterInfo extends Component {

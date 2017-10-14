@@ -1,6 +1,4 @@
-const React = require("react-native");
 
-const { StyleSheet, Platform, Dimensions } = React;
 
 const styles = StyleSheet.create({
     container: {
@@ -46,3 +44,4 @@ const styles = StyleSheet.create({
       fontSize: 16
     }
   });
+  

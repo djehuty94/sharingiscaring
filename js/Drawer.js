@@ -1,4 +1,4 @@
-/* @flow */
+/* DRAWER NAVIGATION -- TO DISPLAY IF LOGGEDin  */
 
 import React from "react";
 import { DrawerNavigator } from "react-navigation";
@@ -16,6 +16,7 @@ import furniture from "./components/pages/furniture"
 import housing from "./components/pages/housing"
 import other from "./components/pages/other"
 import unigle from "./components/pages/unigle"
+import userpage from "./components/pages/userPage"
 
 import login from "./components/user/login"
 
@@ -36,19 +37,17 @@ const Drawer = DrawerNavigator(
         Housing: {screen: housing},
         Other: {screen: other},
         Unigle: {screen: unigle},
-
-        //TEMP
-        Login: {screen: login},
+        UserPage: {screen: userpage},
     },
     {
-      //Declare initial routename
+      //Declare initial routename (dispalyed page)
       initialRouteName: "Home",
       contentOptions:{
         activeTintColor:"#e91e63"
       },
       headerMode:"none",
 
-      //Declare DrawerNavigation parameters for navigation
+      //Declare drawer design in ./sidebar
       contentComponent: props => <SideBar {...props} />
     }
   );

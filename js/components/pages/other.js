@@ -31,9 +31,12 @@ class Other extends Component {
       <Container style={styles.container}>
         <Header>
           <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="apps" />
-            </Button>
+          <Button
+          transparent
+          onPress={() => this.props.navigation.navigate("DrawerOpen")}
+         >
+        <Icon name="menu" />
+          </Button>
           </Left>
           <Body>
             <Title>Card Showcase</Title>
