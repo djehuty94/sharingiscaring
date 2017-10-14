@@ -18,7 +18,7 @@ const SignedOut = StackNavigator({
     Login: {screen: login},
     Register: {screen: register},
     RegisterInfo: {screen: registerInfo},
-    resetPassword: {screen: resetPassword},
+    ResetPassword: {screen: resetPassword},
   },{
   initialRouteName: "Login",
   headerMode:"none",}

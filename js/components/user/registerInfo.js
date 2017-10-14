@@ -25,6 +25,7 @@ import validator from "validator"; // Use to validate the forms
 import styles from "./styles";
 
 
+
 export default class RegisterInfo extends Component {
 
     static navigationOptions = {
@@ -73,11 +74,15 @@ export default class RegisterInfo extends Component {
       return;
     }
 
-    this.props.navigation.navigate('registeraccount_scr', {
-      firstname: this.firstname,
-      lastname: this.lastname,
-      phone: this.phone,
-    })
+    this.props.navigate('Register',
+        {
+          params: {
+            firstname: this.firstname,
+            lastname: this.lastname,
+            phone: this.phone,
+
+          },
+      })
   } 
 
 

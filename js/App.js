@@ -54,8 +54,7 @@ export default class sharingiscaring extends React.Component {
       return <Expo.AppLoading />;
     }
 
-    console.log("this.state.signedIn response");
-    console.log(this.state.signedIn);
+    console.log("this.state.signedIn response: " + this.state.signedIn);
     const App = createRootNavigator(this.state.signedIn);
     //Launch app if the app isReady
     //Display ./js/App
