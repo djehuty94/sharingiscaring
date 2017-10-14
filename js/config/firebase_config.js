@@ -1,4 +1,4 @@
-export const firebaseConfig = {
+export const firebaseConfigfirebaseConfig = {
     apiKey: "AIzaSyCPYu_iqHjNoXjMfdMVLoYs5Graf2gdz7I",
     authDomain: "project-884406512169.firebaseapp.com",
     databaseURL: "https://sharing-is-caring-967c8.firebaseio.com",
