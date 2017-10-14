@@ -3,8 +3,9 @@
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from './config/firebase_config.js'; // Import of Firebase config
 
+//console.log(firebaseConfig);
+//firebase.initializeApp(firebaseConfig);
 
-firebase.initializeApp(firebaseConfig);
 
 //Checked if user is logged
 

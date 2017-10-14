@@ -8,8 +8,10 @@ import { firebaseConfig } from './config/firebase_config.js'; // Import of Fireb
 
 
 //Call file App.js where app code is located
-import {createRootNavigator} from "./router";
+import {createRootNavigator} from "./Router";
 import { isSignedIn } from "./auth";
+
+firebase.initializeApp(firebaseConfig); // Initialise firebase
 
 export default class sharingiscaring extends React.Component {
   //Initial function
