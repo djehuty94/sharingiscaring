@@ -25,9 +25,9 @@ import { connect } from 'react-redux'; // Probably not useful
 
 
 // Initialise and display Firebase info in console, be sure that we have the right config. 
-    console.log(firebaseConfig);
-    firebase.initializeApp(firebaseConfig);
-    console.log("Firebase initialised")
+ //   console.log(firebaseConfig);
+//    firebase.initializeApp(firebaseConfig);
+ //   console.log("Firebase initialised")
 
 
 

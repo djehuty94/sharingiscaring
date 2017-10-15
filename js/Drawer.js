@@ -17,6 +17,7 @@ import housing from "./components/pages/housing"
 import other from "./components/pages/other"
 import unigle from "./components/pages/unigle"
 import userpage from "./components/pages/userPage"
+import publish from "./components/pages/publish"
 
 import login from "./components/user/login"
 
@@ -38,6 +39,7 @@ const Drawer = DrawerNavigator(
         Other: {screen: other},
         Unigle: {screen: unigle},
         UserPage: {screen: userpage},
+        Publish: {screen: publish}
     },
     {
       //Declare initial routename (dispalyed page)

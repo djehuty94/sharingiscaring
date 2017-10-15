@@ -17,11 +17,11 @@ export default class sharingiscaring extends React.Component {
   //Initial function
   constructor() {
     super();
-    //Set app state to falst
+    //Set app state to false
     this.state = {
       isReady: false,
-      signedIn:false,
-      checkedSignIn:false
+      signedIn: false, 
+      checkedSignIn: false 
     };
   }
 

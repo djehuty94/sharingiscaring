@@ -25,7 +25,7 @@ export const isSignedIn = () =>{
               // No user is signed in.
               console.log("checked logged false");
               console.log(user);
-              resolve(false);
+              resolve(true); // TO BE CHANGED z
             }
         });
     });

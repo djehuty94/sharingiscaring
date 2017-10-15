@@ -15,7 +15,9 @@ import {
   Left,
   Right,
   Body,
-  IconNB
+  IconNB,
+  Fab,
+  View,
 } from "native-base";
 
 import styles from "./styles";
@@ -26,25 +28,33 @@ const logo = require("../../../img/logo.png");
 const cardImage = require("../../../img/drawer-cover.png");
 
 class Books extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      Fab: false,
+    };
+  }
+
   render() {
     return (
       <Container style={styles.container}>
         <Header>
           <Left>
-          <Button
-          transparent
-          onPress={() => this.props.navigation.navigate("DrawerOpen")}
-         >
-        <Icon name="menu" />
-          </Button>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+              >
+              <Icon name="menu" />
+            </Button>
           </Left>
           <Body>
             <Title>Card Showcase</Title>
           </Body>
           <Right />
         </Header>
-
         <Content padder>
+          
           <Card style={styles.mb}>
             <CardItem bordered>
               <Left>
@@ -91,6 +101,22 @@ class Books extends Component {
             </CardItem>
           </Card>
         </Content>
+        <Fab // Floating button "add an accounce"
+          active={this.state.Fab}
+          direction="up"
+          containerStyle={{ }}
+          style={styles.FAB}
+          position="bottomRight"
+          onPress={() => this.setState({ Fab: !this.state.Fab })}>
+          
+          <Icon name="ios-add" />
+          <Button 
+            style={{ backgroundColor: '#3B5998' }}
+            onPress={() => this.props.navigation.navigate("Publish")}>
+              <Text>Add announce</Text>
+          </Button>
+          
+        </Fab>
       </Container>
     );
   }

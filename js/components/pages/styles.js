@@ -3,6 +3,27 @@ const React = require("react-native");
 const { StyleSheet } = React;
 
 export default {
+  containerPublish: { // only concern the "publish.js"
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ddd',
+  },
+  save1Publish: { // only concern the "publish.js"
+    marginVertical: 15,
+    width: 100,
+    height: 43,  
+    },
+  save2Publish: { // only concern the "publish.js"
+      marginVertical: 9,
+      backgroundColor: '#228b22',
+      width: 200, 
+      height: 50,
+    },
+  image: { // only concern the "publish.js"
+    width: 100,
+    height: 100,
+  },
   container: {
     backgroundColor: "#FFF"
   },
