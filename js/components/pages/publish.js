@@ -107,6 +107,44 @@ class Publish extends Component {
 
   }
 
+  pickImage = async () => {
+    // Display the camera to the user and wait for them to take a photo or to cancel
+    // the action
+    let newphoto = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+    this.setState(
+    {
+     result: newphoto
+    }
+    )
+    uploadImageAsync(newphoto)
+
+    if (this.state.result.cancelled) {
+      return;
+    }
+  
+    // ImagePicker saves the taken photo to disk and returns a local URI to it
+
+    this.setState(
+      {
+        filename: this.state.result.uri.split('/').pop(),
+        localUri: this.state.result.uri
+      }
+    )
+    // Infer the type of the image
+    let match = /\.(\w+)$/.exec(this.state.filename);
+    let type = match ? `image/${match[1]}` : `image`;
+    
+    console.log(this.state.result.uri)
+    console.log(this.state.filename)
+    console.log(this.state.localUri)
+
+  }
+
+
+
   // Function to get the number of announces already in the database. It is stored in "a" and then in "this.state.announceNumber"
   // We use .then to wait that the data is downloaded before proceeding. 
   numberOfOnlineAnnounce = async () => {
@@ -176,17 +214,16 @@ class Publish extends Component {
   
   render() {
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}
-      style={{backgroundColor: "green"}}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
       <Container style={styles.container}>
         <Header>
                 <Left>
                     <Button
-                    transparent
+                    //transparent
                     onPress={() => this.props.navigation.navigate("Books")}
                     >
-                    <Icon name="ios-arrow-back" />
+                    <Icon name="back" />
                     </Button>
                 </Left>
                 <Body>
@@ -232,6 +269,12 @@ class Publish extends Component {
               rkType='large'
               style={styles.save1Publish}>
               Upload Image
+        </RkButton>
+        <RkButton
+              onPress={() => {this.pickImage(); }}
+              rkType='large'
+              style={styles.save1Publish}>
+              Pick Image
         </RkButton>
         <Image
           style={styles.image}

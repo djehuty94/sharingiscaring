@@ -25,7 +25,7 @@ import login from "./components/user/login"
 //Declare DrawerNavigator
 const Drawer = DrawerNavigator(
     {
-        //Declare elemtents part of the Drawer navigation
+        //Declare elements part of the Drawer navigation
              //Home contains Home design, however Drawer will be the home 
         Home: {screen:Home},
   

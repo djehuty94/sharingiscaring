@@ -24,8 +24,8 @@ export const isSignedIn = () =>{
             } else {
               // No user is signed in.
               console.log("checked logged false");
-              console.log(user);
-              resolve(true); // TO BE CHANGED z
+              console.log(false);
+              resolve(true); // TO BE CHANGED to true to bypass login
             }
         });
     });

@@ -101,7 +101,7 @@ class Books extends Component {
             </CardItem>
           </Card>
         </Content>
-        <Fab // Floating button "add an accounce"
+        <Fab // Floating button "add an announce"
           active={this.state.Fab}
           direction="up"
           containerStyle={{ }}
@@ -109,11 +109,11 @@ class Books extends Component {
           position="bottomRight"
           onPress={() => this.setState({ Fab: !this.state.Fab })}>
           
-          <Icon name="ios-add" />
+          <Icon name="add" />
           <Button 
             style={{ backgroundColor: '#3B5998' }}
             onPress={() => this.props.navigation.navigate("Publish")}>
-              <Text>Add announce</Text>
+            <Icon name="mail" />
           </Button>
           
         </Fab>

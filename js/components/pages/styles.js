@@ -33,5 +33,8 @@ export default {
   },
   mb: {
     marginBottom: 15
+  },
+  FAB: {
+    backgroundColor: '#5067FF'
   }
 };
