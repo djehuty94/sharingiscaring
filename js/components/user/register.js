@@ -72,8 +72,10 @@ export default class RegisterAccount extends Component {
     }
    
 
-      var firstname = this.props.firstname
-      var lastname = this.props.lastname
+      //var firstname = this.props.navigation.state.firstname
+      //var lastname = this.props.navigation.state.firstname
+      var firstname = ''
+      var lastname = ''
       var phone = this.props.phone
       var displayName = firstname + ' ' + lastname;
       var email = this.state.email

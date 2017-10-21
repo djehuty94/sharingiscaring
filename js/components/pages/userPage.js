@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { 
+  Alert,
   ScrollView,
-  AsyncStorage,
   StyleSheet,
   Switch,
   Platform,
   TouchableOpacity
  } from "react-native";
 
+ // import { email } from "react-native-communications"; // TO be used to send Feedback
 import {
   Container,
   View, 
@@ -23,8 +24,7 @@ import {
   Left,
   Right,
   Body,
-  IconNB, 
-  Alert,
+  IconNB,
 } from "native-base";
 
 import firebase from 'firebase'; // Import Firebase login
@@ -32,69 +32,38 @@ import { firebaseConfig } from '../../config/firebase_config.js'; // Import of F
 
 //import styles from "./styles";
 
-getUser = () => {
-  global.firebaseApp
-    .database()
-    .ref("users")
-    .child(this.props.authStore.userId)
-    .once("value")
-    .then(userSnap => {
-      this.user = userSnap.val();
-      this.notifications = this.user.settings.notifications;
-    })
-    .catch(err => {
-      this.props.alertWithType("error", "Error", err.toString());
-    });
-};
-
-togglePushNotifications = value => {
-  Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS)
-    .then(({ status }) => {
-      if (status === "granted") {
-        Notifications.getExponentPushTokenAsync().then(token => {
-          this.notifications = value;
-          global.firebaseApp
-            .database()
-            .ref("users")
-            .child(this.props.authStore.userId)
-            .update({
-              pushToken: token,
-              settings: {
-                notifications: value
-              }
-            })
-            .then(() => {
-              this.getUser();
-            })
-            .catch(error => {
-              this.notifications = !value;
-              this.props.alertWithType("error", "Error", error.toString());
-            });
-        });
-      } else {
-        this.notifications = !value;
-        this.props.alertWithType(
-          "error",
-          "Error",
-          "To stay in the loop, you need to enable push notifications."
-        );
-      }
-    })
-    .catch(() => {
-      this.notifications = !value;
-    });
-};
 
 
-/*componentWillMount() {
-  this.getUser();
-}*/
+
 
 class UserPage extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      notif: false,
+    };
+  }
 
   render() {
     return (
+      <Container>
+      <Header>
+          <Left>
+            <Button
+              transparent
+              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+              >
+              <Icon name="menu" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>My Account</Title>
+          </Body>
+          <Right />
+      </Header>
+      
+
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <View style={styles.sectionHeaderContainer}>
@@ -110,26 +79,61 @@ class UserPage extends Component {
 
           </View>
           <View style={styles.switchFieldContainer}>
-            <TouchableOpacity
-              onPress={() => this.togglePushNotifications(!this.notifications)}
-            >
               <Text>Push notifications</Text>
-            </TouchableOpacity>
-            <Switch
-              onValueChange={this.togglePushNotifications}
-              value={this.notifications}
+            <Switch // PUSH NOTIFICATIONS TO BE IMPLEMENTED
+              onValueChange={() => this.setState({ notif: !this.state.notif })}
+              value={this.state.notif}
             />
           </View>
         </View>
         <View>
           
+        <TouchableOpacity
+            /* onPress={() => {
+              email(
+                ["datwheat@gmail.com"],
+                null,
+                null,
+                `PÜL Feedback <${this.props.authStore.userId}>`,
+                null
+              );
+            }}*/
+            style={styles.fieldContainer}
+          >
             <Text>Send feedback</Text>
+          </TouchableOpacity>
+            <Text></Text> 
+            <Text></Text>
 
+
+          <TouchableOpacity // LOG OUT TO BE IMPLEMENTED
+            onPress={() => {
+              Alert.alert(
+                Platform.OS === "ios" ? "Log Out" : "Log out",
+                "Are you sure? Logging out will remove all data from this device.",
+                [
+                  {
+                    text: "Cancel",
+                    onPress: () => {},
+                    style: "cancel"
+                  },
+                  {
+                    text: "OK",
+                    //onPress: () => { }
+                  }
+                ]
+              );
+            }}
+            style={styles.fieldContainer}
+          >
             <Text>Log out</Text>
+
+          </TouchableOpacity>
           
         
         </View>
       </ScrollView>
+      </Container>
     );
   }
 }
