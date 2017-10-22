@@ -30,6 +30,8 @@ import {
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config/firebase_config.js'; // Import of Firebase config
 
+import { onSignOut } from "../../Auth";
+
 //import styles from "./styles";
 
 
@@ -105,9 +107,14 @@ class UserPage extends Component {
             <Text></Text> 
             <Text></Text>
 
-
+            <Button
+              backgroundColor="#03A9F4"
+              title="SIGN OUT"
+              onPress={() => onSignOut()}
+              /*.then(this.props.navigation.navigate("SignedOut"))}*/
+            />
           <TouchableOpacity // LOG OUT TO BE IMPLEMENTED
-            onPress={() => {
+            /*onPress={() => {
               Alert.alert(
                 Platform.OS === "ios" ? "Log Out" : "Log out",
                 "Are you sure? Logging out will remove all data from this device.",
@@ -119,12 +126,12 @@ class UserPage extends Component {
                   },
                   {
                     text: "OK",
-                    //onPress: () => { }
+                    onPress: () => {onSignOut().then(() => this.props.navigation.navigate("DrawerOpen"))}
                   }
                 ]
               );
             }}
-            style={styles.fieldContainer}
+            style={styles.fieldContainer}*/
           >
             <Text>Log out</Text>
 

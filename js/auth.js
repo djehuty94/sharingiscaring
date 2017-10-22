@@ -1,4 +1,5 @@
-//This must
+//DOCUMENTATION
+// https://firebase.google.com/docs/auth/web/manage-users
 
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from './config/firebase_config.js'; // Import of Firebase config
@@ -31,3 +32,12 @@ export const isSignedIn = () =>{
     });
 };
 
+export const onSignOut =() => {
+    firebase.auth().signOut().then(function() {
+    console.log("Sign Out successfull");
+    // Sign-out successful.
+  }, function(error) {
+    console.log(error);
+    // An error happened.
+  });
+}
