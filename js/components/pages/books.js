@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Image, Dimensions } from "react-native";
 
+import firebase from 'firebase'; // Import Firebase login
 import {
   Container,
   Header,
@@ -33,8 +34,40 @@ class Books extends Component {
     super();
     this.state = {
       Fab: false,
+      announceNumber: 0,
+      retrieved: "",
+
     };
   }
+
+  numberOfOnlineAnnounce = async () => {
+    var a; 
+    var b;
+    return b = await firebase.database().ref("/announces/").once("value") // Return serve as a promise to wait
+      .then(function(snapshot) {
+        a = snapshot.numChildren(); // ("number of announces")
+      })
+      .then (() => this.state.announceNumber = a); // Wait for data before assigning the value to "announceNumber"
+      
+  }
+
+  retrieve = async (announceNumber) => { // Stock the announce into this.state.retrieved
+    var a
+    return a = await firebase.database().ref("/announces/" + announceNumber).once("/Details/")
+      .then(function(snapshot) {
+        announce = snapshot.val().announce;
+    })
+      .then (() => this.state.retrieved = announce);
+  }
+
+  createList() {
+    //var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
+    let numberOfOnlineAnnounce = 1
+    let announce = this.retrieve(numberOfOnlineAnnounce)
+    
+    console.log(announce)
+  }
+
 
   render() {
     return (
@@ -100,6 +133,13 @@ class Books extends Component {
               </Left>
             </CardItem>
           </Card>
+
+          <Button // BUTTON TO BE REMOVED
+            style={{ backgroundColor: '#3B5998' }}
+            onPress={() => this.createList()}>
+          </Button>
+
+
         </Content>
         <Fab // Floating button "add an announce"
           active={this.state.Fab}

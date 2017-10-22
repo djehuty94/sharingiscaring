@@ -25,7 +25,7 @@ export const isSignedIn = () =>{
               // No user is signed in.
               console.log("checked logged false");
               console.log(false);
-              resolve(false); // TO BE CHANGED to true to bypass login
+              resolve(true); // TO BE CHANGED to true to bypass login
             }
         });
     });
