@@ -9,7 +9,7 @@ import { firebaseConfig } from './config/firebase_config.js'; // Import of Fireb
 
 //Call file App.js where app code is located
 import {createRootNavigator} from "./Router";
-import { isSignedIn } from "./auth";
+import { isSignedIn } from "./Auth";
 
 firebase.initializeApp(firebaseConfig); // Initialise firebase
 
