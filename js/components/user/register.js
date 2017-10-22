@@ -43,6 +43,8 @@ export default class RegisterAccount extends Component {
       this.state = {isLoggedIn : false, email :"", password : "", firstname :"", lastname : "", phone : ""};
     }
 
+    
+
 
 
 
@@ -72,10 +74,12 @@ export default class RegisterAccount extends Component {
     }
    
 
-      //var firstname = this.props.navigation.state.firstname
-      //var lastname = this.props.navigation.state.firstname
+      //var firstname = this.props.navigation.firstname
+      //var lastname = this.props.navigation.lastname
       var firstname = ''
       var lastname = ''
+      console.log(firstname)
+      console.log(lastname)
       var phone = this.props.phone
       var displayName = firstname + ' ' + lastname;
       var email = this.state.email

@@ -74,16 +74,10 @@ export default class RegisterInfo extends Component {
       return;
     }
 
-    this.props.navigate('Register',
-        {
-          params: {
-            firstname: this.firstname,
-            lastname: this.lastname,
-            phone: this.phone,
+    
 
-          },
-      })
-  } 
+    this.props.navigation.navigate('Register', {firstname: this.state.firstname, lastname: this.state.lastname, phone: this.state.phone})} 
+    
 
 
 
