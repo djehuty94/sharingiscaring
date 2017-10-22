@@ -57,8 +57,8 @@ class Publish extends Component {
      }
 
     // ToBeRemoved login
+    /*
   login = async () => { // The "async" serve for the await function
-
       let email = "eberle.tom@gmail.com"
       let password = "123456789"
       try {
@@ -70,7 +70,7 @@ class Publish extends Component {
         console.log(error);
         let err_message = error.message;
       }
-  }
+  }*/
   // Take a picture with camera and return the path to the render "fileUri"
   takePhoto = async () => {
     // Display the camera to the user and wait for them to take a photo or to cancel
@@ -168,22 +168,37 @@ class Publish extends Component {
     // Log the user, in the real version the user will already be logged. 
     // I used .then to wait that firebase contact the database. 
 
-    this.login() // To be removed since the user will be logged. 
-    var announceNumberInc
-    this.numberOfOnlineAnnounce() // Retreive the number of announces 
-    .then (() => announceNumberInc = this.addOneTo(this.state.announceNumber)) // Return the number in "announceNumber" incremented by one. 
-    .then (() => this.uploadOffer(announceNumberInc))
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+
+        var announceNumberInc
+        var var_userUID = user.uid;
+        console.log(var_userUID);
+        this.numberOfOnlineAnnounce() // Retreive the number of announces 
+        .then (() => announceNumberInc = this.addOneTo(this.state.announceNumber)) // Return the number in "announceNumber" incremented by one. 
+        .then (() => this.uploadOffer(announceNumberInc, var_userUID))
+        
+     
+      } else {
+        // No user is signed in.
+        console.log("checked logged false");
+        console.log(false);
+      }
+    });
+
+ 
+
    
   }
 
-  uploadOffer = async (announceNumberInc) => {
+  uploadOffer = async (announceNumberInc, var_userUID) => {
 
 
         console.log("           --------------------------------           ")
         console.log("Publishing of the announce n°" + announceNumberInc)
     
         let date = String(new Date()) // get current date and transform it into a String
-        let userUID = this.state.user // get user id
+        //let userUID = this.state.user // get user id
         let offer = this.state.offer // get offer title
         let description = this.state.description // get description
         let price = this.state.price // get price
@@ -200,7 +215,8 @@ class Publish extends Component {
             offer,
             description,
             price,
-            userUID
+           // userUID
+           var_userUID
           });
     
         }
