@@ -36,6 +36,27 @@ export default class Login extends Component {
     header: null
   };
 
+  // START TEST TO BE REMOVED
+  login = async () => { // The login function is only for test purpuses TO BE REMOVED
+      let email = "test1@gmail.com"
+      let password = "tomtom"
+      try {
+        let user = await firebase.auth().signInWithEmailAndPassword(email, password); 
+        this.state.user = user.uid
+        console.log("UserID is: "+ this.state.user.displayName)
+        this.state.isLoggedIn = true
+        this.props.navigation.navigate("Drawer")
+      }
+      catch (error) {
+        console.log(error);
+        let err_message = error.message;
+      }
+  }
+  componentWillMount() { // TO BE REMOVED
+    this.login();
+  }
+  // END TEST TO BE REMOVED
+
   onNavPress = (screenname) => {
     this.props.navigation.navigate(screenname);
   };

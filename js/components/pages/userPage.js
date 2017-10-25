@@ -1,28 +1,25 @@
 import React, { Component } from "react";
 import { 
-  Alert,
   ScrollView,
   StyleSheet,
-  Switch,
+  Switch, // *
   Platform,
-  TouchableOpacity
+  TouchableOpacity, // *
+  TextInput, // *
  } from "react-native";
-
- // import { email } from "react-native-communications"; // TO be used to send Feedback
+// import { email } from "react-native-communications"; // TO be used to send Feedback
 import {
   Container,
-  View, 
-  Header,
-  Title,
+  View, // *
+  Header, // *
+  Title, // *
   Content,
   Button,
   Icon,
-  Card,
-  CardItem,
-  Text,
+  Text, // *
   Thumbnail,
-  Left,
-  Right,
+  Left, // *
+  Right, // *
   Body,
   IconNB,
 } from "native-base";
@@ -30,7 +27,9 @@ import {
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config/firebase_config.js'; // Import of Firebase config
 
+import DropdownAlert from 'react-native-dropdownalert'; // Alert component // *
 import { onSignOut } from "../../Auth";
+
 
 //import styles from "./styles";
 
@@ -44,7 +43,32 @@ class UserPage extends Component {
     super();
     this.state = {
       notif: false,
+      displayName: '', 
+      phoneNumber: '', 
     };
+  }
+
+
+
+  getUser = () => {
+    /*firebase
+      .database()
+      .ref("users/"+ firebase.auth().currentUser.uid + "/userDetails")
+      // .child(firebase.auth().currentUser.uid)
+      .once("value")
+      .then(function(userSnap) {
+        var user = userSnap.child().val();
+      })
+      .catch(err => { // Modify the error type
+        this.dropdown.alertWithType("error", "Error", err.toString());
+      }); */
+      this.state.displayName = firebase.auth().currentUser.displayName
+      //this.state.phoneNumber = user
+      //console.log("The user is:"+ user)
+  };
+  
+  componentWillMount() {
+    this.getUser();
   }
 
   render() {
@@ -74,10 +98,75 @@ class UserPage extends Component {
           </View>
           <View style={styles.fieldContainer}>
             <Text>Name</Text>
-  
+            <TextInput
+              editable
+              autoCorrect={false}
+              underlineColorAndroid="transparent"
+              //onChangeText={(displayName) => this.setState({displayName})}
+              onChangeText={(displayName) => {
+                this.setState({displayName})
+                if (displayName.trim().length < 4) {
+                  // this.dropdown.alertWithType('error', 'Error', 'Please enter your full name.');
+                  console.log("Please enter your full name.")
+                  return;
+                }
+                firebase
+                  .auth()
+                  .currentUser.updateProfile({
+                    displayName: displayName.trim()
+                  })
+                  .then(() => {
+                    firebase
+                      .database()
+                      .ref("users/"+ firebase.auth().currentUser.uid + "/userDetails")
+                      .update({
+                        displayName: displayName.trim()
+                      });
+                  })
+                  .catch(error => {
+                    //this.dropdown.alertWithType("error","Error",error.toString());
+                  });
+              }}
+              onEndEditing={this.getUser}
+              value={this.state.displayName}
+            />
+            
           </View>
           <View style={styles.fieldContainer}>
             <Text>Phone number</Text>
+            <TextInput
+              editable
+              autoCorrect={false}
+              underlineColorAndroid="transparent"
+              //onChangeText={(displayName) => this.setState({displayName})}
+              onChangeText={(phoneNumber) => {
+                this.setState({phoneNumber})
+                if (phoneNumber.trim().length !== 10) {
+                  // this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number.');
+                  console.log("Please enter a correct number.")
+                  return;
+                }
+                firebase
+                  .auth()
+                  .currentUser.updateProfile({
+                    phoneNumber: phoneNumber.trim()
+                  })
+                  .then(() => {
+                    firebase
+                      .database()
+                      .ref("users/"+ firebase.auth().currentUser.uid + "/userDetails")
+                      .update({
+                        phoneNumber: phoneNumber.trim()
+                      });
+                  })
+                  .catch(error => {
+                    //this.dropdown.alertWithType("error","Error",error.toString());
+                    console.log(error)
+                  });
+              }}
+              onEndEditing={this.getUser}
+              value={this.state.phoneNumber}
+            />
 
           </View>
           <View style={styles.switchFieldContainer}>
@@ -90,18 +179,18 @@ class UserPage extends Component {
         </View>
         <View>
           
-        <TouchableOpacity
-            /* onPress={() => {
+          <TouchableOpacity
+            /*onPress={() => {
               email(
-                ["datwheat@gmail.com"],
+                ["feedback@sharingiscaring.com"],
                 null,
                 null,
-                `PÜL Feedback <${this.props.authStore.userId}>`,
+                `Sharing is Caring Feedback <${firebase.auth().currentUser.uid}>`,
                 null
               );
             }}*/
             style={styles.fieldContainer}
-          >
+            >
             <Text>Send feedback</Text>
           </TouchableOpacity>
             <Text></Text> 

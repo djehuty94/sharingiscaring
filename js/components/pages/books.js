@@ -65,7 +65,7 @@ class Books extends Component {
 
   createList() {
     
-    var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
+    // var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
     let numberOfOnlineAnnounce = 1
     let announce = this.retrieve(numberOfOnlineAnnounce)
     
