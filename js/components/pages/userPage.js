@@ -51,20 +51,8 @@ class UserPage extends Component {
 
 
   getUser = () => {
-    /*firebase
-      .database()
-      .ref("users/"+ firebase.auth().currentUser.uid + "/userDetails")
-      // .child(firebase.auth().currentUser.uid)
-      .once("value")
-      .then(function(userSnap) {
-        var user = userSnap.child().val();
-      })
-      .catch(err => { // Modify the error type
-        this.dropdown.alertWithType("error", "Error", err.toString());
-      }); */
-      this.state.displayName = firebase.auth().currentUser.displayName
-      //this.state.phoneNumber = user
-      //console.log("The user is:"+ user)
+    this.state.displayName = firebase.auth().currentUser.displayName
+    // + this function should get the phone number and store it in "this.state.phoneNumber"
   };
   
   componentWillMount() {
