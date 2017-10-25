@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { 
+  Alert, // *
   ScrollView,
   StyleSheet,
   Switch, // *
@@ -191,7 +192,7 @@ class UserPage extends Component {
               /*.then(this.props.navigation.navigate("SignedOut"))}*/
             />
           <TouchableOpacity // LOG OUT TO BE IMPLEMENTED
-            /*onPress={() => {
+            onPress={() => {
               Alert.alert(
                 Platform.OS === "ios" ? "Log Out" : "Log out",
                 "Are you sure? Logging out will remove all data from this device.",
@@ -203,12 +204,14 @@ class UserPage extends Component {
                   },
                   {
                     text: "OK",
-                    onPress: () => {onSignOut().then(() => this.props.navigation.navigate("DrawerOpen"))}
+                    onPress: () => {
+                      firebase.auth().signOut().then(() => this.props.navigation.navigate("login_scr"))
+                    }
                   }
                 ]
               );
             }}
-            style={styles.fieldContainer}*/
+            style={styles.fieldContainer}
           >
             <Text>Log out</Text>
 
