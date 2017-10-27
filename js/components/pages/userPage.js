@@ -205,7 +205,7 @@ class UserPage extends Component {
                   {
                     text: "OK",
                     onPress: () => {
-                      firebase.auth().signOut().then(() => this.props.navigation.navigate("login_scr"))
+                      firebase.auth().signOut().then(() => this.props.navigation.navigate("login_scr")) // To be add in auth
                     }
                   }
                 ]
