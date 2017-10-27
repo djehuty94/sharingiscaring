@@ -8,7 +8,7 @@ import {
   TouchableOpacity, // *
   TextInput, // *
  } from "react-native";
-// import { email } from "react-native-communications"; // TO be used to send Feedback
+import { email } from "react-native-communications"; // TO be used to send Feedback
 import {
   Container,
   View, // *
@@ -169,7 +169,7 @@ class UserPage extends Component {
         <View>
           
           <TouchableOpacity
-            /*onPress={() => {
+            onPress={() => {
               email(
                 ["feedback@sharingiscaring.com"],
                 null,
@@ -177,7 +177,7 @@ class UserPage extends Component {
                 `Sharing is Caring Feedback <${firebase.auth().currentUser.uid}>`,
                 null
               );
-            }}*/
+            }}
             style={styles.fieldContainer}
             >
             <Text>Send feedback</Text>
