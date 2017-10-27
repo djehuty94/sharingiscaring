@@ -20,6 +20,7 @@ import userpage from "./components/pages/userPage"
 import publish from "./components/pages/publish"
 
 import login from "./components/user/login"
+import SignOut from "./SignedOut"
 
 
 //Declare DrawerNavigator
@@ -39,7 +40,8 @@ const Drawer = DrawerNavigator(
         Other: {screen: other},
         Unigle: {screen: unigle},
         UserPage: {screen: userpage},
-        Publish: {screen: publish}
+        Publish: {screen: publish},
+        SignOut: {screen: login}
     },
     {
       //Declare initial routename (dispalyed page)
