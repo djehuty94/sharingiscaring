@@ -33,12 +33,11 @@ export const isSignedIn = () =>{
 };
 
 export const onSignOut =() => {
-    try {
-      firebase.auth().signOut().then(() => this.props.navigation.navigate("SignOut"))
+    firebase.auth().signOut().then(function() {
+    console.log("Sign Out successfull");
     // Sign-out successful.
-    } 
-    catch(error) {
+  }, function(error) {
     console.log(error);
     // An error happened.
-  }
+  });
 }

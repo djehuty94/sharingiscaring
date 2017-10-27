@@ -43,10 +43,6 @@ export default class RegisterAccount extends Component {
       this.state = {isLoggedIn : false, email :"", password : "", firstname :"", lastname : "", phone : ""};
     }
 
-    
-
-
-
 
    // Navigation function
   onNavPress = (screenname) => {
@@ -56,6 +52,7 @@ export default class RegisterAccount extends Component {
   // Sending info to firebase
   _signupUser = async () => {
 
+    
     if (!validator.isEmail(this.state.email)) {
       this.dropdown.alertWithType(
         "error", 
@@ -76,11 +73,11 @@ export default class RegisterAccount extends Component {
 
       //var firstname = this.props.navigation.firstname
       //var lastname = this.props.navigation.lastname
-      var firstname = ''
-      var lastname = ''
+      var firstname = this.props.navigation.state.params.firstname
+      var lastname = this.props.navigation.state.params.lastname
       console.log(firstname)
       console.log(lastname)
-      var phone = this.props.phone
+      var phone = this.props.navigation.state.params.phone
       var displayName = firstname + ' ' + lastname;
       var email = this.state.email
       var password = this.state.password
@@ -109,7 +106,7 @@ export default class RegisterAccount extends Component {
       }
       catch (error) {
         console.log(error);
-        this.dropdown.alertWithType("error", "Error", error);
+        this.dropdown.alertWithType("error", "Error", String(error));
       }
   
   };
