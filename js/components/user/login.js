@@ -37,7 +37,7 @@ export default class Login extends Component {
   };
 
   // START TEST TO BE REMOVED
- /* login = async () => { // The login function is only for test purpuses TO BE REMOVED
+ login = async () => { // The login function is only for test purpuses TO BE REMOVED
       let email = "test1@gmail.com"
       let password = "tomtom"
       try {
@@ -54,7 +54,7 @@ export default class Login extends Component {
   }
   componentWillMount() { // TO BE REMOVED
     this.login();
-  } */
+  } 
   // END TEST TO BE REMOVED
 
   onNavPress = (screenname) => {
