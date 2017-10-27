@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { firebaseConfig } from './config'; // Import of Firebase config
 import {
   Alert,
   Image,
@@ -10,26 +9,21 @@ import {
 } from 'react-native'; // Import React-Native elements
 
 import {
-    Container,
-    Header,
-    Title,
-    Content,
-    Text,
-    Thumbnail,
-    Icon,
-    Left,
-    Right,
-    Body,
-    IconNB,
-    View,
+    Container, // *
+    Header, // *
+    Title, // *
+    Text, // *
+    Icon, // *
+    Left, // *
+    Right, // *
+    Body, // *
+    View, // *
+    Button, // *
   } from "native-base"; // Import native base elements
 
 import { ImagePicker } from 'expo'; // Take a picture
-import { FormLabel, FormInput, FormValidationMessage, Button, Divider } from 'react-native-elements';
+import { FormLabel, FormInput, FormValidationMessage, Divider } from 'react-native-elements';
 
-import { // Import React-Native UI Kitten Design
-  RkButton,
-} from 'react-native-ui-kitten';
 
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config'; // Import of Firebase config
@@ -56,22 +50,9 @@ class Publish extends Component {
       };
      }
 
-    // ToBeRemoved login
-    /*
-  login = async () => { // The "async" serve for the await function
-      let email = "eberle.tom@gmail.com"
-      let password = "123456789"
-      try {
-        let user = await firebase.auth().signInWithEmailAndPassword(email, password); 
-        this.state.user = user.uid
-        console.log("UserID is: "+ this.state.user)
-      }
-      catch (error) {
-        console.log(error);
-        let err_message = error.message;
-      }
-  }*/
-  // Take a picture with camera and return the path to the render "fileUri"
+
+  // Take a picture with camera and return the path to the render "fileUri".
+  // However for the moment the image upload still need to be implemented.  
   takePhoto = async () => {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
@@ -106,7 +87,7 @@ class Publish extends Component {
     console.log(this.state.localUri)
 
   }
-
+  // Take a picture from the camera roll and return the path to the render "fileUri".
   pickImage = async () => {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
@@ -143,8 +124,6 @@ class Publish extends Component {
 
   }
 
-
-
   // Function to get the number of announces already in the database. It is stored in "a" and then in "this.state.announceNumber"
   // We use .then to wait that the data is downloaded before proceeding. 
   numberOfOnlineAnnounce = async () => {
@@ -162,36 +141,8 @@ class Publish extends Component {
     announceNumber = announceNumber + 1
     return announceNumber;
   }
-
-
-  fetchAndUpload() {
-    // Log the user, in the real version the user will already be logged. 
-    // I used .then to wait that firebase contact the database. 
-
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-
-        var announceNumberInc
-        var var_userUID = user.uid;
-        console.log(var_userUID);
-        this.numberOfOnlineAnnounce() // Retreive the number of announces 
-        .then (() => announceNumberInc = this.addOneTo(this.state.announceNumber)) // Return the number in "announceNumber" incremented by one. 
-        .then (() => this.uploadOffer(announceNumberInc, var_userUID))
-        
-     
-      } else {
-        // No user is signed in.
-        console.log("checked logged false");
-        console.log(false);
-      }
-    });
-
- 
-
-   
-  }
-
-  uploadOffer = async (announceNumberInc, var_userUID) => {
+  
+  uploadOffer = async (announceNumberInc, uid) => {
 
 
         console.log("           --------------------------------           ")
@@ -207,16 +158,17 @@ class Publish extends Component {
         console.log("Offer title: " + offer)
         console.log("Description: " + description)
         console.log("Price: " + price + " CHF")
+        console.log("User UID: " + uid)
         
         try {
           // write announces properties to firebase
-          firebase.database().ref('/announces/' + announceNumberInc + '/Details').set({
+          firebase.database().ref('/announces/' + announceNumberInc).set({
             date,
             offer,
             description,
             price,
-           // userUID
-           var_userUID
+            uid,
+           
           });
     
         }
@@ -226,7 +178,11 @@ class Publish extends Component {
     
   }
 
-  // Visual container and text 
+  fetchAndUpload() {
+      this.numberOfOnlineAnnounce() // Retreive the number of announces 
+      .then (() => this.uploadOffer(this.addOneTo(this.state.announceNumber), firebase.auth().currentUser.uid)) // Add one to the number of offers and post it. 
+    }
+
   
   render() {
     return (
@@ -236,14 +192,14 @@ class Publish extends Component {
         <Header>
                 <Left>
                     <Button
-                    //transparent
+                    transparent
                     onPress={() => this.props.navigation.navigate("Books")}
                     >
-                    <Icon name="back" />
+                    <Icon name="ios-arrow-back" />
                     </Button>
                 </Left>
                 <Body>
-                    <Title>New announce</Title>
+                    <Title>New offer</Title>
                 </Body>
                     <Right />
         </Header>
@@ -265,7 +221,7 @@ class Publish extends Component {
             multiline
             style={{height: 100}}
             value={this.props.description}
-            placeholder=''
+            placeholder='Description of what you propose'
             onChangeText={(description) => this.setState({description : description})}
             
           />
@@ -276,34 +232,34 @@ class Publish extends Component {
           keyboardType={'phone-pad'}
           style={{height: 50}}
           value={this.props.price}
-          placeholder='$$$'
+          placeholder='CHF'
           onChangeText={(price) => this.setState({price : price})}
             />
         </View>
-        <RkButton
+        <Button
               onPress={() => {this.takePhoto(); }}
               rkType='large'
               style={styles.save1Publish}>
-              Upload Image
-        </RkButton>
-        <RkButton
+              <Text>Upload Image</Text>
+        </Button>
+        <Button
               onPress={() => {this.pickImage(); }}
               rkType='large'
               style={styles.save1Publish}>
-              Pick Image
-        </RkButton>
+              <Text>Pick Image</Text>
+        </Button>
         <Image
           style={styles.image}
           source={this.state.localUri ? {uri: this.state.localUri} : null}
         /> 
 
         
-        <RkButton
+        <Button
               onPress={() => { this.fetchAndUpload(); }}
               rkType='large'
               style={styles.save2Publish}>
-              Share
-        </RkButton>
+              <Text>Share</Text>
+        </Button>
 
 
 
