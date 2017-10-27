@@ -63,11 +63,11 @@ class Books extends Component {
       .then (() => this.state.retrieved = announce);
   }
 
-  createList() {
-    
+
+  createList_old() {
     // var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
-    let numberOfOnlineAnnounce = 1
-    let announce = this.retrieve(numberOfOnlineAnnounce)
+    let var_numberOfOnlineAnnounce = 1
+    let announce = this.retrieve(var_numberOfOnlineAnnounce)
     
 
     //HOW TO GET DATA FROM FIREBASE
@@ -83,6 +83,37 @@ class Books extends Component {
       var childKey = snapshot.child("1/Details").key;
 
       console.log("Date: "+date+" Offer: "+offer+" Price:"+price );
+
+    });
+  }
+
+  
+  createList() {
+    // var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
+    // let var_numberOfOnlineAnnounce = 1
+    // let announce = this.retrieve(var_numberOfOnlineAnnounce)
+    
+
+    //HOW TO GET DATA FROM FIREBASE
+    // https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#forEach
+    var ref = firebase.database().ref('announces').orderByKey();
+
+    ref.once('value')
+    .then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot){
+        var key = childSnapshot.key;
+        var childData = childSnapshot.val();
+
+        console.log("Key : "+ key + "Child Data"+ childData);
+      })
+    /*  var date = snapshot.child("date").val();
+      var offer = snapshot.child("offer").val();
+      var price = snapshot.child("price").val();
+
+      var key = snapshot.key;
+      var childKey = snapshot.child("1/Details").key;
+
+      console.log("Date: "+date+" Offer: "+offer+" Price:"+price );*/
 
     });
   }
