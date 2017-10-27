@@ -104,7 +104,16 @@ class Books extends Component {
         var key = childSnapshot.key;
         var childData = childSnapshot.val();
 
-        console.log("Key : "+ key + "Child Data"+ childData);
+        var childDataDetails = childSnapshot.child("Details").val();
+        var childDataDetailsDate = childSnapshot.child("date").val();
+
+        var childPluss = childSnapshot.child("Details/date").val();
+        var childDetailsDate = childSnapshot.child("Details/offer").val();
+        
+
+        console.log("Key : "+ key + "ChildData: "+ childData + " ChildDataDetails: "+childDataDetails + " childDataDetailsDate " + childDataDetailsDate);
+
+        console.log("Date :" + childPluss + " Offer :" +childDataDetailsDate);
       })
     /*  var date = snapshot.child("date").val();
       var offer = snapshot.child("offer").val();
