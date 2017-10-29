@@ -34,7 +34,10 @@ const Drawer = DrawerNavigator(
         Advtut: {screen: advtut},
         Associations: {screen: associations},
         Books: {screen: books},
-        Events: {screen: events},
+        Events: {
+          screen: events,
+          path: 'events/:section',
+        },
         Furniture: {screen: furniture},
         Housing: {screen: housing},
         Other: {screen: other},

@@ -26,6 +26,10 @@ const logo = require("../../../img/logo.png");
 const cardImage = require("../../../img/drawer-cover.png");
 
 class Events extends Component {
+
+  componentWillMount() {
+    console.log(this.props.navigation.state.params.section)
+  }
   render() {
     return (
       <Container style={styles.container}>
