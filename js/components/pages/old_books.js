@@ -141,7 +141,7 @@ class Books extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Card Showcase</Title>
+            <Title>{this.props.navigation.state.params.section}</Title>
           </Body>
           <Right />
         </Header>

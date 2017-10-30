@@ -50,6 +50,9 @@ class Publish extends Component {
       };
      }
 
+     componentWillMount() { // Only for test purpose TO BE REMOVED
+      console.log(this.props.navigation.state.params.section)
+    }
 
   // Take a picture with camera and return the path to the render "fileUri".
   // However for the moment the image upload still need to be implemented.  
@@ -129,7 +132,7 @@ class Publish extends Component {
   numberOfOnlineAnnounce = async () => {
     var a; 
     var b;
-    return b = await firebase.database().ref("/announces/").once("value") // Return serve as a promise to wait
+    return b = await firebase.database().ref(this.props.navigation.state.params.section).once("value") // Return serve as a promise to wait
       .then(function(snapshot) {
         a = snapshot.numChildren(); // ("number of announces")
       })
@@ -162,7 +165,7 @@ class Publish extends Component {
         
         try {
           // write announces properties to firebase
-          firebase.database().ref('/announces/' + announceNumberInc).set({
+          firebase.database().ref(this.props.navigation.state.params.section + '/' + announceNumberInc).set({
             date,
             offer,
             description,
@@ -193,7 +196,7 @@ class Publish extends Component {
                 <Left>
                     <Button
                     transparent
-                    onPress={() => this.props.navigation.navigate("Books")}
+                    onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
                     >
                     <Icon name="ios-arrow-back" />
                     </Button>

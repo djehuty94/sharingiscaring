@@ -30,6 +30,7 @@ class Events extends Component {
   componentWillMount() {
     console.log(this.props.navigation.state.params.section)
   }
+
   render() {
     return (
       <Container style={styles.container}>
@@ -43,7 +44,7 @@ class Events extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Card Showcase</Title>
+            <Title>{this.props.navigation.state.params.section}</Title>
           </Body>
           <Right />
         </Header>
