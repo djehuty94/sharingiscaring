@@ -243,20 +243,21 @@ class Publish extends Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>New announce</Title>
+                    <Title>New Publication</Title>   
                 </Body>
                     <Right />
         </Header>
-
+        
         <View> 
           <FormLabel>What are you offering?</FormLabel>
           <FormInput
             multiline
             style={{height: 60}}
+            
             value={this.props.offer}
             placeholder='Books, flats, events etc...'
             onChangeText={(offer) => this.setState({offer : offer})}
-            
+
           />
         </View>
         <View>
