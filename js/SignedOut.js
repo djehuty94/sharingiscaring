@@ -16,7 +16,12 @@ import resetPassword from "./components/user/resetPassword"
 
 const SignedOut = StackNavigator({
     Login: {screen: login},
-    Register: {screen: register},
+    Register: {
+      screen: register,
+      path: 'register/:firstname',
+      path: 'register/:lastname',
+      path: 'register/:phone',
+    },
     RegisterInfo: {screen: registerInfo},
     ResetPassword: {screen: resetPassword},
   },{

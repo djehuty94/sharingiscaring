@@ -8,18 +8,20 @@ import Home from "./components/home/";
 
 import SideBar from "./components/sidebar";
 
-import advtut from "./components/pages/advtut"
+import offerDisplay from "./components/pages/offerDisplay"
+
+/*import advtut from "./components/pages/advtut"
 import associations from "./components/pages/associations"
 import books from "./components/pages/books"
 import events from "./components/pages/events"
 import furniture from "./components/pages/furniture"
 import housing from "./components/pages/housing"
-import other from "./components/pages/other"
-import unigle from "./components/pages/unigle"
-import userpage from "./components/pages/userPage"
+import unigle from "./components/pages/unigle" */ 
+import userpage from "./components/pages/userPage" 
 import publish from "./components/pages/publish"
-
+import other from "./components/pages/other"
 import login from "./components/user/login"
+import SignOut from "./SignedOut"
 
 
 //Declare DrawerNavigator
@@ -30,16 +32,16 @@ const Drawer = DrawerNavigator(
         Home: {screen:Home},
   
         //Declare pages
-        Advtut: {screen: advtut},
-        Associations: {screen: associations},
-        Books: {screen: books},
-        Events: {screen: events},
-        Furniture: {screen: furniture},
-        Housing: {screen: housing},
+        OfferDisplay: {
+          screen: offerDisplay,
+          path: 'offerDisplay/:section',},
+        Publish: {
+          screen: publish,
+          path: 'publish/:section',},
         Other: {screen: other},
-        Unigle: {screen: unigle},
         UserPage: {screen: userpage},
-        Publish: {screen: publish}
+        
+        SignOut: {screen: login}
     },
     {
       //Declare initial routename (dispalyed page)

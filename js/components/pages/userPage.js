@@ -185,12 +185,6 @@ class UserPage extends Component {
             <Text></Text> 
             <Text></Text>
 
-            <Button
-              backgroundColor="#03A9F4"
-              title="SIGN OUT"
-              onPress={() => onSignOut()}
-              /*.then(this.props.navigation.navigate("SignedOut"))}*/
-            />
           <TouchableOpacity // LOG OUT TO BE IMPLEMENTED
             onPress={() => {
               Alert.alert(
@@ -205,7 +199,8 @@ class UserPage extends Component {
                   {
                     text: "OK",
                     onPress: () => {
-                      firebase.auth().signOut().then(() => this.props.navigation.navigate("login_scr")) // To be add in auth
+                      firebase.auth().signOut().then(() => this.props.navigation.navigate("SignOut")) // To be add in auth
+                      // Cannot make it work with "onSignOut().then(navigation)"
                     }
                   }
                 ]
