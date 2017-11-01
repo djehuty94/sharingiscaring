@@ -202,9 +202,9 @@ class Publish extends Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>New offer</Title>
+                     <Title>New offer</Title> 
                 </Body>
-                    <Right />
+                    <Right/>
         </Header>
         
         <View> 
@@ -212,7 +212,7 @@ class Publish extends Component {
           <FormInput
             multiline
             style={{height: 60}}
-            
+            backgroundColor= '#dcdcdc'
             value={this.props.offer}
             placeholder='Books, flats, events etc...'
             onChangeText={(offer) => this.setState({offer : offer})}
@@ -224,6 +224,7 @@ class Publish extends Component {
           <FormInput
             multiline
             style={{height: 100}}
+            backgroundColor= '#dcdcdc'
             value={this.props.description}
             placeholder='Description of what you propose'
             onChangeText={(description) => this.setState({description : description})}
@@ -235,6 +236,7 @@ class Publish extends Component {
           <FormInput
           keyboardType={'phone-pad'}
           style={{height: 50}}
+          backgroundColor= '#dcdcdc'
           value={this.props.price}
           placeholder='CHF'
           onChangeText={(price) => this.setState({price : price})}
@@ -244,13 +246,13 @@ class Publish extends Component {
               onPress={() => {this.takePhoto(); }}
               rkType='large'
               style={styles.save1Publish}>
-              <Text>Upload Image</Text>
+              <Text>Take Picture</Text>
         </Button>
         <Button
               onPress={() => {this.pickImage(); }}
               rkType='large'
               style={styles.save1Publish}>
-              <Text>Pick Image</Text>
+              <Text>Choose Picture</Text>
         </Button>
         <Image
           style={styles.image}
@@ -264,7 +266,7 @@ class Publish extends Component {
               style={styles.save2Publish}>
               <Text>Share</Text>
         </Button>
-
+       
 
 
 
