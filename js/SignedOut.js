@@ -1,13 +1,20 @@
-// LOGIN AND REGISTRATION Stacknavigator
-
-// TO DISPLAY IF LOGGED OUT
+/************************************************************************ */
+/* FILE TITLE : SignedOut.js                                              */
+/* FILE AIM : Stack to display if user is logged OUT                      */
+/* Exported functions:                                                    */
+/*                                                                        */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*     SignedOut                                                          */
+/*                                                                        */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
 
 
 import React from "react";
-import { DrawerNavigator, StackNavigator } from "react-navigation";
-
-import Home from "./components/home/";
-//import Header from "./components/Header/";
+import {StackNavigator } from "react-navigation";
 
 import login from "./components/user/login"
 import register from "./components/user/register"
