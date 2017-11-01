@@ -51,15 +51,17 @@ class OfferDisplay extends Component {
     };
   }
 
-async componentDidMoun(){
-    this.func_getData(var_section);
-    this.setState({ isLoaded: true });
-}
-
-  componentWillMount() { // Only for test purpose TO BE REMOVED
+async componentWillMount() { // Only for test purpose TO BE REMOVED
     var_section = this.props.navigation.state.params.section;
     console.log(this.props.navigation.state.params.section);
     console.log("Request to get data for: "+this.props.navigation.state.params.section );
+
+    this.func_getData(var_section)
+    .then(res => this.setState({ isLoaded:true }));
+  //  .catch(err => alert("An error occurred: "+err));
+    console.log("array_offerDatas should be mounted");
+
+    
   }
 
   numberOfOnlineAnnounce = async () => {
@@ -109,73 +111,59 @@ async componentDidMoun(){
     });
   }
 
+
+  
+
   //WILL GET THE LIST OF DATA ONLINE AND RETURN AN ARRAY
-  func_getData(db_section) {
-
-      console.log("Db_section : "+ db_section);    
-    // var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
-    // let announce = this.retrieve(var_numberOfOnlineAnnounce)
-    
-    //HOW TO GET DATA FROM FIREBASE
+ func_getData(db_section) {
+  console.log("Db_section : "+ db_section);  
+  return new Promise(function(resolve, reject){
+    try {
+      //HOW TO GET DATA FROM FIREBASE
     // https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#forEach
-    var ref = firebase.database().ref(db_section).orderByKey();
+         var ref = firebase.database().ref(db_section).orderByKey();
+    
+        ref.once('value')
+        .then(function(snapshot) {
+          //Loop foreach going through each child 
+          //Must be limited to 20
+          var var_funcIncrement = 0;
+          const const_NUMARTICLES = 20;
+    
+          snapshot.forEach(function(childSnapshot){
 
-    ref.once('value')
-    .then(function(snapshot) {
-      //Loop foreach going through each child 
-      //Must be limited to 20
-      var var_funcIncrement = 0;
-      const const_NUMARTICLES = 20;
-
-      snapshot.forEach(function(childSnapshot){
-        //Increment to limit displayed articles to 20
-        var_funcIncrement = var_funcIncrement + 1;
-
-        var child_key = childSnapshot.key;
-
-        var child_uid = childSnapshot.child("uid").val();
-        var child_offer = childSnapshot.child("offer").val();
-        var child_date = childSnapshot.child("date").val();
-        var child_description = childSnapshot.child("description").val();
-        var child_price = childSnapshot.child("price").val();
-
-        array_offerDatas.push({    
-          key : child_key,  
-          offer: child_offer,
-          date: child_date,
-          description: child_description,
-          price:child_price,
-          uid:child_uid,});
-        /*
-        
-        var childDataDetails = childSnapshot.child("Details").val();
-        var childDataDetailsDate = childSnapshot.child("date").val();
-
-        var childPluss = childSnapshot.child("Details/date").val();
-        var childDetailsDate = childSnapshot.child("Details/offer").val();*/
-
-          /*
-        console.log("Key : "+ key + "ChildData: "+ childData);
-
-        console.log("Date :" + child_date + " Offer :" +child_offer + " Description : "+ child_description +" Price: "+child_price);
-        console.log(array_offer);
-        console.log(array_offerDatas);*/
-
-        if(var_funcIncrement == const_NUMARTICLES){return true;}
-
-      })
-
-    /*  var date = snapshot.child("date").val();
-      var offer = snapshot.child("offer").val();
-      var price = snapshot.child("price").val();
-
-      var key = snapshot.key;
-      var childKey = snapshot.child("1/Details").key;
-
-      console.log("Date: "+date+" Offer: "+offer+" Price:"+price );*/
-console.log(array_offerDatas);
+            if(var_funcIncrement == const_NUMARTICLES){resolve(true);}
+            else{
+            //Increment to limit displayed articles to 20
+            var_funcIncrement = var_funcIncrement + 1;
+    
+            var child_key = childSnapshot.key;
+    
+            var child_uid = childSnapshot.child("uid").val();
+            var child_offer = childSnapshot.child("offer").val();
+            var child_date = childSnapshot.child("date").val();
+            var child_description = childSnapshot.child("description").val();
+            var child_price = childSnapshot.child("price").val();
+    
+            array_offerDatas.push({    
+              key : child_key,  
+              offer: child_offer,
+              date: child_date,
+              description: child_description,
+              price:child_price,
+              uid:child_uid,});
+            }
+        });
+        console.log(array_offerDatas);
+        resolve(true);
+      });
+    }
+     catch (error) {
+      reject(Error(error));
+      }
     });
   }
+
 
   render() {
     if (!this.state.isLoaded) {return <View><Text>Loading...</Text></View>;
