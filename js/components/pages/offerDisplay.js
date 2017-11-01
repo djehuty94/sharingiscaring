@@ -45,7 +45,7 @@ class OfferDisplay extends Component {
     super();
     this.state = {
       Fab: false,
-      announceNumber: 0,
+     // announceNumber: 0,
       retrieved: "",
       isLoaded:false
     };
@@ -63,7 +63,7 @@ async componentWillMount() { // Only for test purpose TO BE REMOVED
 
     
   }
-
+/*
   numberOfOnlineAnnounce = async () => {
     var a; 
     var b;
@@ -75,8 +75,8 @@ async componentWillMount() { // Only for test purpose TO BE REMOVED
       })
       .then (() => this.state.announceNumber = a); // Wait for data before assigning the value to "announceNumber"
       
-  }
-
+  }*/
+/*
   retrieve = async (announceNumber) => { // Stock the announce into this.state.retrieved
     var c
     return c = await firebase.database().ref("/announces/" + announceNumber).once("/Details/")
@@ -85,9 +85,9 @@ async componentWillMount() { // Only for test purpose TO BE REMOVED
         console.log("c:  "+c)
     })
       .then (() => this.state.retrieved = announce);
-  }
+  }*/
 
-
+/*
   createList_old() {
     // var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
     let var_numberOfOnlineAnnounce = 1
@@ -109,7 +109,7 @@ async componentWillMount() { // Only for test purpose TO BE REMOVED
       console.log("Date: "+date+" Offer: "+offer+" Price:"+price );
 
     });
-  }
+  }*/
 
 
   
@@ -205,6 +205,7 @@ async componentWillMount() { // Only for test purpose TO BE REMOVED
                   Description : {data.description}
                   Key : {data.key}
                   uid : {data.uid}
+                  prix : {data.price}
                 </Text>
 
               </Body>
