@@ -10,6 +10,7 @@ import {
   Button,
   Icon,
   Card,
+  List,
   CardItem,
   Text,
   Thumbnail,
@@ -28,6 +29,16 @@ const deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../img/logo.png");
 const cardImage = require("../../../img/drawer-cover.png");
 
+
+var array_offerDatas = [
+  { key : "0",  
+    offer: "Base test",
+    date: "Base date",
+    description: "Base description",
+    price:"Base price",
+    uid:"Base uid",}
+];
+
 class OfferDisplay extends Component {
 
   constructor() {
@@ -36,12 +47,19 @@ class OfferDisplay extends Component {
       Fab: false,
       announceNumber: 0,
       retrieved: "",
-
+      isLoaded:false
     };
   }
 
+async componentDidMoun(){
+    this.func_getData(var_section);
+    this.setState({ isLoaded: true });
+}
+
   componentWillMount() { // Only for test purpose TO BE REMOVED
-    console.log(this.props.navigation.state.params.section)
+    var_section = this.props.navigation.state.params.section;
+    console.log(this.props.navigation.state.params.section);
+    console.log("Request to get data for: "+this.props.navigation.state.params.section );
   }
 
   numberOfOnlineAnnounce = async () => {
@@ -91,34 +109,62 @@ class OfferDisplay extends Component {
     });
   }
 
-  
-  createList() {
+  //WILL GET THE LIST OF DATA ONLINE AND RETURN AN ARRAY
+  func_getData(db_section) {
+
+      console.log("Db_section : "+ db_section);    
     // var numberOfOnlineAnnounce = this.numberOfOnlineAnnounce()
-    // let var_numberOfOnlineAnnounce = 1
     // let announce = this.retrieve(var_numberOfOnlineAnnounce)
     
-
     //HOW TO GET DATA FROM FIREBASE
     // https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#forEach
-    var ref = firebase.database().ref('announces').orderByKey();
+    var ref = firebase.database().ref(db_section).orderByKey();
 
     ref.once('value')
     .then(function(snapshot) {
-      snapshot.forEach(function(childSnapshot){
-        var key = childSnapshot.key;
-        var childData = childSnapshot.val();
+      //Loop foreach going through each child 
+      //Must be limited to 20
+      var var_funcIncrement = 0;
+      const const_NUMARTICLES = 20;
 
+      snapshot.forEach(function(childSnapshot){
+        //Increment to limit displayed articles to 20
+        var_funcIncrement = var_funcIncrement + 1;
+
+        var child_key = childSnapshot.key;
+
+        var child_uid = childSnapshot.child("uid").val();
+        var child_offer = childSnapshot.child("offer").val();
+        var child_date = childSnapshot.child("date").val();
+        var child_description = childSnapshot.child("description").val();
+        var child_price = childSnapshot.child("price").val();
+
+        array_offerDatas.push({    
+          key : child_key,  
+          offer: child_offer,
+          date: child_date,
+          description: child_description,
+          price:child_price,
+          uid:child_uid,});
+        /*
+        
         var childDataDetails = childSnapshot.child("Details").val();
         var childDataDetailsDate = childSnapshot.child("date").val();
 
         var childPluss = childSnapshot.child("Details/date").val();
-        var childDetailsDate = childSnapshot.child("Details/offer").val();
-        
+        var childDetailsDate = childSnapshot.child("Details/offer").val();*/
 
-        console.log("Key : "+ key + "ChildData: "+ childData + " ChildDataDetails: "+childDataDetails + " childDataDetailsDate " + childDataDetailsDate);
+          /*
+        console.log("Key : "+ key + "ChildData: "+ childData);
 
-        console.log("Date :" + childPluss + " Offer :" +childDataDetailsDate);
+        console.log("Date :" + child_date + " Offer :" +child_offer + " Description : "+ child_description +" Price: "+child_price);
+        console.log(array_offer);
+        console.log(array_offerDatas);*/
+
+        if(var_funcIncrement == const_NUMARTICLES){return true;}
+
       })
+
     /*  var date = snapshot.child("date").val();
       var offer = snapshot.child("offer").val();
       var price = snapshot.child("price").val();
@@ -127,12 +173,13 @@ class OfferDisplay extends Component {
       var childKey = snapshot.child("1/Details").key;
 
       console.log("Date: "+date+" Offer: "+offer+" Price:"+price );*/
-
+console.log(array_offerDatas);
     });
   }
 
-
   render() {
+    if (!this.state.isLoaded) {return <View><Text>Loading...</Text></View>;
+    } 
     return (
       <Container style={styles.container}>
         <Header>
@@ -150,39 +197,26 @@ class OfferDisplay extends Component {
           <Right />
         </Header>
         <Content padder>
-          
+          <List
+						dataArray={array_offerDatas}
+						renderRow={data =>
           <Card style={styles.mb}>
             <CardItem bordered>
               <Left>
                 <Thumbnail source={logo} />
                 <Body>
-                  <Text>NativeBase</Text>
-                  <Text note>April 15, 2016</Text>
+                  <Text>{data.offer}</Text>
+                  <Text note>{data.date}</Text>
                 </Body>
               </Left>
             </CardItem>
 
             <CardItem>
               <Body>
-                <Image
-                  style={{
-                    alignSelf: "center",
-                    height: 150,
-                    resizeMode: "cover",
-                    width: deviceWidth / 1.18,
-                    marginVertical: 5
-                  }}
-                  source={cardImage}
-                />
                 <Text>
-                  NativeBase is a free and source framework that enable
-                  developers
-                  to build high-quality mobile apps using React Native iOS and
-                  Android apps
-                  with a fusion of ES6.
-                  NativeBase builds a layer on top of React Native that provides
-                  you with
-                  basic set of components for mobile application development.
+                  Description : {data.description}
+                  Key : {data.key}
+                  uid : {data.uid}
                 </Text>
 
               </Body>
@@ -195,11 +229,12 @@ class OfferDisplay extends Component {
                 </Button>
               </Left>
             </CardItem>
-          </Card>
+          </Card>}
+          />
 
           <Button // BUTTON TO BE REMOVED
             style={{ backgroundColor: '#3B5998' }}
-            onPress={() => this.createList()}>
+            onPress={() => this.func_getData()}>
           </Button>
 
 

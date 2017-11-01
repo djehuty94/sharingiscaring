@@ -48,18 +48,21 @@ const datas = [
 	},
 	{
 		name: "Books",
+		section:"books",
 		route: "OfferDisplay",
 		icon: "book",
 		bg: "#C5F442",
 	},
 	{
 		name: "Housing",
+		section:"housing",
 		route: "OfferDisplay",
 		icon: "home",
 		bg: "#C5F442",
 	},
 	{
 		name: "Uniseminar | Glemser",
+		section:"unigle",
 		route: "OfferDisplay",
 		icon: "thunderstorm",
 		bg: "#477EEA",
@@ -67,6 +70,7 @@ const datas = [
 	},
 	{
 		name: "Tutoring",
+		section:"tutoring",
 		route: "OfferDisplay",
 		icon: "help-buoy",
 		bg: "#DA4437",
@@ -74,12 +78,14 @@ const datas = [
 	},
 	{
 		name: "Associations",
+		section:"associations",
 		route: "OfferDisplay",
 		icon: "people",
 		bg: "#4DCAE0",
 	},
 	{
 		name: "Events",
+		section:"events",
 		route: "OfferDisplay",
 		icon: "beer",
 		bg: "#1EBC7C",
@@ -87,6 +93,7 @@ const datas = [
 	},
 	{
 		name: "Furniture",
+		section:"furniture",
 		route: "OfferDisplay",
 		icon: "easel",
 		bg: "#B89EF5",
@@ -94,7 +101,8 @@ const datas = [
 	},
 	{
 		name: "Other",
-		route: "Other",
+		section:"other",
+		route: "OfferDisplay",
 		icon: "infinite",
 		bg: "#EB6B23",
 	},
@@ -127,7 +135,7 @@ class SideBar extends Component {
 					<List
 						dataArray={datas}
 						renderRow={data =>
-							<ListItem button noBorder onPress={() => this.props.navigation.navigate(data.route, {section: data.name})}>
+							<ListItem button noBorder onPress={() => this.props.navigation.navigate(data.route, {section: data.section})}>
 								<Left>
 									<Icon active name={data.icon} style={{ color: "#777", fontSize: 26, width: 30}} />
 									<Text style={styles.text}>
