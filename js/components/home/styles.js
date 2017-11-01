@@ -1,6 +1,18 @@
+/************************************************************************ */
+/* FILE TITLE : home/styles.js                                            */
+/* FILE AIM : Home Page stylesheet                                        */
+/* Exported functions:                                                    */
+/*                                                                        */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
+
 const React = require("react-native");
 
-const { StyleSheet, Dimensions, Platform } = React;
+const { Dimensions, Platform } = React;
 
 const deviceHeight = Dimensions.get("window").height;
 
@@ -23,7 +35,7 @@ export default {
     height: 180
   },
   text: {
-    color: "#D8D8D8",
+    color: "#6FAF98",
     bottom: 6,
     marginTop: 5
   }

@@ -202,7 +202,7 @@ class Publish extends Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>New Publication</Title>   
+                     <Title>New offer</Title> 
                 </Body>
                     <Right/>
         </Header>

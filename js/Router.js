@@ -1,24 +1,25 @@
-//REPLACE THE INDEX.JS
-
+/************************************************************************ */
+/* FILE TITLE : Router.js                                                 */
+/* FILE AIM : Determine the navigation to display                         */
+/* Exported functions:                                                    */
+/*     createRootNavigator                                                */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*     Drawer                                                             */
+/*                                                                        */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
 
 import React from "react";
 
-//Import components for APP
-import { Platform, StatusBar, Stylesheet, View } from "react-native";
-import { Root } from "native-base";
+//Import navigation components
 import { StackNavigator, TabNavigator } from "react-navigation";
 
-//Import content for the drawer and header (NAVIGATION)
+//Import the Navigation Drawer & Signedout
 import Drawer from "./Drawer";
 import SignedOut from "./SignedOut";
-
-/*
-// Initialise and display Firebase info in console, be sure that we have the right config. 
-console.log(firebaseConfig);
-firebase.initializeApp(firebaseConfig);
-console.log("Firebase initialised")
-*/
-
 
 //Set up core navigation
 export const createRootNavigator = (signedIn = false) => {
@@ -34,10 +35,3 @@ export const createRootNavigator = (signedIn = false) => {
   );
 };
 
-  /*
-  //Export Stacknavigator to app for display
-  export default () =>
-  <Root>
-      <AppNavigator />
-  </Root>;
-*/
