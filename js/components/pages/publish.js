@@ -70,6 +70,17 @@ class Publish extends Component {
       };
      }
 
+<<<<<<< HEAD
+=======
+    static navigationOptions = {
+      gesturesEnabled: false,
+      swipeEnabled: false, 
+    };
+
+     componentWillMount() { // Only for test purpose TO BE REMOVED
+      console.log(this.props.navigation.state.params.section)
+    }
+>>>>>>> aff43468bbc065a6c94e7811beca7028ff41e2e3
 
 
 /********************************************/

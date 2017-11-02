@@ -30,11 +30,13 @@ class Home extends Component {
 	render() {
 		return (
 			<Container>
-				<Header style={styles.Header} iosStatusbar="light-content"
-androidStatusBarColor='green'>
+				<Header style={styles.Header}
+					androidStatusBarColor='#6FAF98'
+					backgroundColor='#6FAF98'> 
 					<Left>
 						<Button
 						transparent
+						backgroundColor= 'White'
 						onPress={() => this.props.navigation.navigate("DrawerOpen")}
 						>
 						<Icon name="menu" />
@@ -42,7 +44,12 @@ androidStatusBarColor='green'>
 					</Left>
 					<Right />
 				</Header>
-				<StatusBar barStyle="light-content" style={styles.StatusBar} />
+				<StatusBar 
+						barStyle="light-content" 
+						style={styles.StatusBar}
+						backgroundColor="#c0c0c0"
+						translucent={false}
+				 />
 				<Image source={launchscreenBg} style={styles.imageContainer}>
 					<View style={styles.logoContainer}>
 						<Image source={launchscreenLogo} style={styles.logo} />
