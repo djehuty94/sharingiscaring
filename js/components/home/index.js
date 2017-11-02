@@ -13,7 +13,7 @@
 import React, { Component } from "react";
 import { Image, View, StatusBar } from "react-native";
 
-import { Container, Button, H3, Text} from "native-base";
+import { Container, Button, H3, Text, Header, Left, Right, Title, Icon, Body} from "native-base";
 
 import styles from "./styles";
 
@@ -25,10 +25,24 @@ const launchscreenLogo = require("../../../assets/images/logo-sharing-is-caring.
 class Home extends Component {
 	// eslint-disable-line
 
+
+
 	render() {
 		return (
 			<Container>
-				<StatusBar barStyle="light-content" />
+				<Header style={styles.Header} iosStatusbar="light-content"
+androidStatusBarColor='green'>
+					<Left>
+						<Button
+						transparent
+						onPress={() => this.props.navigation.navigate("DrawerOpen")}
+						>
+						<Icon name="menu" />
+						</Button>
+					</Left>
+					<Right />
+				</Header>
+				<StatusBar barStyle="light-content" style={styles.StatusBar} />
 				<Image source={launchscreenBg} style={styles.imageContainer}>
 					<View style={styles.logoContainer}>
 						<Image source={launchscreenLogo} style={styles.logo} />

@@ -17,6 +17,12 @@ const { Dimensions, Platform } = React;
 const deviceHeight = Dimensions.get("window").height;
 
 export default {
+  StatusBar: {
+    backgroundColor: 'green',
+  },
+  Header: {
+    backgroundColor: 'transparent',
+  },
   imageContainer: {
     flex: 1,
     width: null,
