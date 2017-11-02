@@ -21,26 +21,30 @@ import { Image, Dimensions } from "react-native";
 
 import firebase from 'firebase'; // Import Firebase login
 import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Button,
-  Icon,
-  Card,
-  List,
-  CardItem,
-  Text,
-  Thumbnail,
-  Left,
-  Right,
-  Body,
-  IconNB,
-  Fab,
-  View,
+  Container, // *
+  Header, // *
+  Title, // *
+  Content, // *
+  Button, // *
+  Icon, // *
+  Card, // *
+  List, // *
+  CardItem, // *
+  Text, // *
+  Thumbnail, // *
+  Left, // *
+  Right, // *
+  Body, // *
+  IconNB, // *
+  Fab, // *
+  View, // *
+  Spinner, // *
 } from "native-base";
 
 import styles from "./styles";
+
+
+import DropdownAlert from 'react-native-dropdownalert'; // Alert component used to display error
 
 //const const_deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../assets/images/logo-sharing-is-caring.png");
@@ -66,8 +70,9 @@ class OfferDisplay extends Component {
 /* Return: -                                
 /********************************************/
 //ISSUE : Only called on first construct 
-componentDidMount(){
-      //Call the function that will get the data 
+componentDidMount(){ 
+      array_offerDatas = [] // Reset the array on reload
+      //Call the function that will get the data
       var_section = this.props.navigation.state.params.section;
       this.func_getData(var_section)
       .then(res => this.setState({ isLoaded:true }))
@@ -132,6 +137,7 @@ func_getData(db_section) {
       });
     }
      catch (error) {
+      this.dropdown.alertWithType("error", "Error", String(error));
       reject(Error(error));
       }
     });
@@ -139,7 +145,7 @@ func_getData(db_section) {
 
 
   render() {
-    if (!this.state.isLoaded) {return <View><Text>Loading...</Text></View>;
+    if (!this.state.isLoaded) {return <View style={styles.containerPublish}><Spinner color='blue' /></View>;
     } 
     return (
       <Container style={styles.container}>
@@ -186,7 +192,15 @@ func_getData(db_section) {
             <CardItem style={{ paddingVertical: 0 }}>
               <Left>
                 <Button
-                  onPress={() => this.props.navigation.navigate("displayOffer", {section: data.section, key: data.key, uid:data.uid})}>
+                  onPress={() => this.props.navigation.navigate("Offer", {
+                    section: this.props.navigation.state.params.section, 
+                    offer: data.offer, 
+                    description: data.description,
+                    price: data.price,
+                    date: data.date,
+                    key: data.key,
+                    uid: data.uid,
+                    })}>
                   <Icon name="search" />
                   <Text>See</Text>
                 </Button>
@@ -212,6 +226,7 @@ func_getData(db_section) {
           </Button>
           
         </Fab>
+        <DropdownAlert ref={ref => this.dropdown = ref}/>
       </Container>
     );
   }
