@@ -1,3 +1,16 @@
+/************************************************************************ */
+/* FILE TITLE : pages/styles.js                                            */
+/* FILE AIM : offer.js / publish.js / offerDisplay.js Stylesheet          */
+/* Exported functions:                                                    */
+/*                                                                        */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
+
+
 const React = require("react-native");
 
 const { StyleSheet } = React;

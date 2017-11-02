@@ -1,3 +1,22 @@
+/************************************************************************ */
+/* FILE TITLE : pages/userPage.js                                     
+/* FILE AIM :                                                             
+/*            1.Get datas filled by the user (Photo to come)                    
+/*            2.Generate a random ID for the upload            
+/*            3.Upload announces data                       
+/*                                                                        
+/* Input : section from this.props.navigation.state.params.section;       
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                        */
+/**************************************************************************/
+
+
 import React, { Component } from "react";
 import { 
   Alert, // *
@@ -32,7 +51,7 @@ import DropdownAlert from 'react-native-dropdownalert'; // Alert component // *
 import { onSignOut } from "../../Auth";
 
 
-//import styles from "./styles";
+import styles from "./stylesUserPage";
 
 
 
@@ -223,44 +242,4 @@ class UserPage extends Component {
     );
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //backgroundColor: colors.eggshell,
-    paddingHorizontal: 16,
-    justifyContent: "space-between",
-    paddingVertical: 16
-  },
-  sectionHeaderContainer: {
-    paddingBottom: 16
-  },
-  sectionHeaderText: {
-    fontSize: 16,
-    //color: colors.blue
-  },
-  sectionHeaderUnderline: {
-    marginTop: 8,
-    height: 2,
-    borderRadius: 4,
-    //backgroundColor: colors.blue
-  },
-  fieldContainer: {
-    paddingBottom: 16
-  },
-  switchFieldContainer: {
-    justifyContent: "space-between",
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 16
-  },
-  editableText: {
-    color: "grey",
-  },
-  text: {
-    fontSize: 20,
-  }
-});
-
 export default UserPage;

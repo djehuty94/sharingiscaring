@@ -1,12 +1,11 @@
 
 /************************************************************************ */
-/* FILE TITLE : pages/offerDisplay.js                                     
+/* FILE TITLE : pages/offer.js                                     
 /* FILE AIM :                                                             
-/*            1.Get datas from DB of specified section                    
-/*            2.Build an array with announces to be display               
-/*            3.Display announces using card                              
+/*            1.Get datas from offerDisplay.js
+/*            2.Display offers' details                         
 /*                                                                        
-/* Input : section from this.props.navigation.state.params.section;       
+/* Input : uid of user that added the offer from this.props.navigation.state.params.uid    
 /*                                                                        
 /* Exported functions:                                                    
 /*                                                                        
@@ -14,7 +13,7 @@
 /* Exported Variables:                                                    
 /*                                                                        
 /* DOCUMENTATION USED:                                                    
-/*   https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#forEach                                                                      */
+/*                                                                       */
 /**************************************************************************/
 
 import React, { Component } from 'react';
@@ -49,21 +48,27 @@ class Offer extends Component {
       displayName:"",
     };
    }
+
+
   componentWillMount() {
-    /*this.get("email")
-    .then(() => this.get("displayName"))
-    .then(() => this.get("phoneNumber"))
-    .then(() => this.forceUpdate())*/
-    this.get("email")
+
+    this.func_getFromDb("email")
     .then(() => this.forceUpdate())
   }
   
-  get = async (value) => {
-    await firebase.database().ref('users/' + /*this.props.navigation.state.params.uid'*/'AdmeWt4gVFcG8faBcP2SPI77zCT2/' + 'userDetails').once('value')
+
+/********************************************/
+/* Function : func_getFromDb                  
+/* Action : Get user email
+/* Return: Take a picture with camera and return the path to the render "fileUri".
+/* Comment: However for the moment the image upload still need to be implemented.            
+/********************************************/  
+func_getFromDb = async (value) => {
+    await firebase.database().ref('users/' + this.props.navigation.state.params.uid +'/userDetails').once('value')
     .then(function(snapshot){
-    a = snapshot.child(value).val();
+    var_tempSnapshot = snapshot.child(value).val();
     })
-    .then (() => this.state.email = a) // Wait for data before assigning the value to "announceNumber"
+    .then (() => this.state.email = var_tempSnapshot) // Wait for data before assigning the value to "announceNumber"
     .then (() => console.log(this.state.email));
     }
 
