@@ -172,7 +172,8 @@ class Publish extends Component {
             price,
             uid,
            
-          });
+          })
+        .then(() => this.props.navigation.navigate("OfferDisplay"/*, {section: data.section}*/));
     
         }
         catch (error) {
