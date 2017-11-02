@@ -1,3 +1,22 @@
+
+/************************************************************************ */
+/* FILE TITLE : pages/offerDisplay.js                                     
+/* FILE AIM :                                                             
+/*            1.Get datas from DB of specified section                    
+/*            2.Build an array with announces to be display               
+/*            3.Display announces using card                              
+/*                                                                        
+/* Input : section from this.props.navigation.state.params.section;       
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*   https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#forEach                                                                      */
+/**************************************************************************/
+
 import React, { Component } from 'react';
 
 import styles from "./styles"; // Import styles
