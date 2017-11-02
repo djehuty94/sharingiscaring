@@ -56,7 +56,8 @@ export default class ResetPassword extends Component {
       console.log(this.state.email)
       await firebase.auth().sendPasswordResetEmail(this.state.email)
       console.log('Reset')
-      this.dropdown.alertWithType('success', 'Success', "Check your emails");
+      this.dropdown.alertWithType('success', 'Success', "Check your emails")
+      this.props.navigation.navigate("Login")
     }
     catch (error) {
       console.log(error)
