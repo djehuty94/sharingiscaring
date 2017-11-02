@@ -42,16 +42,12 @@ export default {
     },
     loginField: {
         height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
         margin: 10,
         padding: 5,
         backgroundColor: 'white',
       },
       passwordField: {
         height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
         margin: 10,
         padding: 10,
         backgroundColor: 'white',

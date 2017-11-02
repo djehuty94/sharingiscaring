@@ -105,7 +105,7 @@ export default class RegisterAccount extends Component {
           displayName
         });
         console.log(user);
-        this.onNavPress('login_scr')
+        this.onNavPress('Drawer')
         if (user) { // Display success message when logged in.
           this.dropdown.alertWithType('success', 'Success', "Registered");
         }
