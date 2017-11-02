@@ -240,19 +240,23 @@ class Publish extends Component {
           value={this.props.price}
           placeholder='CHF'
           onChangeText={(price) => this.setState({price : price})}
+          
             />
         </View>
         <Button
               onPress={() => {this.takePhoto(); }}
               rkType='large'
               style={styles.save1Publish}>
-              <Text>Take Picture</Text>
+              
+              
+              <Text style={styles.takePhoto}>Take Picture</Text>
+              
         </Button>
         <Button
               onPress={() => {this.pickImage(); }}
               rkType='large'
               style={styles.save1Publish}>
-              <Text>Choose Picture</Text>
+              <Text style={styles.pickImage}>Choose Picture</Text>
         </Button>
         <Image
           style={styles.image}
