@@ -64,42 +64,52 @@ class Offer extends Component {
 
 
       
-  render() {
-    return (
-        <Container style={styles.container}>
-        <Header>
-                <Left>
-                    <Button
-                    transparent
-                    onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
-                    >
-                    <Icon name="ios-arrow-back" />
-                    </Button>
-                </Left>
-                <Body>
-                      <Title>{this.props.navigation.state.params.section} Offer</Title> 
-                </Body>
-                    <Right/>
-        </Header>
-        
-        
-              <Text>Title: {this.props.navigation.state.params.offer}</Text>
-              <Text>Description: {this.props.navigation.state.params.description}</Text>
-              <Text>Price: {this.props.navigation.state.params.price}</Text>
-              <Text>Date: {this.props.navigation.state.params.date}</Text>
-              <Text>{this.props.navigation.state.params.key}</Text>
-              <Text>{this.props.navigation.state.params.uid}</Text>
-              
-        
-        
-
-
-
-      </Container>
-    );
-  }
-
-
+      render() {
+        return (
+            <Container style={styles.container}>
+            <Header>
+                    <Left>
+                        <Button
+                        transparent
+                        onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
+                        >
+                        <Icon name="ios-arrow-back" />
+                        </Button>
+                    </Left>
+                    <Body>
+                         <Title>{this.props.navigation.state.params.section} Offer</Title> 
+                    </Body>
+                        <Right/>
+            </Header>
+            
+            <View style={{
+        flex: 0.5,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}>
+        <View style={{width: 0, height: 2, backgroundColor: '#FFFFFF'}} />
+                <Text><Title>Title:               {this.props.navigation.state.params.offer}</Title></Text>
+        <View style={{width: 100, height: 20, backgroundColor: '#FFFFFF'}} />
+                  <Text>Description: {this.props.navigation.state.params.description}</Text>
+        <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
+                  <Text>Date: {this.props.navigation.state.params.date}</Text>
+        <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
+                  <Text><Title>                                                             Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
+        <View style={{width: 100, height: 60, backgroundColor: '#FFFFFF'}} />          
+      
+         
+      </View>
+                  
+                  
+                  
+           
+           
+    
+    
+    
+          </Container>
+        );
+      }
     }
     
     
