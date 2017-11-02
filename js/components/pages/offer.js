@@ -31,7 +31,10 @@ import {
     Right, // *
     Body, // *
     View, // *
-    Button, // *
+    Button, //*
+    Content, //*
+    Card, //*
+    CardItem, // *
   } from "native-base"; // Import native base elements
 
 import firebase from 'firebase'; // Import Firebase login
@@ -88,8 +91,8 @@ class Offer extends Component {
                         <Right/>
             </Header>
 
-            
-      
+            <Content>
+            <Card>
         <Text><Title>Title: {this.props.navigation.state.params.offer}</Title></Text>
         <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />
                   <Text>Description: {this.props.navigation.state.params.description}</Text>
@@ -100,8 +103,8 @@ class Offer extends Component {
         <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />     
 
           
-      
-         
+            </Card>
+            </Content>
                   
           </Container>
                   
