@@ -47,10 +47,12 @@ class Offer extends Component {
     };
    }
   componentWillMount() {
-    this.get("email")
+    /*this.get("email")
     .then(() => this.get("displayName"))
     .then(() => this.get("phoneNumber"))
-    .then(() => this.setState({ email : this.state.email }))
+    .then(() => this.forceUpdate())*/
+    this.get("email")
+    .then(() => this.forceUpdate())
   }
   
   get = async (value) => {
@@ -59,8 +61,8 @@ class Offer extends Component {
     .then(function(snapshot){
     a = snapshot.child(value).val();
     })
-    .then (() => this.state.value = a) // Wait for data before assigning the value to "announceNumber"
-    .then (() => console.log(this.state.value));
+    .then (() => this.state.email = a) // Wait for data before assigning the value to "announceNumber"
+    .then (() => console.log(this.state.email));
 
     }
 
@@ -101,7 +103,7 @@ class Offer extends Component {
                   <Text>Date: {this.props.navigation.state.params.date}</Text>
         <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
                   <Text><Title>                                                             Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
-                  <Text>{this.state.email}</Text>
+                  <Text>Phone number: {this.state.email}</Text>
         <View style={{width: 100, height: 60, backgroundColor: '#FFFFFF'}} />        
           
       
