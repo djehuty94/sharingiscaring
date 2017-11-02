@@ -93,15 +93,22 @@ class Offer extends Component {
 
             <Content>
             <Card>
-        <Text><Title>Title: {this.props.navigation.state.params.offer}</Title></Text>
-        <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />
+            <CardItem Header>
+              <Text><Title>Title: {this.props.navigation.state.params.offer}</Title></Text>
+            </CardItem>
+            <CardItem>
+              <Body>
                   <Text>Description: {this.props.navigation.state.params.description}</Text>
-        <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />
-                  <Text color='grey'>Date: {this.props.navigation.state.params.date}</Text>
-        <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />
-                  <Text><Title>Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
-        <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />     
-        
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+              <Text>Date: {this.props.navigation.state.params.date}</Text>
+              </Body>
+              </CardItem>
+            <CardItem footer>
+              <Text>Price: {this.props.navigation.state.params.price}.- CHF</Text>
+            </CardItem>
         
         
         <Button
