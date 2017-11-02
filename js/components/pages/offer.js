@@ -48,21 +48,27 @@ class Offer extends Component {
       displayName:"",
     };
    }
+
+
   componentWillMount() {
-    /*this.get("email")
-    .then(() => this.get("displayName"))
-    .then(() => this.get("phoneNumber"))
-    .then(() => this.forceUpdate())*/
-    this.get("email")
+
+    this.func_getFromDb("email")
     .then(() => this.forceUpdate())
   }
   
-  get = async (value) => {
+
+/********************************************/
+/* Function : func_getFromDb                  
+/* Action : Get user email
+/* Return: Take a picture with camera and return the path to the render "fileUri".
+/* Comment: However for the moment the image upload still need to be implemented.            
+/********************************************/  
+func_getFromDb = async (value) => {
     await firebase.database().ref('users/' + this.props.navigation.state.params.uid +'/userDetails').once('value')
     .then(function(snapshot){
-    a = snapshot.child(value).val();
+    var_tempSnapshot = snapshot.child(value).val();
     })
-    .then (() => this.state.email = a) // Wait for data before assigning the value to "announceNumber"
+    .then (() => this.state.email = var_tempSnapshot) // Wait for data before assigning the value to "announceNumber"
     .then (() => console.log(this.state.email));
     }
 

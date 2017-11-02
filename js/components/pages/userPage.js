@@ -1,3 +1,22 @@
+/************************************************************************ */
+/* FILE TITLE : pages/userPage.js                                     
+/* FILE AIM :                                                             
+/*            1.Get datas filled by the user (Photo to come)                    
+/*            2.Generate a random ID for the upload            
+/*            3.Upload announces data                       
+/*                                                                        
+/* Input : section from this.props.navigation.state.params.section;       
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                        */
+/**************************************************************************/
+
+
 import React, { Component } from "react";
 import { 
   Alert, // *
