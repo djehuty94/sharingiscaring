@@ -41,13 +41,17 @@ class Offer extends Component {
       render() {
         return (
             <Container style={styles.container}>
-            <Header>
+            <Header 
+            style={styles.Header}
+					  androidStatusBarColor='#6FAF98'
+					  backgroundColor='#6FAF98'>
                     <Left>
                         <Button
                         transparent
+                        light
                         onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
                         >
-                        <Icon name="ios-arrow-back" />
+                        <Icon name="ios-arrow-back" color= 'white' />
                         </Button>
                     </Left>
                     <Body>
