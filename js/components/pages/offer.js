@@ -38,7 +38,7 @@ import {
   } from "native-base"; // Import native base elements
 
 import firebase from 'firebase'; // Import Firebase login
-
+import { email } from "react-native-communications"; // TO be used to send Feedback
 class Offer extends Component {
 
   constructor(){
@@ -101,6 +101,22 @@ class Offer extends Component {
         <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />
                   <Text><Title>Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
         <View style={{width: 10000, height: 1, backgroundColor: 'grey'}} />     
+        
+        
+        
+        <Button
+        onPress={() => {
+              email(
+                [this.state.email],
+                null,
+                null,
+                `Contact for <${this.props.navigation.state.params.offer}>`,
+                null
+              );
+            }}
+            >
+          <Text>Contact by mail</Text>
+        </Button>
 
           
             </Card>
