@@ -67,8 +67,9 @@ class OfferDisplay extends Component {
 /* Return: -                                
 /********************************************/
 //ISSUE : Only called on first construct 
-componentDidMount(){
-      //Call the function that will get the data 
+componentDidMount(){ 
+      array_offerDatas = [] // Reset the array on reload
+      //Call the function that will get the data
       var_section = this.props.navigation.state.params.section;
       this.func_getData(var_section)
       .then(res => this.setState({ isLoaded:true }))
