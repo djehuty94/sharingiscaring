@@ -21,23 +21,24 @@ import { Image, Dimensions } from "react-native";
 
 import firebase from 'firebase'; // Import Firebase login
 import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Button,
-  Icon,
-  Card,
-  List,
-  CardItem,
-  Text,
-  Thumbnail,
-  Left,
-  Right,
-  Body,
-  IconNB,
-  Fab,
-  View,
+  Container, // *
+  Header, // *
+  Title, // *
+  Content, // *
+  Button, // *
+  Icon, // *
+  Card, // *
+  List, // *
+  CardItem, // *
+  Text, // *
+  Thumbnail, // *
+  Left, // *
+  Right, // *
+  Body, // *
+  IconNB, // *
+  Fab, // *
+  View, // *
+  Spinner, // *
 } from "native-base";
 
 import styles from "./styles";
@@ -139,7 +140,7 @@ func_getData(db_section) {
 
 
   render() {
-    if (!this.state.isLoaded) {return <View><Text>Loading...</Text></View>;
+    if (!this.state.isLoaded) {return <View style={styles.containerPublish}><Spinner color='blue' /></View>;
     } 
     return (
       <Container style={styles.container}>
