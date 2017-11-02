@@ -42,6 +42,7 @@ class Publish extends Component {
     constructor(){
       super();
       this.state = {
+        share : false, // Share button
         offer : "", 
         description : "", 
         localUri : null, 
@@ -215,8 +216,11 @@ class Publish extends Component {
   }
 
   fetchAndUpload() {
+      this.setState({ share: !this.state.share }); // Disable the Share button
+      console.log(this.state.share)
       this.numberOfOnlineAnnounce() // Retreive the number of announces 
-      .then (() => this.uploadOffer(this.addOneTo(this.state.announceNumber), firebase.auth().currentUser.uid)) // Add one to the number of offers and post it. 
+      .then (() => this.uploadOffer(this.addOneTo(this.state.announceNumber), firebase.auth().currentUser.uid)) // Add one to the number of offers and post it.
+      .then (() => this.setState({ share: !this.state.share })) // Enable the Share button after request
     }
 
   
@@ -293,10 +297,11 @@ class Publish extends Component {
         /> 
 
         
-        <Button
-              onPress={() => { this.fetchAndUpload(); }}
-              rkType='large'
-              style={styles.save2Publish}>
+        <Button 
+              block success
+              disabled={this.state.share}
+              onPress={() => this.fetchAndUpload() }
+              >
               <Text>Share</Text>
         </Button>
        
