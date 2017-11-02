@@ -1,3 +1,21 @@
+/************************************************************************ */
+/* FILE TITLE : pages/publish.js                                     
+/* FILE AIM :                                                             
+/*            1.Get datas filled by the user (Photo to come)                    
+/*            2.Generate a random ID for the upload            
+/*            3.Upload announces data                       
+/*                                                                        
+/* Input : section from this.props.navigation.state.params.section;       
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                        */
+/**************************************************************************/
+
 import React, { Component } from 'react';
 import {
   Alert,
@@ -23,10 +41,7 @@ import {
 
 import { ImagePicker } from 'expo'; // Take a picture
 import { FormLabel, FormInput, FormValidationMessage, Divider } from 'react-native-elements';
-
-
 import DropdownAlert from 'react-native-dropdownalert'; // Alert component
-
 
 
 import firebase from 'firebase'; // Import Firebase login
@@ -64,11 +79,16 @@ class Publish extends Component {
       console.log(this.props.navigation.state.params.section)
     }
 
-  // Take a picture with camera and return the path to the render "fileUri".
-  // However for the moment the image upload still need to be implemented.  
+
+/********************************************/
+/* Function : takePhoto                  
+/* Action : Open the camero to take a picture
+/* Return: Take a picture with camera and return the path to the render "fileUri".
+/* Comment: However for the moment the image upload still need to be implemented.            
+/********************************************/  
   takePhoto = async () => {
+    
     // Display the camera to the user and wait for them to take a photo or to cancel
-    // the action
     let newphoto = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [4, 3],
@@ -84,7 +104,6 @@ class Publish extends Component {
     }
   
     // ImagePicker saves the taken photo to disk and returns a local URI to it
-
     this.setState(
       {
         filename: this.state.result.uri.split('/').pop(),
@@ -95,12 +114,21 @@ class Publish extends Component {
     let match = /\.(\w+)$/.exec(this.state.filename);
     let type = match ? `image/${match[1]}` : `image`;
     
+    //Debug
     console.log(this.state.result.uri)
     console.log(this.state.filename)
     console.log(this.state.localUri)
 
   }
   // Take a picture from the camera roll and return the path to the render "fileUri".
+
+  
+/********************************************/
+/* Function : pickImage                  
+/* Action : Get URI of a picture from the library
+/* Return: Image URI.
+/* Comment: However for the moment the image upload still need to be implemented.            
+/********************************************/  
   pickImage = async () => {
     // Display the camera to the user and wait for them to take a photo or to cancel
     // the action
@@ -120,7 +148,6 @@ class Publish extends Component {
     }
   
     // ImagePicker saves the taken photo to disk and returns a local URI to it
-
     this.setState(
       {
         filename: this.state.result.uri.split('/').pop(),
@@ -137,194 +164,205 @@ class Publish extends Component {
 
   }
 
-  // Function to get the number of announces already in the database. It is stored in "a" and then in "this.state.announceNumber"
-  // We use .then to wait that the data is downloaded before proceeding. 
-  numberOfOnlineAnnounce = async () => {
-    var a; 
-    var b;
-    return b = await firebase.database().ref(this.props.navigation.state.params.section).once("value") // Return serve as a promise to wait
-      .then(function(snapshot) {
-        a = snapshot.numChildren(); // ("number of announces")
-      })
-      .then (() => this.state.announceNumber = a); // Wait for data before assigning the value to "announceNumber"
-      
-  }
-
-  addOneTo = (announceNumber) => {
-    announceNumber = announceNumber + 1
-    return announceNumber;
-  }
   
-  uploadOffer = async (announceNumberInc, uid) => {
+/********************************************/
+/* Function : func_generateKey                  
+/* Action : Function that generates a random ID for the post
+/* Return: this.state.announceNumber
+/* Comment: We use .then to wait that the data is downloaded before proceeding.  
+/********************************************/  
+  func_generateKey = async () => {
+    return this.state.announceNumber = await firebase.database().ref(this.props.navigation.state.params.section).push().key // Return serve as a promise to wait 
+  }
 
-        if (this.state.offer.length < 6) {
-          this.dropdown.alertWithType(
-            "error",
-            "Error",
-            "Enter a valid title (more than 6 caracters)."
-          );
-          return;
-        }
+/********************************************/
+/* Function : func_uploadOffer                  
+/* Action : Function that get datas from the form and upload them
+/* Return: 
+/* Comment:  
+/********************************************/
+  func_uploadOffer = async (announceNumberInc, uid) => {
 
-        if (this.state.description.length < 6) {
-          this.dropdown.alertWithType(
-            "error",
-            "Error",
-            "Enter a valid description (more than 10 caracters)."
-          );
-          return;
-        }
+    const const_titleLength = 4;
+    const const_descriptionLength = 6;
+    const const_priceMin = 1;
 
-        if (this.state.price < 1) {
-          this.dropdown.alertWithType(
-            "error",
-            "Error",
-            "Enter a valid price."
-          );
-          return;
-        }
+    //Check content filled by users 
+    if (this.state.offer.length < const_titleLength) {
+      this.dropdown.alertWithType(
+        "error",
+        "Error",
+        "Enter a valid title (more than "+ const_titleLength +" characters)."
+      );
+      return;
+    }
+
+    if (this.state.description.length < const_descriptionLength) {
+      this.dropdown.alertWithType(
+        "error",
+        "Error",
+        "Enter a valid description (more than "+const_descriptionLength+" characters)."
+      );
+      return;
+    }
+
+    if (this.state.price < const_priceMin) {
+      this.dropdown.alertWithType(
+        "error",
+        "Error",
+        "Enter a valid price."
+      );
+      return;
+    }      
+      
+    //Assign content to variabe
+    let date = String(new Date()) // get current date and transform it into a String
+    //let userUID = this.state.user // get user id
+    let offer = this.state.offer // get offer title
+    let description = this.state.description // get description
+    let price = this.state.price // get price
 
 
+    //DEBUG CODE
         console.log("           --------------------------------           ")
         console.log("Publishing of the announce n°" + announceNumberInc)
-    
-        let date = String(new Date()) // get current date and transform it into a String
-        //let userUID = this.state.user // get user id
-        let offer = this.state.offer // get offer title
-        let description = this.state.description // get description
-        let price = this.state.price // get price
-
         console.log("Date: " + date)
         console.log("Offer title: " + offer)
         console.log("Description: " + description)
         console.log("Price: " + price + " CHF")
         console.log("User UID: " + uid)
+    //END DEBUG CODE
         
-        try {
-          // write announces properties to firebase
-          firebase.database().ref(this.props.navigation.state.params.section + '/' + announceNumberInc).set({
-            date,
-            offer,
-            description,
-            price,
-            uid,
-           
-          })
-        .then(() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section}));
-    
-        }
-        catch (error) {
-          console.log(error);
-          this.dropdown.alertWithType("error", "Error", String(error));
-        }
-    
+    //Upload announce and then redirect user to OfferDisplay
+    try {
+      // write announces properties to firebase
+      firebase.database().ref(this.props.navigation.state.params.section + '/' + announceNumberInc).set({
+        date,
+        offer,
+        description,
+        price,
+        uid,
+        
+      })
+    .then(() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section}));
+
+    }
+    catch (error) {
+      console.log(error);
+      this.dropdown.alertWithType("error", "Error", String(error));
+    }
   }
 
-  fetchAndUpload() {
+/********************************************/
+/* Function : func_fetchAndUpload()                  
+/* Action : Function called on User click for the upload
+/* Return: 
+/* Comment:  
+/********************************************/
+  func_fetchAndUpload() {
       this.setState({ share: !this.state.share }); // Disable the Share button
       console.log(this.state.share)
-      this.numberOfOnlineAnnounce() // Retreive the number of announces 
-      .then (() => this.uploadOffer(this.addOneTo(this.state.announceNumber), firebase.auth().currentUser.uid)) // Add one to the number of offers and post it.
+      this.func_generateKey() // Retreive the number of announces 
+      .then (() => this.func_uploadOffer(this.state.announceNumber, firebase.auth().currentUser.uid)) // Add one to the number of offers and post it.
       .then (() => this.setState({ share: !this.state.share })) // Enable the Share button after request
     }
 
   
-  render() {
-    return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
-      <Container style={styles.container}>
-        <Header 
+render() {
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <Container style={styles.container}>
+      <Header 
           style={styles.Header}
 					androidStatusBarColor='#6FAF98'
 					backgroundColor='#6FAF98'>
-                <Left>
-                    <Button
-                    transparent
-                    light
-                    onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
-                    >
-                    <Icon name="ios-arrow-back" color= 'white' />
-                    </Button>
-                </Left>
-                <Body>
-                     <Title>New offer</Title> 
-                </Body>
-                    <Right/>
-        </Header>
-        
-        <View> 
-          <FormLabel>What are you offering?</FormLabel>
-          <FormInput
-            multiline
-            style={{height: 60}}
-            backgroundColor= '#dcdcdc'
-            value={this.props.offer}
-            placeholder='Books, flats, events etc...'
-            onChangeText={(offer) => this.setState({offer : offer})}
+              <Left>
+                  <Button
+                  transparent
+                  light
+                  onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
+                  >
+                  <Icon name="ios-arrow-back" color= 'white' />
+                  </Button>
+              </Left>
+              <Body>
+                    <Title>New offer</Title> 
+              </Body>
+                  <Right/>
+      </Header>
+      
+      <View> 
+        <FormLabel>What are you offering?</FormLabel>
+        <FormInput
+          multiline
+          style={{height: 60,
+          backgroundColor:'#dcdcdc'}}
+          value={this.props.offer}
+          placeholder='Books, flats, events etc...'
+          onChangeText={(offer) => this.setState({offer : offer})}
 
-          />
-        </View>
-        <View>
-          <FormLabel>Enter Description Here</FormLabel>
-          <FormInput
-            multiline
-            style={{height: 100}}
-            backgroundColor= '#dcdcdc'
-            value={this.props.description}
-            placeholder='Description of what you propose'
-            onChangeText={(description) => this.setState({description : description})}
-            
-          />
-        </View>
-        <View>
-          <FormLabel>How much does it cost?</FormLabel>
-          <FormInput
-          keyboardType={'phone-pad'}
-          style={{height: 50}}
-          backgroundColor= '#dcdcdc'
-          value={this.props.price}
-          placeholder='CHF'
-          onChangeText={(price) => this.setState({price : price})}
+        />
+      </View>
+      <View>
+        <FormLabel>Enter Description Here</FormLabel>
+        <FormInput
+          multiline
+          style={{height: 100,
+          backgroundColor:'#dcdcdc'}}
+          value={this.props.description}
+          placeholder='Description of what you propose'
+          onChangeText={(description) => this.setState({description : description})}
           
-            />
-        </View>
-        <Button
-              onPress={() => {this.takePhoto(); }}
-              rkType='large'
-              style={styles.save1Publish}>
-              <Text>Take Picture</Text>
-              
-        </Button>
-        <Button
-              onPress={() => {this.pickImage(); }}
-              rkType='large'
-              style={styles.save1Publish}>
-              <Text>Choose Picture</Text>
-        </Button>
-        <Image
-          style={styles.image}
-          source={this.state.localUri ? {uri: this.state.localUri} : null}
-        /> 
-
+        />
+      </View>
+      <View>
+        <FormLabel>How much does it cost?</FormLabel>
+        <FormInput
+        keyboardType={'phone-pad'}
+        style={{height: 50,
+        backgroundColor:'#dcdcdc'}}
+        value={this.props.price}
+        placeholder='CHF'
+        onChangeText={(price) => this.setState({price : price})}
         
-        <Button 
-              block success
-              disabled={this.state.share}
-              onPress={() => this.fetchAndUpload() }
-              >
-              <Text>Share</Text>
-        </Button>
-       
+          />
+      </View>
+      <Button
+            onPress={() => {this.takePhoto(); }}
+            rkType='large'
+            style={styles.save1Publish}>
+            <Text>Take Picture</Text>
+            
+      </Button>
+      <Button
+            onPress={() => {this.pickImage(); }}
+            rkType='large'
+            style={styles.save1Publish}>
+            <Text>Choose Picture</Text>
+      </Button>
+      <Image
+        style={styles.image}
+        source={this.state.localUri ? {uri: this.state.localUri} : null}
+      /> 
+
+      
+      <Button 
+            block success
+            disabled={this.state.share}
+            onPress={() => this.func_fetchAndUpload() }
+            >
+            <Text>Share</Text>
+      </Button>
+      
 
 
-        <DropdownAlert ref={ref => this.dropdown = ref}/>
-      </Container>
-      
-      </TouchableWithoutFeedback>
-      
-    );
-  }
+      <DropdownAlert ref={ref => this.dropdown = ref}/>
+    </Container>
+    
+    </TouchableWithoutFeedback>
+    
+  );
+}
 }
 
 
