@@ -46,22 +46,75 @@ class Offer extends Component {
       displayName:"",
     };
    }
-  componentWillMount() {
+
+  componentDidMount() {
+    // Resolve and display the user info
     this.get("email")
     .then(() => this.get("displayName"))
     .then(() => this.get("phoneNumber"))
-    .then(() => this.setState({ email : this.state.email }))
+    .then(() => this.forceUpdate())
+    .then(() => console.log(this.state.email))
+    .then(() => console.log(this.state.displayName))
+    .then(() => console.log(this.state.phoneNumber));
+
+
   }
     
-  get = async (value) => {
-    var a
-    await firebase.database().ref('users/' + /*this.props.navigation.state.params.uid'*/'AdmeWt4gVFcG8faBcP2SPI77zCT2/' + 'userDetails').once('value')
-    .then(function(snapshot){
-    a = snapshot.child(value).val();
-    })
-    .then (() => this.state.value = a) // Wait for data before assigning the value to "announceNumber"
-    .then (() => console.log(this.state.value));
+  func_getData() {
+    array_userDatas = []
+    db_section = this.props.navigation.state.params.section;
+    db_uid = 'AdmeWt4gVFcG8faBcP2SPI77zCT2';
+    /*this.props.navigation.state.params.uid'*/'
+    //TO DELETE
+    console.log("Db_uid : "+ db_uid);  
+  
+    //Return Resolved once datas have been fetched
+    return new Promise(function(resolve, reject){
+      try {
+        //Get Object corresponding to the section from Firebase
+        var ref = firebase.database().ref('user/'+db_section+'userDetails');
+        ref.once('value')
+        .then(function(snapshot) {
+          
+          //Loop foreach going through each child (Articles)
+          snapshot.forEach(function(childSnapshot){
+            
+            //Check the number of articles
+            if(var_funcIncrement == const_NUMARTICLES){resolve(true);}
+            else{
+            //Increment to limit displayed articles to 20
+            var_funcIncrement++;
+    
+            //Get Article  (Child) information
+            var child_key = childSnapshot.key;
+            var child_uid = childSnapshot.child("uid").val();
+            var child_offer = childSnapshot.child("offer").val();
+            var child_date = childSnapshot.child("date").val();
+            var child_description = childSnapshot.child("description").val();
+            var child_price = childSnapshot.child("price").val();
+    
+            //Add Articles (Child) information to the array
+            array_offerDatas.push({    
+              section: db_section,
+              key : child_key,  
+              offer: child_offer,
+              date: child_date,
+              description: child_description,
+              price:child_price,
+              uid:child_uid,});
+            }
+          });
+          resolve(true);
+        });
+      }
+       catch (error) {
+        this.dropdown.alertWithType("error", "Error", String(error));
+        reject(Error(error));
+        }
+      });
     }
+  
+ 
 
 
       
@@ -100,7 +153,7 @@ class Offer extends Component {
                   <Text>Date: {this.props.navigation.state.params.date}</Text>
         <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
                   <Text><Title>                                                             Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
-                  <Text>{this.state.email}</Text>
+                  <Text>The email is: {this.state.value}</Text>
         <View style={{width: 100, height: 60, backgroundColor: '#FFFFFF'}} />        
           
       
