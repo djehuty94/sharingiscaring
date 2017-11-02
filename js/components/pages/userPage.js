@@ -95,8 +95,7 @@ class UserPage extends Component {
               onChangeText={(displayName) => {
                 this.setState({displayName})
                 if (displayName.trim().length < 4) {
-                  this.dropdown.alertWithType('error', 'Error', 'Please enter your full name.');
-                  console.log("Please enter your full name.")
+                  this.dropdown.alertWithType('error', 'Error', 'Please enter your full name (more than 4 caracters).');
                   return;
                 }
                 firebase
@@ -131,8 +130,7 @@ class UserPage extends Component {
               onChangeText={(phoneNumber) => {
                 this.setState({phoneNumber})
                 if (phoneNumber.trim().length !== 10) {
-                  this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number.');
-                  console.log("Please enter a correct number.")
+                  this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number (10 digit).');
                   return;
                 }
                 firebase
