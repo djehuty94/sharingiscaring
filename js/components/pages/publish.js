@@ -284,16 +284,14 @@ class Publish extends Component {
               onPress={() => {this.takePhoto(); }}
               rkType='large'
               style={styles.save1Publish}>
-              
-              
-              <Text style={styles.takePhoto}>Take Picture</Text>
+              <Text>Take Picture</Text>
               
         </Button>
         <Button
               onPress={() => {this.pickImage(); }}
               rkType='large'
               style={styles.save1Publish}>
-              <Text style={styles.pickImage}>Choose Picture</Text>
+              <Text>Choose Picture</Text>
         </Button>
         <Image
           style={styles.image}
