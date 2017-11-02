@@ -36,6 +36,12 @@ import {
 
 import firebase from 'firebase'; // Import Firebase login
 
+array_offerDatas = []
+
+var var_displayName;
+var var_phoneNumber;
+var var_email;
+
 class Offer extends Component {
 
   constructor(){
@@ -56,14 +62,12 @@ class Offer extends Component {
   }
   
   get = async (value) => {
-    var a
     await firebase.database().ref('users/' + /*this.props.navigation.state.params.uid'*/'AdmeWt4gVFcG8faBcP2SPI77zCT2/' + 'userDetails').once('value')
     .then(function(snapshot){
     a = snapshot.child(value).val();
     })
     .then (() => this.state.email = a) // Wait for data before assigning the value to "announceNumber"
     .then (() => console.log(this.state.email));
-
     }
 
 
