@@ -1,20 +1,14 @@
-/*const React = require("react-native");
-
-const { StyleSheet } = React;
-
-export default {
-  container: {
-    backgroundColor: "#FFF"
-  },
-  text: {
-    alignSelf: "center",
-    marginBottom: 7
-  },
-  mb: {
-    marginBottom: 15
-  }
-};
-*/
+/************************************************************************ */
+/* FILE TITLE : user/styles.js                                         */
+/* FILE AIM : login / register / registerInfo / resetPassword Stylesheet                           */
+/* Exported functions:                                                    */
+/*                                                                        */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
 
 const React = require("react-native");
 

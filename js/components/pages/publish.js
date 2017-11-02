@@ -207,9 +207,11 @@ class Publish extends Component {
     }
 
     if (this.state.price < const_priceMin) {
+      console.log(this.state.price);
       if(this.state.price == 0)
       {
         this.state.price = "free!";
+        console.log("Free : "+ this.state.price)
         return;
       }
       else{

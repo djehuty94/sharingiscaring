@@ -1,15 +1,31 @@
+/************************************************************************ */
+/* FILE TITLE : user/register.js                                     
+/* FILE AIM :                                                             
+/*            1.Ask for user's data
+/*            2.Check if user exists and login
+/*            3.Also offer the possibility to create an account and reset password                   
+/*                                                                        
+/* Input     
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                       */
+/**************************************************************************/
+
+
 import React, { Component, PropTypes } from 'react';
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config'; // Import of Firebase config
 import {
   Alert,
   AppRegistry,
-  ListView,
-  Image,
   StyleSheet,
   Text,
   TextInput,
-  TouchableHighlight,
   View,
   ScrollView,
 } from 'react-native'; // Import React-Native elements
@@ -23,15 +39,12 @@ import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 import validator from "validator"; // Use to validate the forms
 
 
-// Initialise and display Firebase info in console, be sure that we have the right config. 
- //   console.log(firebaseConfig);
-  //  firebase.initializeApp(firebaseConfig);
- //   console.log("Firebase initialised")
-
  import styles from "./styles";
 
 
 export default class RegisterAccount extends Component {
+
+
 
     static navigationOptions = {
         title: 'Account information'
@@ -50,13 +63,22 @@ export default class RegisterAccount extends Component {
     }
 
 
-   // Navigation function
-  onNavPress = (screenname) => {
+/********************************************/
+/* Function : func_onNavPress             
+/* Action : Navigate to desired page from page name input               
+/* Return: -                                
+/********************************************/
+  func_onNavPress = (screenname) => {
     this.props.navigation.navigate(screenname);
     };
 
-  // Sending info to firebase
-  _signupUser = async () => {
+
+/********************************************/
+/* Function : func_signupUser             
+/* Action :   Sending info to firebase              
+/* Return: -                                
+/********************************************/ 
+  func_signupUser = async () => {
 
     
     if (!validator.isEmail(this.state.email)) {
@@ -75,12 +97,12 @@ export default class RegisterAccount extends Component {
       );
       return;
     }
-   
-
       //var firstname = this.props.navigation.firstname
       //var lastname = this.props.navigation.lastname
       var firstname = this.props.navigation.state.params.firstname
       var lastname = this.props.navigation.state.params.lastname
+      
+      //DEBUG
       console.log(firstname)
       console.log(lastname)
       var phone = this.props.navigation.state.params.phone
@@ -88,6 +110,8 @@ export default class RegisterAccount extends Component {
       var email = this.state.email
       var password = this.state.password
 
+
+      //DEBUG
       console.log(email);
       console.log(password);
       console.log(displayName);
@@ -105,7 +129,7 @@ export default class RegisterAccount extends Component {
           displayName
         });
         console.log(user);
-        this.onNavPress('Drawer')
+        this.func_onNavPress('login_scr')
         if (user) { // Display success message when logged in.
           this.dropdown.alertWithType('success', 'Success', "Registered");
         }
@@ -143,13 +167,13 @@ export default class RegisterAccount extends Component {
           secureTextEntry={true}
           onChangeText={(password) => {this.setState({password}); }}
           returnKeyType="send"
-          onSubmitEditing={() => this._signupUser()}
+          onSubmitEditing={() => this.func_signupUser()}
         />
 
         <FormLabel>  </FormLabel>
         
         <RkButton
-              onPress={() => this._signupUser()}
+              onPress={() => this.func_signupUser()}
               rkType='rounded'
               style={styles.save}>
               CREATE

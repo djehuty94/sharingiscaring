@@ -1,19 +1,33 @@
+/************************************************************************ */
+/* FILE TITLE : user/resetPassword.js                                     
+/* FILE AIM :                                                             
+/*            1. Allow user to reset its password            
+/*                                                                        
+/* Input     
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                       */
+/**************************************************************************/
+
+
 import React, { Component } from 'react';
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config'; // Import of Firebase config
 import {
   Alert,
   AppRegistry,
-  ListView,
-  Image,
   StyleSheet,
   Text,
   TextInput,
-  TouchableHighlight,
   View,
   ScrollView,
 } from 'react-native'; // Import React-Native elements
-import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
+import { FormLabel, FormInput, FormValidationMessage, Button} from 'react-native-elements';
 
 import { // Import React-Native UI Kitten Design
   RkButton,
@@ -22,14 +36,7 @@ import { connect } from 'react-redux'; // Probably not useful
 import DropdownAlert from 'react-native-dropdownalert'; // Alert component
 
 
-// Initialise and display Firebase info in console, be sure that we have the right config. 
- //   console.log(firebaseConfig);
-  //  firebase.initializeApp(firebaseConfig);
- //   console.log("Firebase initialised")
-
-
-
- import styles from "./styles";
+import styles from "./styles";
 
 export default class ResetPassword extends Component {
 
@@ -43,13 +50,12 @@ export default class ResetPassword extends Component {
       this.state = {email :""};
     }
 
-   // Navigation function
-  onNavPress = (screenname) => {
-    this.props.navigation.navigate(screenname);
-    };
-
-  // Reset the password based on the email
-  resetPassword = async () => {
+/********************************************/
+/* Function : func_resetPassword             
+/* Action : Process the password reset    
+/* Return: -                                
+/********************************************/  // Reset the password based on the email
+  func_resetPassword = async () => {
     console.log("Reset button pressed")
 
     try { // Request firebase to send a reset email.  
@@ -74,9 +80,6 @@ export default class ResetPassword extends Component {
   render() {
     return (
     <ScrollView contentContainerStyle={styles.container}>
-     
-
-
         <FormLabel style={styles.enterMail}>Enter your email adress</FormLabel>
         <FormInput
           value={this.props.email}
@@ -85,13 +88,13 @@ export default class ResetPassword extends Component {
           textAlign='center'
           onChangeText={(email) => this.setState({email : email})}
           returnKeyType="send"
-          onSubmitEditing={() => this.resetPassword()}
+          onSubmitEditing={() => this.func_resetPassword()}
         />
 
         <FormLabel>  </FormLabel>
         
         <RkButton
-              onPress={() => this.resetPassword()}
+              onPress={() => this.func_resetPassword()}
               rkType='rounded'
               disabled={false}
               style={styles.resetButton}>

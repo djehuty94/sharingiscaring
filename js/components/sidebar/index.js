@@ -30,7 +30,7 @@ import {
 import styles from "./style";
 
 //Load logo
-const drawerCover = require("../../../assets/images/retro-furnish-background.png");
+const drawerCover = require("../../../assets/images/menu-bg.png");
 const drawerImage = require("../../../assets/images/logo-sharing-is-caring.png");
 
 //CONSTANTE OF MENU DETAILS

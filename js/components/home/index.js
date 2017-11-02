@@ -18,13 +18,21 @@ import { Container, Button, H3, Text, Header, Left, Right, Title, Icon, Body} fr
 import styles from "./styles";
 
 //Background Launchscreen
-const launchscreenBg = require("../../../assets/images/old.png");
+const launchscreenBg = require("../../../assets/images/bg.png");
 //Logo launchscreen
 const launchscreenLogo = require("../../../assets/images/logo-sharing-is-caring.png");
 
 class Home extends Component {
 	// eslint-disable-line
 
+	 //Initial function
+	 constructor() {
+		super();
+		//Set app state to false in order to load components before display
+		this.state = {
+		  isReady: false
+		};
+	  }
 
 
 	render() {

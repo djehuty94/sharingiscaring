@@ -1,7 +1,7 @@
 {
   "name": "sharingiscaring",
-  "version": "0.0.0",
-  "description": "Hello Expo!",
+  "version": "0.7.0",
+  "description": "Sharing is Caring App",
   "author": null,
   "private": true,
   "main": "node_modules/expo/AppEntry.js",

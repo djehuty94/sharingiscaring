@@ -1,19 +1,34 @@
+/************************************************************************ */
+/* FILE TITLE : user/registerInfo.js                                     
+/* FILE AIM :                                                             
+/*            1. 2nd part of the registration process              
+/*                                                                        
+/* Input     
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                       */
+/**************************************************************************/
+
+
+
 import React, { Component, PropTypes } from 'react';
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config'; // Import of Firebase config
 import {
   Alert,
   AppRegistry,
-  ListView,
-  Image,
   StyleSheet,
   Text,
   TextInput,
-  TouchableHighlight,
   View,
   ScrollView,
 } from 'react-native'; // Import React-Native elements
-import { FormLabel, FormInput, FormValidationMessage, Button, Divider, SocialIcon, Icon } from 'react-native-elements';
+import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 
 import { // Import React-Native UI Kitten Design
   RkButton,
@@ -38,15 +53,12 @@ export default class RegisterInfo extends Component {
       this.state = {phone: "", lastname :"", firstname : ""};
     }
 
-
-
-// Navigation function
-    onNavPress = (screenname) => {
-    this.props.navigation.navigate(screenname);
-    };
-
-
-  onNextButton(){
+/********************************************/
+/* Function : func_onNextButton             
+/* Action : Navigate to next page in the registration process      
+/* Return: -                                
+/********************************************/
+  func_onNextButton(){
 
     if (!this.state.firstname.length) {
       console.log(this.state.firstname.length)
@@ -74,9 +86,8 @@ export default class RegisterInfo extends Component {
       return;
     }
 
-    
-
-    this.props.navigation.navigate('Register', {firstname: this.state.firstname, lastname: this.state.lastname, phone: this.state.phone})} 
+    this.props.navigation.navigate('Register', {firstname: this.state.firstname, lastname: this.state.lastname, phone: this.state.phone})
+  } 
     
 
 
@@ -121,7 +132,7 @@ export default class RegisterInfo extends Component {
         <FormLabel>  </FormLabel>
 
         <RkButton
-              onPress={() => this.onNextButton()}
+              onPress={() => this.func_onNextButton()}
               rkType='rounded'
               style={styles.save}>
               PROCEED
