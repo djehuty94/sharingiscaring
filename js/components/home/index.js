@@ -18,7 +18,7 @@ import { Container, Button, H3, Text, Header, Left, Right, Title, Icon, Body} fr
 import styles from "./styles";
 
 //Background Launchscreen
-const launchscreenBg = require("../../../assets/images/doodles.png");
+const launchscreenBg = require("../../../assets/images/old.png");
 //Logo launchscreen
 const launchscreenLogo = require("../../../assets/images/logo-sharing-is-caring.png");
 
@@ -36,7 +36,7 @@ class Home extends Component {
 					<Left>
 						<Button
 						transparent
-						light
+						backgroundColor= 'White'
 						onPress={() => this.props.navigation.navigate("DrawerOpen")}
 						>
 						<Icon name="menu" />
@@ -61,8 +61,7 @@ class Home extends Component {
 							backgroundColor: "transparent",
 						}}
 					>
-						<H3 style={styles.text}>Sharing is caring</H3>
-						<View style={{ marginTop: 10 }} />
+						
 					</View>
 					<View style={{ marginBottom: 80 }}>
 						<Button
