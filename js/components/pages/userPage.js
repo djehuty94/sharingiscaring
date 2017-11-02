@@ -45,7 +45,7 @@ class UserPage extends Component {
     this.state = {
       notif: false,
       displayName: '', 
-      phoneNumber: '', 
+      phoneNumber: 'Enter your new phone number here', 
     };
   }
 
@@ -82,12 +82,13 @@ class UserPage extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <View style={styles.sectionHeaderContainer}>
-            <Text style={styles.sectionHeaderText}>ACCOUNT</Text>
+            <Text style={styles.text}>ACCOUNT</Text>
             <View style={styles.sectionHeaderUnderline} />
           </View>
           <View style={styles.fieldContainer}>
-            <Text>Name</Text>
+            <Text style={styles.text}>Name</Text>
             <TextInput
+              style={styles.editableText}
               editable
               autoCorrect={false}
               underlineColorAndroid="transparent"
@@ -121,8 +122,9 @@ class UserPage extends Component {
             
           </View>
           <View style={styles.fieldContainer}>
-            <Text>Phone number</Text>
+            <Text style={styles.text}>Phone Number</Text>
             <TextInput
+              style={styles.editableText}
               editable
               autoCorrect={false}
               underlineColorAndroid="transparent"
@@ -157,7 +159,7 @@ class UserPage extends Component {
 
           </View>
           <View style={styles.switchFieldContainer}>
-              <Text>Push notifications</Text>
+              <Text style={styles.text}>Push notifications</Text>
             <Switch // PUSH NOTIFICATIONS TO BE IMPLEMENTED
               onValueChange={() => this.setState({ notif: !this.state.notif })}
               value={this.state.notif}
@@ -178,10 +180,9 @@ class UserPage extends Component {
             }}
             style={styles.fieldContainer}
             >
-            <Text>Send feedback</Text>
+            <Text style={styles.text}>Send feedback</Text>
           </TouchableOpacity>
             <Text></Text> 
-            <Text></Text>
 
           <TouchableOpacity // LOG OUT TO BE IMPLEMENTED
             onPress={() => {
@@ -206,7 +207,7 @@ class UserPage extends Component {
             }}
             style={styles.fieldContainer}
           >
-            <Text>Log out</Text>
+            <Text style={styles.text}>Log out</Text>
 
           </TouchableOpacity>
           
@@ -249,6 +250,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 16
+  },
+  editableText: {
+    color: "grey",
+  },
+  text: {
+    fontSize: 20,
   }
 });
 
