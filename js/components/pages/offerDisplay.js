@@ -17,7 +17,7 @@
 /**************************************************************************/
 
 import React, { Component } from "react";
-import { Image, Dimensions } from "react-native";
+import { Image, Dimensions, TouchableOpacity, ListView, RefreshControl } from "react-native";
 
 import firebase from 'firebase'; // Import Firebase login
 import {
@@ -60,10 +60,19 @@ class OfferDisplay extends Component {
       Fab: false,
      // announceNumber: 0,
       //retrieved: "",
-      isLoaded:false
+      isLoaded:false,
+      refreshing:false,
     };
   }
 
+
+_onRefresh()
+{
+      this.setState({refreshing: true});
+      this.func_getData().then(() => {
+      this.setState({refreshing: false});
+    });
+}
 /********************************************/
 /* Function : componentDidMount             
 /* Action : Call func_getData               
@@ -71,10 +80,10 @@ class OfferDisplay extends Component {
 /********************************************/
 //ISSUE : Only called on first construct 
 componentDidMount(){ 
-      array_offerDatas = [] // Reset the array on reload
+       // Reset the array on reload
       //Call the function that will get the data
-      var_section = this.props.navigation.state.params.section;
-      this.func_getData(var_section)
+      //var_section = this.props.navigation.state.params.section;
+      this.func_getData()
       .then(res => this.setState({ isLoaded:true }))
       .catch(err => alert("An error occurred: "+err));
 }
@@ -85,8 +94,9 @@ componentDidMount(){
 /* Action : Generate an array with articles 
 /* Return: True/False                       
 /********************************************/
-func_getData(db_section) {
-
+func_getData() {
+  array_offerDatas = []
+  db_section = this.props.navigation.state.params.section;
   //TO DELETE
   console.log("Db_section : "+ db_section);  
 
@@ -163,7 +173,11 @@ func_getData(db_section) {
           </Body>
           <Right />
         </Header>
-        <Content padder>
+        <Content          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh.bind(this)}
+            />}>
           <List
 						dataArray={array_offerDatas}
 						renderRow={data =>
@@ -209,7 +223,6 @@ func_getData(db_section) {
           </Card>}
           />
         </Content>
-        
         <Fab // Floating button "add an announce"
           active={this.state.Fab}
           direction="up"
