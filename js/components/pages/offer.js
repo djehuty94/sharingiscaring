@@ -41,13 +41,17 @@ class Offer extends Component {
       render() {
         return (
             <Container style={styles.container}>
-            <Header>
+            <Header 
+            style={styles.Header}
+					  androidStatusBarColor='#6FAF98'
+					  backgroundColor='#6FAF98'>
                     <Left>
                         <Button
                         transparent
+                        light
                         onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
                         >
-                        <Icon name="ios-arrow-back" />
+                        <Icon name="ios-arrow-back" color= 'white' />
                         </Button>
                     </Left>
                     <Body>
@@ -56,13 +60,25 @@ class Offer extends Component {
                         <Right/>
             </Header>
             
-            
-                  <Text>Title: {this.props.navigation.state.params.offer}</Text>
+            <View style={{
+        flex: 0.5,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+      }}>
+        <View style={{width: 0, height: 2, backgroundColor: '#FFFFFF'}} />
+                <Text><Title>Title:               {this.props.navigation.state.params.offer}</Title></Text>
+        <View style={{width: 100, height: 20, backgroundColor: '#FFFFFF'}} />
                   <Text>Description: {this.props.navigation.state.params.description}</Text>
-                  <Text>Price: {this.props.navigation.state.params.price}</Text>
+        <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
                   <Text>Date: {this.props.navigation.state.params.date}</Text>
-                  <Text>{this.props.navigation.state.params.key}</Text>
-                  <Text>{this.props.navigation.state.params.uid}</Text>
+        <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
+                  <Text><Title>                                                             Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
+        <View style={{width: 100, height: 60, backgroundColor: '#FFFFFF'}} />          
+      
+         
+      </View>
+                  
+                  
                   
            
            

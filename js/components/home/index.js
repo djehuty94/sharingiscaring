@@ -36,7 +36,7 @@ class Home extends Component {
 					<Left>
 						<Button
 						transparent
-						backgroundColor= 'White'
+						light
 						onPress={() => this.props.navigation.navigate("DrawerOpen")}
 						>
 						<Icon name="menu" />
@@ -62,8 +62,6 @@ class Home extends Component {
 						}}
 					>
 						<H3 style={styles.text}>Sharing is caring</H3>
-						<View style={{ marginTop: 10 }} />
-						<H3 style={styles.text}>Sharing app of the HSG</H3>
 						<View style={{ marginTop: 10 }} />
 					</View>
 					<View style={{ marginBottom: 80 }}>

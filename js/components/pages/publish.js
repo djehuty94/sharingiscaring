@@ -184,7 +184,7 @@ class Publish extends Component {
   func_uploadOffer = async (announceNumberInc, uid) => {
 
     const const_titleLength = 4;
-    const const_descriptionlength = 6;
+    const const_descriptionLength = 6;
     const const_priceMin = 1;
 
     //Check content filled by users 
@@ -272,13 +272,17 @@ render() {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <Container style={styles.container}>
-      <Header>
+      <Header 
+          style={styles.Header}
+					androidStatusBarColor='#6FAF98'
+					backgroundColor='#6FAF98'>
               <Left>
                   <Button
                   transparent
+                  light
                   onPress={() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section})}
                   >
-                  <Icon name="ios-arrow-back" />
+                  <Icon name="ios-arrow-back" color= 'white' />
                   </Button>
               </Left>
               <Body>

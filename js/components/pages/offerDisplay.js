@@ -159,10 +159,14 @@ func_getData() {
     } 
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header 
+          style={styles.Header}
+					androidStatusBarColor='#6FAF98'
+					backgroundColor='#6FAF98'>
           <Left>
             <Button
               transparent
+              light
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
               >
               <Icon name="menu" />
