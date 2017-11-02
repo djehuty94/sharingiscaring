@@ -60,7 +60,6 @@ class Offer extends Component {
     a = snapshot.child(value).val();
     })
     .then (() => this.state.value = a) // Wait for data before assigning the value to "announceNumber"
-    .then (() => console.log(this.state.value))
     .then (() => console.log(this.state.value));
 
     }
