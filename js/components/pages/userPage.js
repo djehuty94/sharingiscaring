@@ -63,13 +63,17 @@ class UserPage extends Component {
   render() {
     return (
       <Container>
-      <Header>
+      <Header 
+        style={styles.Header}
+				androidStatusBarColor='#6FAF98'
+				backgroundColor='#6FAF98'>
           <Left>
             <Button
               transparent
+              light
               onPress={() => this.props.navigation.navigate("DrawerOpen")}
               >
-              <Icon name="menu" />
+              <Icon name="menu" color='white'/>
             </Button>
           </Left>
           <Body>
