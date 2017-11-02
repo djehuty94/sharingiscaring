@@ -45,7 +45,7 @@ class UserPage extends Component {
     this.state = {
       notif: false,
       displayName: '', 
-      phoneNumber: '', 
+      phoneNumber: 'Enter your new phone number here', 
     };
   }
 
@@ -82,12 +82,13 @@ class UserPage extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <View>
           <View style={styles.sectionHeaderContainer}>
-            <Text style={styles.sectionHeaderText}>ACCOUNT</Text>
+            <Text style={styles.text}>ACCOUNT</Text>
             <View style={styles.sectionHeaderUnderline} />
           </View>
           <View style={styles.fieldContainer}>
-            <Text>Name</Text>
+            <Text style={styles.text}>Name</Text>
             <TextInput
+              style={styles.editableText}
               editable
               autoCorrect={false}
               underlineColorAndroid="transparent"
@@ -95,8 +96,7 @@ class UserPage extends Component {
               onChangeText={(displayName) => {
                 this.setState({displayName})
                 if (displayName.trim().length < 4) {
-                  // this.dropdown.alertWithType('error', 'Error', 'Please enter your full name.');
-                  console.log("Please enter your full name.")
+                  this.dropdown.alertWithType('error', 'Error', 'Please enter your full name (more than 4 caracters).');
                   return;
                 }
                 firebase
@@ -113,7 +113,7 @@ class UserPage extends Component {
                       });
                   })
                   .catch(error => {
-                    //this.dropdown.alertWithType("error","Error",error.toString());
+                    this.dropdown.alertWithType("error","Error",error.toString());
                   });
               }}
               onEndEditing={this.getUser}
@@ -122,8 +122,9 @@ class UserPage extends Component {
             
           </View>
           <View style={styles.fieldContainer}>
-            <Text>Phone number</Text>
+            <Text style={styles.text}>Phone Number</Text>
             <TextInput
+              style={styles.editableText}
               editable
               autoCorrect={false}
               underlineColorAndroid="transparent"
@@ -131,8 +132,7 @@ class UserPage extends Component {
               onChangeText={(phoneNumber) => {
                 this.setState({phoneNumber})
                 if (phoneNumber.trim().length !== 10) {
-                  // this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number.');
-                  console.log("Please enter a correct number.")
+                  this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number (10 digit).');
                   return;
                 }
                 firebase
@@ -149,7 +149,7 @@ class UserPage extends Component {
                       });
                   })
                   .catch(error => {
-                    //this.dropdown.alertWithType("error","Error",error.toString());
+                    this.dropdown.alertWithType("error","Error",error.toString());
                     console.log(error)
                   });
               }}
@@ -159,7 +159,7 @@ class UserPage extends Component {
 
           </View>
           <View style={styles.switchFieldContainer}>
-              <Text>Push notifications</Text>
+              <Text style={styles.text}>Push notifications</Text>
             <Switch // PUSH NOTIFICATIONS TO BE IMPLEMENTED
               onValueChange={() => this.setState({ notif: !this.state.notif })}
               value={this.state.notif}
@@ -180,10 +180,9 @@ class UserPage extends Component {
             }}
             style={styles.fieldContainer}
             >
-            <Text>Send feedback</Text>
+            <Text style={styles.text}>Send feedback</Text>
           </TouchableOpacity>
             <Text></Text> 
-            <Text></Text>
 
           <TouchableOpacity // LOG OUT TO BE IMPLEMENTED
             onPress={() => {
@@ -208,13 +207,14 @@ class UserPage extends Component {
             }}
             style={styles.fieldContainer}
           >
-            <Text>Log out</Text>
+            <Text style={styles.text}>Log out</Text>
 
           </TouchableOpacity>
           
         
         </View>
       </ScrollView>
+      <DropdownAlert ref={ref => this.dropdown = ref}/>
       </Container>
     );
   }
@@ -250,6 +250,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 16
+  },
+  editableText: {
+    color: "grey",
+  },
+  text: {
+    fontSize: 20,
   }
 });
 

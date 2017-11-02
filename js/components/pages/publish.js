@@ -25,6 +25,10 @@ import { ImagePicker } from 'expo'; // Take a picture
 import { FormLabel, FormInput, FormValidationMessage, Divider } from 'react-native-elements';
 
 
+import DropdownAlert from 'react-native-dropdownalert'; // Alert component
+
+
+
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config'; // Import of Firebase config
 
@@ -38,6 +42,7 @@ class Publish extends Component {
     constructor(){
       super();
       this.state = {
+        share : false, // Share button
         offer : "", 
         description : "", 
         localUri : null, 
@@ -147,6 +152,33 @@ class Publish extends Component {
   
   uploadOffer = async (announceNumberInc, uid) => {
 
+        if (this.state.offer.length < 6) {
+          this.dropdown.alertWithType(
+            "error",
+            "Error",
+            "Enter a valid title (more than 6 caracters)."
+          );
+          return;
+        }
+
+        if (this.state.description.length < 6) {
+          this.dropdown.alertWithType(
+            "error",
+            "Error",
+            "Enter a valid description (more than 10 caracters)."
+          );
+          return;
+        }
+
+        if (this.state.price < 1) {
+          this.dropdown.alertWithType(
+            "error",
+            "Error",
+            "Enter a valid price."
+          );
+          return;
+        }
+
 
         console.log("           --------------------------------           ")
         console.log("Publishing of the announce n°" + announceNumberInc)
@@ -172,18 +204,23 @@ class Publish extends Component {
             price,
             uid,
            
-          });
+          })
+        .then(() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section}));
     
         }
         catch (error) {
           console.log(error);
+          this.dropdown.alertWithType("error", "Error", String(error));
         }
     
   }
 
   fetchAndUpload() {
+      this.setState({ share: !this.state.share }); // Disable the Share button
+      console.log(this.state.share)
       this.numberOfOnlineAnnounce() // Retreive the number of announces 
-      .then (() => this.uploadOffer(this.addOneTo(this.state.announceNumber), firebase.auth().currentUser.uid)) // Add one to the number of offers and post it. 
+      .then (() => this.uploadOffer(this.addOneTo(this.state.announceNumber), firebase.auth().currentUser.uid)) // Add one to the number of offers and post it.
+      .then (() => this.setState({ share: !this.state.share })) // Enable the Share button after request
     }
 
   
@@ -202,7 +239,7 @@ class Publish extends Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>New Publication</Title>   
+                     <Title>New offer</Title> 
                 </Body>
                     <Right/>
         </Header>
@@ -264,19 +301,21 @@ class Publish extends Component {
         /> 
 
         
-        <Button
-              onPress={() => { this.fetchAndUpload(); }}
-              rkType='large'
-              style={styles.save2Publish}>
+        <Button 
+              block success
+              disabled={this.state.share}
+              onPress={() => this.fetchAndUpload() }
+              >
               <Text>Share</Text>
         </Button>
        
 
 
-
+        <DropdownAlert ref={ref => this.dropdown = ref}/>
       </Container>
-
+      
       </TouchableWithoutFeedback>
+      
     );
   }
 }

@@ -1,6 +1,15 @@
-// SIDEBAR IS THE DRAWER 
-//Left menu
-//Here menu paths and items are defined
+/************************************************************************ */
+/* FILE TITLE : sidebar/index.js                                          */
+/* FILE AIM : Sidebar component for Drawer navigation                               */
+/* Exported functions:                                                    */
+/*                                                                        */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
+
 
 import React, { Component } from "react";
 import { Image } from "react-native";
@@ -16,26 +25,17 @@ import {
 	Right,
 	Badge,
 	Button,
-	View,
-	StyleProvider,
-	getTheme,
-	variables,
 } from "native-base";
 
 import styles from "./style";
 
+//Load logo
 const drawerCover = require("../../../assets/images/retro-furnish-background.png");
-
 const drawerImage = require("../../../assets/images/logo-sharing-is-caring.png");
-
-/*
-import getTheme from '../sic-theme/components';
-import material from '../sic-theme/variables/material';
-*/
-
 
 //CONSTANTE OF MENU DETAILS
 //Name = Display name
+//Section = seciont used for database
 //Icon = Displayed icon -> Taken from Ionicons
 //bg = Background of the types
 //types = Number of types
@@ -48,18 +48,21 @@ const datas = [
 	},
 	{
 		name: "Books",
+		section:"books",
 		route: "OfferDisplay",
 		icon: "book",
 		bg: "#C5F442",
 	},
 	{
 		name: "Housing",
+		section:"housing",
 		route: "OfferDisplay",
 		icon: "home",
 		bg: "#C5F442",
 	},
 	{
 		name: "Uniseminar | Glemser",
+		section:"unigle",
 		route: "OfferDisplay",
 		icon: "thunderstorm",
 		bg: "#477EEA",
@@ -67,6 +70,7 @@ const datas = [
 	},
 	{
 		name: "Tutoring",
+		section:"tutoring",
 		route: "OfferDisplay",
 		icon: "help-buoy",
 		bg: "#DA4437",
@@ -74,12 +78,14 @@ const datas = [
 	},
 	{
 		name: "Associations",
+		section:"associations",
 		route: "OfferDisplay",
 		icon: "people",
 		bg: "#4DCAE0",
 	},
 	{
 		name: "Events",
+		section:"events",
 		route: "OfferDisplay",
 		icon: "beer",
 		bg: "#1EBC7C",
@@ -87,6 +93,7 @@ const datas = [
 	},
 	{
 		name: "Furniture",
+		section:"furniture",
 		route: "OfferDisplay",
 		icon: "easel",
 		bg: "#B89EF5",
@@ -94,7 +101,8 @@ const datas = [
 	},
 	{
 		name: "Other",
-		route: "Other",
+		section:"other",
+		route: "OfferDisplay",
 		icon: "infinite",
 		bg: "#EB6B23",
 	},
@@ -103,7 +111,6 @@ const datas = [
 		route: "UserPage",
 		icon: "person",
 		bg: "#3591FA",
-		types: "2",
 	}
 ];
 
@@ -144,7 +151,7 @@ class SideBar extends Component {
 												backgroundColor: data.bg,
 											}}
 										>
-											<Text style={styles.badgeText}>{`${data.types} Hot`}</Text>
+											<Text style={styles.badgeText}>{`${data.types} New!`}</Text>
 										</Badge>
 									</Right>}
 							</ListItem>}

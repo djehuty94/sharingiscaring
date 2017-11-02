@@ -1,19 +1,30 @@
-//DOCUMENTATION
-// https://firebase.google.com/docs/auth/web/manage-users
+/************************************************************************ */
+/* FILE TITLE : Auth.js                                                   */
+/* FILE AIM : Check if user is connected and function to signout          */
+/* Exported functions:                                                    */
+/*    isSignedIn                                                          */
+/*    onSignOut                                                           */
+/* Exported Variables:                                                    */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*    https://firebase.google.com/docs/auth/web/manage-users              */
+/**************************************************************************/
+
 
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from './config/firebase_config.js'; // Import of Firebase config
 
-//console.log(firebaseConfig);
-//firebase.initializeApp(firebaseConfig);
-
-
 //Checked if user is logged
 
 //Return the corresponding boolean true/false
-
-
 //Check if user is logged in and return the session variable user
+
+/***************************** */
+/* Function : isSignedIn       */
+/* Action : Check if signed in */
+/* Return: boolean             */
+/***************************** */
+
 export const isSignedIn = () =>{
     return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged(function(user) {
@@ -32,6 +43,12 @@ export const isSignedIn = () =>{
     });
 };
 
+
+/***************************** */
+/* Function : onSignOut        */
+/* Action : Sign out           */
+/* Return: boolean             */
+/***************************** */
 export const onSignOut =() => {
     firebase.auth().signOut().then(function() {
     console.log("Sign Out successfull");

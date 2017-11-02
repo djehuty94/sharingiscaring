@@ -1,23 +1,35 @@
+/************************************************************************ */
+/* FILE TITLE : App.js                                                    */
+/* FILE AIM : Core file of the appnected and function to signout          */
+/* Exported functions:                                                    */
+/*                                                                        */
+/*                                                                        */
+/* Exported Variables:                                                    */
+/*                                                                        */
+/* DOCUMENTATION USED:                                                    */
+/*                                                                        */
+/**************************************************************************/
+
 import Expo from "expo";
 import React from "react";
-
-//This must
 
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from './config/firebase_config.js'; // Import of Firebase config
 
-
-//Call file App.js where app code is located
+//Router takes care of determining which navigation to display
+//Auth determines if a user is already logged in
 import {createRootNavigator} from "./Router";
 import { isSignedIn } from "./Auth";
 
-firebase.initializeApp(firebaseConfig); // Initialise firebase
+//Initialise firebase 
+firebase.initializeApp(firebaseConfig);
 
 export default class sharingiscaring extends React.Component {
+  
   //Initial function
   constructor() {
     super();
-    //Set app state to false
+    //Set app state to false in order to load components before display
     this.state = {
       isReady: false,
       signedIn: false, 
@@ -25,7 +37,9 @@ export default class sharingiscaring extends React.Component {
     };
   }
 
+  //Load required fonts in asynchroneous
   async componentDidMount(){
+    console.log("ComponentDidMount : Signed in - " +this.state.signedIn + "++++  hasCheckedSignedin - "+ this.state.checkedSignIn);
     //BEFORE DISPLAYING LOAD FONTS
     await Expo.Font.loadAsync({
       Roboto: require("native-base/Fonts/Roboto.ttf"),
@@ -37,18 +51,18 @@ export default class sharingiscaring extends React.Component {
     this.setState({ isReady: true });
   }
 
-  //Load font-familty
+ //Check if logged in before loeading the components
   componentWillMount() {
+    console.log("ComponentWillMount : Signed in - " +this.state.signedIn + "++++  hasCheckedSignedin - "+ this.state.checkedSignIn);
     //BEFORE DISPLAYING CHECK IF ALREADY SIGNED IN
     isSignedIn()
     .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
     .catch(err => alert("An error occurred: "+err));
   }
   render() {
+  
     //Check isReady to see if app ressources have been loaded
     //As long as auth state has not been checked, keep displaying loading icon
-
-
     if (!this.state.isReady && !this.state.checkedSignIn) {
       //State while loading 
       return <Expo.AppLoading />;
@@ -61,45 +75,3 @@ export default class sharingiscaring extends React.Component {
     return <App />;
   }
 }
-
-
-/*
-import React from "react";
-
-//Import components for APP
-import { Platform, Stylesheet, View } from "react-native";
-import { Root } from "native-base";
-import { StackNavigator, TabNavigator } from "react-navigation";
-
-//Import content for the drawer and header (NAVIGATION)
-import Drawer from "./Drawer";
-import SignedOut from "./SignedOut";
-
-//Firebase components
-import firebase from 'firebase'; // Import Firebase login
-import { firebaseConfig } from './config'; // Import of Firebase config
-
-
-// Initialise and display Firebase info in console, be sure that we have the right config. 
-console.log(firebaseConfig);
-firebase.initializeApp(firebaseConfig);
-console.log("Firebase initialised")
-
-//Set up core navigation
-const AppNavigator = StackNavigator(
-    {
-      Drawer: {screen: Drawer},
-      SignedOut: {screen: SignedOut}
-    },
-    {
-      initialRouteName: "SignedOut",
-      headerMode:"None",
-    }
-  );
-
-  //Export Stacknavigator to app for display
-  export default () =>
-  <Root>
-      <AppNavigator />
-  </Root>;
-*/
