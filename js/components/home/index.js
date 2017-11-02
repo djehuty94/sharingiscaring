@@ -36,10 +36,11 @@ class Home extends Component {
 					<Left>
 						<Button
 						transparent
+						light
 						backgroundColor= 'White'
 						onPress={() => this.props.navigation.navigate("DrawerOpen")}
 						>
-						<Icon name="menu" color='white' />
+						<Icon name="menu"/>
 						</Button>
 					</Left>
 					<Right />
