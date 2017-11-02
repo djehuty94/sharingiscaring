@@ -23,6 +23,7 @@ import { DrawerNavigator } from "react-navigation";
   //Display receive a parameter that determines what offer to display
   import offerDisplay from "./components/pages/offerDisplay"
   import publish from "./components/pages/publish"
+  import offer from "./components/pages/offer"
   //import User pages
   import userpage from "./components/pages/userPage" 
   import login from "./components/user/login"
@@ -40,6 +41,16 @@ const Drawer = DrawerNavigator(
         Publish: {
           screen: publish,
           path: 'publish/:section',},
+        Offer: {
+          screen: offer, 
+          path: 'offer/:section',
+          path: 'offer/:offer',
+          path: 'offer/:description',
+          path: 'offer/:price',
+          path: 'offer/:date',
+          path: 'offer/:key',
+          path: 'offer/:uid',
+        },
         UserPage: {screen: userpage},
         SignOut: {screen: login}
     },

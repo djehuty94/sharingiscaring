@@ -134,7 +134,7 @@ class SideBar extends Component {
 					<List
 						dataArray={datas}
 						renderRow={data =>
-							<ListItem button noBorder onPress={() => this.props.navigation.navigate("OfferDisplay", {section: data.name})}>
+							<ListItem button noBorder onPress={() => this.props.navigation.navigate(data.route, {section: data.name})}>
 								<Left>
 									<Icon active name={data.icon} style={{ color: "#777", fontSize: 26, width: 30}} />
 									<Text style={styles.text}>

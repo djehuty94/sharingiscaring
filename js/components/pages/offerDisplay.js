@@ -188,7 +188,15 @@ func_getData(db_section) {
             <CardItem style={{ paddingVertical: 0 }}>
               <Left>
                 <Button
-                  onPress={() => this.props.navigation.navigate("displayOffer", {section: data.section, key: data.key, uid:data.uid})}>
+                  onPress={() => this.props.navigation.navigate("Offer", {
+                    section: this.props.navigation.state.params.section, 
+                    offer: data.offer, 
+                    description: data.description,
+                    price: data.price,
+                    date: data.date,
+                    key: data.key,
+                    uid: data.uid,
+                    })}>
                   <Icon name="search" />
                   <Text>See</Text>
                 </Button>
