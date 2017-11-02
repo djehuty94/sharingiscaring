@@ -1,3 +1,20 @@
+/************************************************************************ */
+/* FILE TITLE : user/login.js                                     
+/* FILE AIM :                                                             
+/*            1.Get datas from offerDisplay.js
+/*            2.Display offers' details                         
+/*                                                                        
+/* Input : uid of user that added the offer from this.props.navigation.state.params.uid    
+/*                                                                        
+/* Exported functions:                                                    
+/*                                                                        
+/*                                                                        
+/* Exported Variables:                                                    
+/*                                                                        
+/* DOCUMENTATION USED:                                                    
+/*                                                                       */
+/**************************************************************************/
+
 import React, { Component, PropTypes } from 'react';
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config/firebase_config.js'; // Import of Firebase config
@@ -31,33 +48,17 @@ import styles from "./styles";
 
 export default class Login extends Component {  
 
-// Remove the navifation header on the login screen
+// Remove the navigation header on the login screen
   static navigationOptions = {
     header: null
   };
 
-  // START TEST TO BE REMOVED
- login = async () => { // The login function is only for test purpuses TO BE REMOVED
-      let email = "test1@gmail.com"
-      let password = "tomtom"
-      try {
-        let user = await firebase.auth().signInWithEmailAndPassword(email, password); 
-        this.state.user = user.uid
-        console.log("UserID is: "+ this.state.user.displayName)
-        this.state.isLoggedIn = true
-        this.props.navigation.navigate("Drawer")
-      }
-      catch (error) {
-        console.log(error);
-        let err_message = error.message;
-      }
-  }
-  componentWillMount() { // TO BE REMOVED
-    //this.login();
-  } 
-  // END TEST TO BE REMOVED
-
-  onNavPress = (screenname) => {
+/********************************************/
+/* Function : func_onNavPress             
+/* Action : Navigation depending on button clicked             
+/* Return: -                                
+/********************************************/
+  func_onNavPress = (screenname) => {
     this.props.navigation.navigate(screenname);
   };
 
@@ -142,13 +143,13 @@ export default class Login extends Component {
               LOGIN
         </RkButton> 
         <Text // Reset password
-              onPress={() => this.onNavPress('ResetPassword')}
+              onPress={() => this.func_onNavPress('ResetPassword')}
               rkType='large'
               style={styles.saveLogin}>
               Reset password
         </Text>
         <TouchableOpacity // Register button
-          onPress={() => this.onNavPress('RegisterInfo')}
+          onPress={() => this.func_onNavPress('RegisterInfo')}
           style={styles.registerContainer}
           >
           <Text style={styles.registerText}>
