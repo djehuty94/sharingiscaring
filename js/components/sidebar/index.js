@@ -66,7 +66,6 @@ const datas = [
 		route: "OfferDisplay",
 		icon: "thunderstorm",
 		bg: "#477EEA",
-		types: "8",
 	},
 	{
 		name: "Tutoring",
@@ -74,7 +73,6 @@ const datas = [
 		route: "OfferDisplay",
 		icon: "help-buoy",
 		bg: "#DA4437",
-		types: "4",
 	},
 	{
 		name: "Associations",
@@ -89,7 +87,6 @@ const datas = [
 		route: "OfferDisplay",
 		icon: "beer",
 		bg: "#1EBC7C",
-		types: "9",
 	},
 	{
 		name: "Furniture",
@@ -97,7 +94,6 @@ const datas = [
 		route: "OfferDisplay",
 		icon: "easel",
 		bg: "#B89EF5",
-		types: "5",
 	},
 	{
 		name: "Other",
@@ -151,7 +147,6 @@ class SideBar extends Component {
 												backgroundColor: data.bg,
 											}}
 										>
-											<Text style={styles.badgeText}>{`${data.types} New!`}</Text>
 										</Badge>
 									</Right>}
 							</ListItem>}

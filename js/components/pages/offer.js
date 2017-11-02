@@ -129,25 +129,10 @@ func_getFromDb = async (value) => {
             >
           <Text>Contact by mail</Text>
         </Button>
-
-          
             </Card>
-            </Content>
-                  
+            </Content>                
           </Container>
-                  
-                  
-           
-           
-    
-    
-    
-       
-
-
-
-
-        );
+          );
       }
     }
     

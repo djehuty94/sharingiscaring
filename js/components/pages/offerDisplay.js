@@ -56,7 +56,6 @@ var db_section;
 class OfferDisplay extends Component {
 
   constructor() {
-    console.log("Constructor");
     super();
     this.state = {
       Fab: false,
@@ -82,17 +81,12 @@ _onRefresh()
 /********************************************/
 //ISSUE : Only called on first construct 
 componentDidMount(){ 
-  console.log("componentDidMount")
        // Reset the array on reload
       //Call the function that will get the data
       //var_section = this.props.navigation.state.params.section;
       this.func_getData()
       .then(res => this.setState({ isLoaded:true }))
       .catch(err => alert("An error occurred: "+err));
-}
-
-componentWillMount(){
-  console.log("ComponenetWillMount")
 }
 
 /********************************************/
@@ -103,7 +97,7 @@ componentWillMount(){
 func_getData() {
   array_offerDatas = []
   db_section = this.props.navigation.state.params.section;
-  //TO DELETE
+  //DEBUG
   console.log("Db_section : "+ db_section);  
 
   //Return Resolved once datas have been fetched
@@ -161,8 +155,11 @@ func_getData() {
 
 
   render() {
+
+    //ALTERNATIVE TO BE FOUND
     if(this.props.navigation.state.params.section != db_section)
     {
+      //DEBUG
       console.log("Should launch on refresh");
       this._onRefresh();
     }
@@ -211,8 +208,6 @@ func_getData() {
               <Body>
                 <Text>
                   Description : {data.description}{"\n"}
-                  Key : {data.key}
-                  uid : {data.uid}
                   Price : {data.price}
                 </Text>
 

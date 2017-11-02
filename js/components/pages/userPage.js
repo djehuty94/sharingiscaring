@@ -69,14 +69,18 @@ class UserPage extends Component {
   }
 
 
-
-  getUser = () => {
+/********************************************/
+/* Function : func_getUser             
+/* Action : Get connected user name               
+/* Return: -                                
+/********************************************/
+  func_getUser = () => {
     this.state.displayName = firebase.auth().currentUser.displayName
     // + this function should get the phone number and store it in "this.state.phoneNumber"
   };
   
   componentWillMount() {
-    this.getUser();
+    this.func_getUser();
   }
 
   render() {
@@ -139,7 +143,7 @@ class UserPage extends Component {
                     this.dropdown.alertWithType("error","Error",error.toString());
                   });
               }}
-              onEndEditing={this.getUser}
+              onEndEditing={this.func_getUser}
               value={this.state.displayName}
             />
             
@@ -176,7 +180,7 @@ class UserPage extends Component {
                     console.log(error)
                   });
               }}
-              onEndEditing={this.getUser}
+              onEndEditing={this.func_getUser}
               value={this.state.phoneNumber}
             />
 
