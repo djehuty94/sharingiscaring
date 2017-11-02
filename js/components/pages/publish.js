@@ -207,12 +207,19 @@ class Publish extends Component {
     }
 
     if (this.state.price < const_priceMin) {
-      this.dropdown.alertWithType(
-        "error",
-        "Error",
-        "Enter a valid price."
-      );
-      return;
+      if(this.state.price == 0)
+      {
+        this.state.price = "free!";
+        return;
+      }
+      else{
+        this.dropdown.alertWithType(
+          "error",
+          "Error",
+          "Enter a valid price or 0 if the item is free"
+        );
+        return;
+      }
     }      
       
     //Assign content to variabe
@@ -316,7 +323,7 @@ render() {
         />
       </View>
       <View>
-        <FormLabel>How much does it cost?</FormLabel>
+        <FormLabel>How much does it cost? (enter 0 for free item)</FormLabel>
         <FormInput
         keyboardType={'phone-pad'}
         style={{height: 50,

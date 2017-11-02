@@ -1,10 +1,11 @@
 /************************************************************************ */
 /* FILE TITLE : user/login.js                                     
 /* FILE AIM :                                                             
-/*            1.Get datas from offerDisplay.js
-/*            2.Display offers' details                         
+/*            1.Ask for user's data
+/*            2.Check if user exists and login
+/*            3.Also offer the possibility to create an account and reset password                   
 /*                                                                        
-/* Input : uid of user that added the offer from this.props.navigation.state.params.uid    
+/* Input     
 /*                                                                        
 /* Exported functions:                                                    
 /*                                                                        
@@ -48,6 +49,13 @@ import styles from "./styles";
 
 export default class Login extends Component {  
 
+  // Use constructor to store email and password. 
+  constructor(){
+    super();
+    this.state = {isLoggedIn : false, email :"", password : ""};
+   }
+
+
 // Remove the navigation header on the login screen
   static navigationOptions = {
     header: null
@@ -55,7 +63,7 @@ export default class Login extends Component {
 
 /********************************************/
 /* Function : func_onNavPress             
-/* Action : Navigation depending on button clicked             
+/* Action : Navigate to desired page from page name input               
 /* Return: -                                
 /********************************************/
   func_onNavPress = (screenname) => {
@@ -63,15 +71,13 @@ export default class Login extends Component {
   };
 
 
-  // Use constructor to store email and password. 
-    constructor(){
-      super();
-      this.state = {isLoggedIn : false, email :"", password : ""};
-     }
-
-
+/********************************************/
+/* Function : func_onLoginPress             
+/* Action : Call func_getData               
+/* Return: -                                
+/********************************************/
   // Sending for login to "loginUser" function
-  onButtonPress = async () => { // The "async" serve for the await function
+  func_onLoginPress = async () => { // The "async" serve for the await function
 
 
     console.log('Login button pressed');
@@ -134,11 +140,11 @@ export default class Login extends Component {
           onChangeText={(password) => this.setState({password : password})}
           blurOnSubmit
           returnKeyType="send"
-          onSubmitEditing={() => this.onButtonPress()}
+          onSubmitEditing={() => this.func_onLoginPress()}
         />
         <RkButton // Login button 
               rkType='rounded'
-              onPress={() => { this.onButtonPress(); }}
+              onPress={() => { this.func_onLoginPress(); }}
               style={styles.saveLogin}>
               LOGIN
         </RkButton> 
