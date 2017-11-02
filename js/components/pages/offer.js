@@ -64,7 +64,7 @@ class Offer extends Component {
     array_userDatas = []
     db_section = this.props.navigation.state.params.section;
     db_uid = 'AdmeWt4gVFcG8faBcP2SPI77zCT2';
-    /*this.props.navigation.state.params.uid'*/'
+    /*this.props.navigation.state.params.uid*/
     //TO DELETE
     console.log("Db_uid : "+ db_uid);  
   
