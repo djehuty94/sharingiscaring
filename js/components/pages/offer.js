@@ -1,12 +1,11 @@
 
 /************************************************************************ */
-/* FILE TITLE : pages/offerDisplay.js                                     
+/* FILE TITLE : pages/offer.js                                     
 /* FILE AIM :                                                             
-/*            1.Get datas from DB of specified section                    
-/*            2.Build an array with announces to be display               
-/*            3.Display announces using card                              
+/*            1.Get datas from offerDisplay.js
+/*            2.Display offers' details                         
 /*                                                                        
-/* Input : section from this.props.navigation.state.params.section;       
+/* Input : uid of user that added the offer from this.props.navigation.state.params.uid    
 /*                                                                        
 /* Exported functions:                                                    
 /*                                                                        
@@ -14,7 +13,7 @@
 /* Exported Variables:                                                    
 /*                                                                        
 /* DOCUMENTATION USED:                                                    
-/*   https://firebase.google.com/docs/reference/js/firebase.database.DataSnapshot#forEach                                                                      */
+/*                                                                       */
 /**************************************************************************/
 
 import React, { Component } from 'react';
@@ -57,7 +56,7 @@ class Offer extends Component {
   }
   
   get = async (value) => {
-    await firebase.database().ref('users/' + /*this.props.navigation.state.params.uid'*/'AdmeWt4gVFcG8faBcP2SPI77zCT2/' + 'userDetails').once('value')
+    await firebase.database().ref('users/' + this.props.navigation.state.params.uid +'/userDetails').once('value')
     .then(function(snapshot){
       console.log(snapshot.child("displayName").val()+ "  "+ snapshot.child("phoneNumber").val());
       var_displayName = snapshot.child("displayName").val();

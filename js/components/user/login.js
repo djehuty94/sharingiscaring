@@ -53,7 +53,7 @@ export default class Login extends Component {
       }
   }
   componentWillMount() { // TO BE REMOVED
-    this.login();
+    //this.login();
   } 
   // END TEST TO BE REMOVED
 
