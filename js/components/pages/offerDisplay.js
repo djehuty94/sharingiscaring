@@ -43,6 +43,9 @@ import {
 
 import styles from "./styles";
 
+
+import DropdownAlert from 'react-native-dropdownalert'; // Alert component used to display error
+
 //const const_deviceWidth = Dimensions.get("window").width;
 const logo = require("../../../assets/images/logo-sharing-is-caring.png");
 
@@ -134,6 +137,7 @@ func_getData(db_section) {
       });
     }
      catch (error) {
+      this.dropdown.alertWithType("error", "Error", String(error));
       reject(Error(error));
       }
     });
@@ -222,6 +226,7 @@ func_getData(db_section) {
           </Button>
           
         </Fab>
+        <DropdownAlert ref={ref => this.dropdown = ref}/>
       </Container>
     );
   }

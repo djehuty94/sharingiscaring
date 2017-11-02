@@ -40,7 +40,13 @@ export default class RegisterAccount extends Component {
     // Use constructor to store email and password. 
     constructor(){
       super();
-      this.state = {isLoggedIn : false, email :"", password : "", firstname :"", lastname : "", phone : ""};
+      this.state = {
+        isLoggedIn : false, 
+        email :"", 
+        password : "", 
+        firstname :"", 
+        lastname : "", 
+        phone : ""};
     }
 
 

@@ -95,7 +95,7 @@ class UserPage extends Component {
               onChangeText={(displayName) => {
                 this.setState({displayName})
                 if (displayName.trim().length < 4) {
-                  // this.dropdown.alertWithType('error', 'Error', 'Please enter your full name.');
+                  this.dropdown.alertWithType('error', 'Error', 'Please enter your full name.');
                   console.log("Please enter your full name.")
                   return;
                 }
@@ -113,7 +113,7 @@ class UserPage extends Component {
                       });
                   })
                   .catch(error => {
-                    //this.dropdown.alertWithType("error","Error",error.toString());
+                    this.dropdown.alertWithType("error","Error",error.toString());
                   });
               }}
               onEndEditing={this.getUser}
@@ -131,7 +131,7 @@ class UserPage extends Component {
               onChangeText={(phoneNumber) => {
                 this.setState({phoneNumber})
                 if (phoneNumber.trim().length !== 10) {
-                  // this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number.');
+                  this.dropdown.alertWithType('error', 'Error', 'Please enter a correct number.');
                   console.log("Please enter a correct number.")
                   return;
                 }
@@ -149,7 +149,7 @@ class UserPage extends Component {
                       });
                   })
                   .catch(error => {
-                    //this.dropdown.alertWithType("error","Error",error.toString());
+                    this.dropdown.alertWithType("error","Error",error.toString());
                     console.log(error)
                   });
               }}
@@ -215,6 +215,7 @@ class UserPage extends Component {
         
         </View>
       </ScrollView>
+      <DropdownAlert ref={ref => this.dropdown = ref}/>
       </Container>
     );
   }

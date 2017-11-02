@@ -25,6 +25,10 @@ import { ImagePicker } from 'expo'; // Take a picture
 import { FormLabel, FormInput, FormValidationMessage, Divider } from 'react-native-elements';
 
 
+import DropdownAlert from 'react-native-dropdownalert'; // Alert component
+
+
+
 import firebase from 'firebase'; // Import Firebase login
 import { firebaseConfig } from '../../config'; // Import of Firebase config
 
@@ -147,6 +151,33 @@ class Publish extends Component {
   
   uploadOffer = async (announceNumberInc, uid) => {
 
+        if (this.state.offer.length < 6) {
+          this.dropdown.alertWithType(
+            "error",
+            "Error",
+            "Enter a valid title (more than 6 caracters)."
+          );
+          return;
+        }
+
+        if (this.state.description.length < 6) {
+          this.dropdown.alertWithType(
+            "error",
+            "Error",
+            "Enter a valid description (more than 10 caracters)."
+          );
+          return;
+        }
+
+        if (this.state.price < 1) {
+          this.dropdown.alertWithType(
+            "error",
+            "Error",
+            "Enter a valid price."
+          );
+          return;
+        }
+
 
         console.log("           --------------------------------           ")
         console.log("Publishing of the announce n°" + announceNumberInc)
@@ -173,11 +204,12 @@ class Publish extends Component {
             uid,
            
           })
-        .then(() => this.props.navigation.navigate("OfferDisplay"/*, {section: data.section}*/));
+        .then(() => this.props.navigation.navigate("OfferDisplay", {section: this.props.navigation.state.params.section}));
     
         }
         catch (error) {
           console.log(error);
+          this.dropdown.alertWithType("error", "Error", String(error));
         }
     
   }
@@ -270,10 +302,11 @@ class Publish extends Component {
        
 
 
-
+        <DropdownAlert ref={ref => this.dropdown = ref}/>
       </Container>
-
+      
       </TouchableWithoutFeedback>
+      
     );
   }
 }
