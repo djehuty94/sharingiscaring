@@ -50,6 +50,7 @@ class Offer extends Component {
     this.get("email")
     .then(() => this.get("displayName"))
     .then(() => this.get("phoneNumber"))
+    .then(() => this.setState({ email : this.state.email }))
   }
     
   get = async (value) => {
@@ -95,7 +96,9 @@ class Offer extends Component {
                   <Text>Date: {this.props.navigation.state.params.date}</Text>
         <View style={{width: 100, height: 10, backgroundColor: '#FFFFFF'}} />
                   <Text><Title>                                                             Price: {this.props.navigation.state.params.price}.- CHF</Title></Text>
-        <View style={{width: 100, height: 60, backgroundColor: '#FFFFFF'}} />          
+                  <Text>{this.state.email}</Text>
+        <View style={{width: 100, height: 60, backgroundColor: '#FFFFFF'}} />        
+          
       
          
       </View>
