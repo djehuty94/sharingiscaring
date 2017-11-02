@@ -51,10 +51,12 @@ const logo = require("../../../assets/images/logo-sharing-is-caring.png");
 
 //Array that will contain Datas
 var array_offerDatas = [];
+var db_section;
 
 class OfferDisplay extends Component {
 
   constructor() {
+    console.log("Constructor");
     super();
     this.state = {
       Fab: false,
@@ -80,6 +82,7 @@ _onRefresh()
 /********************************************/
 //ISSUE : Only called on first construct 
 componentDidMount(){ 
+  console.log("componentDidMount")
        // Reset the array on reload
       //Call the function that will get the data
       //var_section = this.props.navigation.state.params.section;
@@ -88,6 +91,9 @@ componentDidMount(){
       .catch(err => alert("An error occurred: "+err));
 }
 
+componentWillMount(){
+  console.log("ComponenetWillMount")
+}
 
 /********************************************/
 /* Function : func_getData                  
@@ -155,8 +161,13 @@ func_getData() {
 
 
   render() {
+    if(this.props.navigation.state.params.section != db_section)
+    {
+      console.log("Should launch on refresh");
+      this._onRefresh();
+    }
     if (!this.state.isLoaded) {return <View style={styles.containerPublish}><Spinner color='blue' /></View>;
-    } 
+    }
     return (
       <Container style={styles.container}>
         <Header 
