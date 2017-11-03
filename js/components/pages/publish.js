@@ -336,6 +336,7 @@ render() {
         
           />
       </View>
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
       <Button
             onPress={() => {this.takePhoto(); }}
             rkType='large'
@@ -349,12 +350,14 @@ render() {
             style={styles.save1Publish}>
             <Text>Choose Picture</Text>
       </Button>
-      <Image
+     
+  </View>
+  <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: 135, bottom: 50}}>
+       <Image
         style={styles.image}
         source={this.state.localUri ? {uri: this.state.localUri} : null}
       /> 
-
-      
+      </View>
       <Button 
             block success
             disabled={this.state.share}
@@ -362,7 +365,7 @@ render() {
             >
             <Text>Share</Text>
       </Button>
-      
+     
 
 
       <DropdownAlert ref={ref => this.dropdown = ref}/>
