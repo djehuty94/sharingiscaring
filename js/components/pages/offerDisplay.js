@@ -215,9 +215,9 @@ func_getData() {
 
               </Body>
             </CardItem>
-            <CardItem style={{ paddingVertical: 0 }}>
+            <CardItem>
               <Left>
-                <Button
+                <Button primary style={styles.mb15}
                   onPress={() => this.props.navigation.navigate("Offer", {
                     section: this.props.navigation.state.params.section, 
                     offer: data.offer, 
