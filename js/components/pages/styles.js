@@ -16,6 +16,11 @@ const React = require("react-native");
 const { StyleSheet } = React;
 
 export default {
+  //viewFlex:{
+    //flex: 3,
+     //flexDirection: 'column',
+     //backgroundColor:'Yellow',
+ // },
   containerPublish: { // only concern the "publish.js"
     flex: 1,
     justifyContent: 'center',
