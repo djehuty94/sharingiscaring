@@ -64,7 +64,7 @@ class UserPage extends Component {
     this.state = {
       notif: false,
       displayName: '', 
-      phoneNumber: 'Enter your new phone number here', 
+      phoneNumber: '', 
     };
   }
 
@@ -151,6 +151,7 @@ class UserPage extends Component {
           <View style={styles.fieldContainer}>
             <Text style={styles.text}>Phone Number</Text>
             <TextInput
+              placeholder={"Enter your new phone number here"}
               style={styles.editableText}
               editable
               autoCorrect={false}

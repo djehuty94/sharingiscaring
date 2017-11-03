@@ -105,7 +105,7 @@ export default class RegisterAccount extends Component {
       //DEBUG
       console.log(firstname)
       console.log(lastname)
-      var phone = this.props.navigation.state.params.phone
+      var phoneNumber = this.props.navigation.state.params.phone
       var displayName = firstname + ' ' + lastname;
       var email = this.state.email
       var password = this.state.password
@@ -123,7 +123,7 @@ export default class RegisterAccount extends Component {
         // write user properties to firebase
         firebase.database().ref(`/users/${user.uid}/userDetails`).set({
           email,
-          phone,
+          phoneNumber,
           firstname,
           lastname,
           displayName
