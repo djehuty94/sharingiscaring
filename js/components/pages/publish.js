@@ -295,7 +295,7 @@ render() {
                   </Button>
               </Left>
               <Body>
-                    <Title>New offer</Title> 
+                    <Title>New {this.props.navigation.state.params.section} offer</Title> 
               </Body>
                   <Right/>
       </Header>
