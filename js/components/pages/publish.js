@@ -359,6 +359,9 @@ render() {
       /> 
       </View>
       <Button 
+            position='absolute'
+            bottom='0'
+            alignSelf='flex-end'
             block success
             disabled={this.state.share}
             onPress={() => this.func_fetchAndUpload() }
