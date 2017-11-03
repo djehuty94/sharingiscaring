@@ -124,12 +124,8 @@ func_getFromDb = async () => {
               <Text>Price: {this.props.navigation.state.params.price}.- CHF</Text>
             </CardItem>
             </Card>
-<<<<<<< HEAD
-            <Card>
-=======
            
             <Card> 
->>>>>>> 932dc867f63755b72c37de7f42429be5fed99200
             <CardItem Header>
               <Text><Title>Contact: </Title></Text>
             </CardItem>
