@@ -50,5 +50,8 @@ export default {
   },
   FAB: {
     backgroundColor: '#5067FF'
+  },
+  text: {
+    fontWeight: 'bold',
   }
 };

@@ -207,8 +207,10 @@ func_getData() {
             <CardItem>
               <Body>
                 <Text>
-                  Description : {data.description}{"\n"}
-                  Price : {data.price}
+                  Description : {data.description}
+                </Text>
+                <Text style={styles.text}>
+                  Price : {data.price} CHF
                 </Text>
 
               </Body>
