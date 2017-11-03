@@ -103,7 +103,6 @@ func_getData() {
   //Return Resolved once datas have been fetched
   return new Promise(function(resolve, reject){
     try {
-      
       //Get Object corresponding to the section from Firebase
       var ref = firebase.database().ref(db_section).orderByKey();
       
@@ -160,6 +159,7 @@ func_getData() {
     if(this.props.navigation.state.params.section != db_section)
     {
       //DEBUG
+
       console.log("Should launch on refresh");
       this._onRefresh();
     }

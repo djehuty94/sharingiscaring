@@ -119,12 +119,11 @@ func_getFromDb = async () => {
               <Body>
               <Text>Date: {this.props.navigation.state.params.date}</Text>
               </Body>
-              </CardItem>
+            </CardItem>
             <CardItem footer>
               <Text>Price: {this.props.navigation.state.params.price}.- CHF</Text>
             </CardItem>
             </Card>
-            
             <Card>
             <CardItem Header>
               <Text><Title>Contact: </Title></Text>
