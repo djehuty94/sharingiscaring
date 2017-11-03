@@ -210,7 +210,7 @@ class Publish extends Component {
       console.log(this.state.price);
       if(this.state.price == 0)
       {
-        this.state.price = "free!";
+        this.state.price = "Free";
         console.log("Free : "+ this.state.price)
         return;
       }
