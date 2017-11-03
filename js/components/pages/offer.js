@@ -105,7 +105,7 @@ func_getFromDb = async () => {
                         <Right/>
             </Header>
 
-            <Content>
+            <Content padder>
             <Card>
             <CardItem Header>
               <Text><Title>Title: {this.props.navigation.state.params.offer}</Title></Text>
