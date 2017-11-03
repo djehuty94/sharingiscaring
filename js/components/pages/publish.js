@@ -356,6 +356,8 @@ render() {
 
       
       <Button 
+            position='absolute'
+            bottom='0'
             block success
             disabled={this.state.share}
             onPress={() => this.func_fetchAndUpload() }
