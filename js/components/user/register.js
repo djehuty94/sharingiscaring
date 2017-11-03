@@ -59,7 +59,7 @@ export default class RegisterAccount extends Component {
         password : "", 
         firstname :"", 
         lastname : "", 
-        phone : ""};
+        phoneNumber : ""};
     }
 
 
@@ -115,7 +115,7 @@ export default class RegisterAccount extends Component {
       console.log(email);
       console.log(password);
       console.log(displayName);
-      console.log(phone);
+      console.log(phoneNumber);
   
       try {
         let user = await firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -129,7 +129,7 @@ export default class RegisterAccount extends Component {
           displayName
         });
         console.log(user);
-        this.func_onNavPress('login_scr')
+        this.func_onNavPress('Drawer')
         if (user) { // Display success message when logged in.
           this.dropdown.alertWithType('success', 'Success', "Registered");
         }
