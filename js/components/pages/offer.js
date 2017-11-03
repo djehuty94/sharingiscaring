@@ -124,13 +124,14 @@ func_getFromDb = async () => {
               <Text>Price: {this.props.navigation.state.params.price}.- CHF</Text>
             </CardItem>
             </Card>
-            
-            <Card>
+           
+            <Card> 
             <CardItem Header>
               <Text><Title>Contact: </Title></Text>
             </CardItem>
             <CardItem>
               <Body>
+                <View style={{flex: 1, flexDirection: 'row'}}>
                       <Button
                           onPress={() => {
                           email(
@@ -140,20 +141,28 @@ func_getFromDb = async () => {
                           `Contact for <${this.props.navigation.state.params.offer}>`,
                           null
                          );
-                        }}
-                      >
+                        }}>
                           <Text>By mail</Text>
                       </Button>
-
+                      </View>
+              </Body>
+              <Body>
+                <View style={{flex: 1, flexDirection: 'row'}}>
                       <Button onPress={() => {text(String(this.state.phoneNumber),`Contact for <${this.props.navigation.state.params.offer}>`)}}>
                           <Text>By SMS</Text>
                        </Button>
-                
+                </View>
+                </Body>
+                <Body>
+                  <View style={{flex: 1, flexDirection: 'row'}}>
                       <Button onPress={() => {phonecall(String(this.state.phoneNumber),true);}}>
                           <Text>By phone</Text>
+              
                       </Button>
-              </Body>
+                  </View>
+                  </Body>
             </CardItem>
+           
             </Card>
             </Content>   
 
