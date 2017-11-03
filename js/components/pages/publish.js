@@ -295,7 +295,7 @@ render() {
                   </Button>
               </Left>
               <Body>
-                    <Title>New {this.props.navigation.state.params.section} offer</Title> 
+                    <Title>New {this.props.navigation.state.params.section}</Title> 
               </Body>
                   <Right/>
       </Header>
@@ -336,6 +336,7 @@ render() {
         
           />
       </View>
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around'}}>
       <Button
             onPress={() => {this.takePhoto(); }}
             rkType='large'
@@ -349,20 +350,25 @@ render() {
             style={styles.save1Publish}>
             <Text>Choose Picture</Text>
       </Button>
-      <Image
+     
+  </View>
+  <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginLeft: 135, bottom: 50}}>
+       <Image
         style={styles.image}
         source={this.state.localUri ? {uri: this.state.localUri} : null}
       /> 
-
-      
+      </View>
       <Button 
+            position='absolute'
+            bottom='0'
+            alignSelf='flex-end'
             block success
             disabled={this.state.share}
             onPress={() => this.func_fetchAndUpload() }
             >
             <Text>Share</Text>
       </Button>
-      
+     
 
 
       <DropdownAlert ref={ref => this.dropdown = ref}/>
